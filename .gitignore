@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# dev scratch files
+*.mjs
+*.sql
+Part_*.json
+worker.log
+python-engine/venv/
+python-engine/__pycache__/

@@ -1,7 +1,11 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next'
 
 const nextConfig: NextConfig = {
-  /* config options here */
-};
+  // External packages that have native Node.js bindings (PDF/image processing)
+  serverExternalPackages: ['pdf2pic', 'sharp', 'gm'],
 
-export default nextConfig;
+  // Turbopack config (Next.js 16 default bundler)
+  turbopack: {},
+}
+
+export default nextConfig
