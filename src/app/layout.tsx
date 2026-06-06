@@ -110,10 +110,14 @@ function TopNav() {
           
           {/* Logo */}
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ transform: 'rotate(-35deg)' }}>
-              <rect x="1" y="2" width="6" height="20" rx="3" fill="#f97316" />
-              <rect x="9" y="2" width="6" height="20" rx="3" fill="#f8fafc" />
-              <rect x="17" y="2" width="6" height="20" rx="3" fill="#10b981" />
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Ballot Box Outline */}
+              <rect x="3" y="10" width="18" height="12" rx="2" stroke="var(--color-accent)" strokeWidth="2" />
+              <path d="M3 14H21" stroke="var(--color-accent)" strokeWidth="2" />
+              {/* Ballot Paper dropping in */}
+              <path d="M15 10V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V10" fill="#f8fafc" stroke="#f8fafc" strokeWidth="2" strokeLinecap="round" />
+              {/* Checkmark on paper */}
+              <path d="M10.5 6.5L12 8L13.5 5" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <div style={{ fontWeight: 700, fontSize: 16, color: '#f8fafc', letterSpacing: '-0.3px' }}>
               Voter Search India
