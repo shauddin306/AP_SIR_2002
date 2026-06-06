@@ -16,16 +16,28 @@ export default function HomePage() {
         
         {/* Hero */}
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
-          <p style={{
-            fontSize: 14,
-            fontWeight: 700,
-            textTransform: 'uppercase',
-            letterSpacing: '2px',
-            color: '#3b82f6',
-            marginBottom: 16
+          <div style={{
+            display: 'inline-block',
+            padding: '8px 24px',
+            borderRadius: '100px',
+            background: 'linear-gradient(90deg, rgba(59,130,246,0.1) 0%, rgba(16,185,129,0.1) 100%)',
+            border: '1px solid rgba(255,255,255,0.1)',
+            boxShadow: '0 0 20px rgba(59,130,246,0.15)',
+            marginBottom: 24
           }}>
-            Powered by MindT Private Limited
-          </p>
+            <p style={{
+              fontSize: 13,
+              fontWeight: 800,
+              textTransform: 'uppercase',
+              letterSpacing: '3px',
+              background: 'linear-gradient(90deg, #60a5fa, #34d399)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              margin: 0
+            }}>
+              Powered by MindT Private Limited
+            </p>
+          </div>
           <h1 style={{
             fontSize: 'clamp(40px, 6vw, 68px)',
             fontWeight: 800,
