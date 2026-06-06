@@ -119,13 +119,12 @@ export async function GET(req: NextRequest) {
 
     let finalResults = results || []
 
-    // If no results at all, try a broader fuzzy search
+    // If no results at all, try a broader fuzzy search (Phase 1 Typo Tolerance)
     if (finalResults.length === 0) {
-      const { data: fallback } = await supabase
-        .from('voters')
-        .select('*')
-        .textSearch('voter_name_english', q, { type: 'plain', config: 'english' })
-        .limit(limit)
+      const { data: fallback } = await supabase.rpc('fuzzy_search_voters', {
+        query_text: q,
+        p_limit: limit
+      })
 
       finalResults = (fallback || []).map((r: Record<string, unknown>) => ({
         ...r,

@@ -243,13 +243,44 @@ function SearchPageInner() {
 
       {familyView && (
         <div style={{ marginBottom: 20 }}>
-          <button
-            className="btn-primary"
-            onClick={() => setFamilyView(null)}
-            style={{ padding: '8px 16px', fontSize: 14 }}
-          >
-            ← Back to Search Results
-          </button>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <button
+              className="btn-primary"
+              onClick={() => setFamilyView(null)}
+              style={{ padding: '8px 16px', fontSize: 14 }}
+            >
+              ← Back to Search Results
+            </button>
+            <div style={{ display: 'flex', gap: 12 }}>
+              <div className="glass-pill" style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#60a5fa', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                🏠 House: {familyView.house_no_raw || familyView.house_no_normalized} (Part {familyView.part_no})
+              </div>
+              <div className="glass-pill" style={{ background: 'rgba(59, 130, 246, 0.1)', color: '#60a5fa', border: '1px solid rgba(59, 130, 246, 0.3)' }}>
+                👥 Total Residents: {results.length}
+              </div>
+            </div>
+          </div>
+          
+          {results.length > 10 && (
+            <div className="animate-fade-in" style={{ 
+              marginTop: 16, 
+              padding: '16px 20px', 
+              borderRadius: 'var(--radius-lg)', 
+              background: 'rgba(239, 68, 68, 0.1)', 
+              border: '1px solid rgba(239, 68, 68, 0.3)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 16
+            }}>
+              <div style={{ fontSize: 24 }}>🚩</div>
+              <div>
+                <h3 style={{ color: '#f87171', margin: '0 0 4px 0', fontSize: 16, fontWeight: 700 }}>Potential Ghost Voter Warning</h3>
+                <p style={{ color: 'rgba(252, 165, 165, 0.9)', margin: 0, fontSize: 14 }}>
+                  This house has an abnormally high number of registered voters ({results.length}). Please manually verify the family tree and relations below to ensure there are no duplicate registrations.
+                </p>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
