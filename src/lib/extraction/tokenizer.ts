@@ -59,7 +59,7 @@ const CANONICAL_MAP: Record<string, string> = {
 
   // ---- SHEIKH / SHAIKH family ----
   'sheikh': 'shk', 'shaikh': 'shk', 'shaik': 'shk', 'shek': 'shk',
-  'shaikh': 'shk', 'shaich': 'shk',
+  'shaich': 'shk',
 
   // ---- SHAREEF / SHARIF family ----
   'shareef': 'shrf', 'sharif': 'shrf', 'sharief': 'shrf', 'sharifuddin': 'shrf',
@@ -74,7 +74,7 @@ const CANONICAL_MAP: Record<string, string> = {
   'mustapha': 'mstf',
 
   // ---- BEGUM / BEGAM family ----
-  'begum': 'bgm', 'begam': 'bgm', 'begam': 'bgm', 'beegum': 'bgm',
+  'begum': 'bgm', 'begam': 'bgm', 'beegum': 'bgm',
 
   // ---- SULTANA / SULTAN family ----
   'sultana': 'sltn', 'sultan': 'sltn', 'saultan': 'sltn',
@@ -117,7 +117,7 @@ const CANONICAL_MAP: Record<string, string> = {
   'ramaiah': 'rm', 'rama': 'rm', 'ramu': 'rm', 'ramayya': 'rm',
 
   // ---- SURESH / SURESH family ----
-  'suresh': 'srsh', 'suresh': 'srsh', 'suresha': 'srsh',
+  'suresh': 'srsh', 'suresha': 'srsh',
 
   // ---- ANJAMMA / ANJALI family ----
   'anjamma': 'anj', 'anjali': 'anj', 'anja': 'anj',
@@ -132,7 +132,7 @@ const CANONICAL_MAP: Record<string, string> = {
   'noorjahan': 'nrjhn', 'nurjahan': 'nrjhn', 'noorbanu': 'nrjhn',
 
   // ---- RAMESH / RAMESH family ----
-  'ramesh': 'rmsh', 'ramesha': 'rmsh', 'ramesh': 'rmsh',
+  'ramesh': 'rmsh', 'ramesha': 'rmsh',
 
   // ---- SRINIVAS / SRINIVASULU family ----
   'srinivas': 'srnvs', 'srinivasulu': 'srnvs', 'srinivasa': 'srnvs',
