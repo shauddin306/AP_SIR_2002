@@ -78,6 +78,19 @@ function GlobalFooter() {
           </p>
         </div>
 
+        <div style={{ width: '100%', height: 1, background: 'var(--color-border)', margin: '16px 0', opacity: 0.5 }} />
+
+        {/* Legal & Compliance Disclaimer */}
+        <div style={{ background: 'rgba(255,255,255,0.03)', padding: '16px', borderRadius: 8, border: '1px solid rgba(255,255,255,0.05)', textAlign: 'left' }}>
+          <p style={{ fontSize: 11, color: 'var(--color-text-muted)', lineHeight: 1.6, margin: 0 }}>
+            <strong style={{ color: 'var(--color-text-secondary)' }}>Legal Disclaimer:</strong> Mindcap is an independent analytics and search platform. All voter data indexed on this platform is extracted via Artificial Intelligence (OCR) from publicly available electoral rolls originally published by the government. <strong>Mindcap is NOT affiliated with, endorsed by, or operated by the Election Commission of India.</strong> We do not guarantee the 100% accuracy of AI-extracted records. Users must verify all official information directly at <a href="https://voters.eci.gov.in" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--color-accent)' }}>voters.eci.gov.in</a>.
+          </p>
+          <div style={{ display: 'flex', gap: 16, marginTop: 12, fontSize: 12, justifyContent: 'center' }}>
+            <a href="/legal/terms" style={{ color: 'var(--color-text-secondary)', textDecoration: 'underline' }}>Terms of Service</a>
+            <a href="/legal/privacy" style={{ color: 'var(--color-text-secondary)', textDecoration: 'underline' }}>Privacy Policy</a>
+          </div>
+        </div>
+
       </div>
     </footer>
   )
