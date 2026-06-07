@@ -30,14 +30,18 @@ export function SearchBar({
 
   return (
     <div className="search-glow" style={{ width: '100%' }}>
-      <div style={{
-        position: 'relative',
-        borderRadius: 'var(--radius-lg)',
-        border: `1.5px solid ${isFocused ? 'var(--color-accent)' : 'var(--color-border-bright)'}`,
-        background: 'var(--color-bg-input)',
-        transition: 'all 0.25s ease',
-        boxShadow: isFocused ? '0 0 0 3px var(--color-accent-glow), var(--shadow-card)' : 'var(--shadow-card)',
-      }}>
+      <form 
+        onSubmit={(e) => { e.preventDefault(); onSubmit?.(); }}
+        style={{
+          position: 'relative',
+          borderRadius: 'var(--radius-lg)',
+          border: `1.5px solid ${isFocused ? 'var(--color-accent)' : 'var(--color-border-bright)'}`,
+          background: 'var(--color-bg-input)',
+          transition: 'all 0.25s ease',
+          boxShadow: isFocused ? '0 0 0 3px var(--color-accent-glow), var(--shadow-card)' : 'var(--shadow-card)',
+          width: '100%',
+        }}
+      >
         {/* Left icon */}
         <div style={{
           position: 'absolute', left: 18, top: '50%', transform: 'translateY(-50%)',
@@ -49,63 +53,90 @@ export function SearchBar({
         </div>
 
         {/* Input */}
-        <form 
-          onSubmit={(e) => { e.preventDefault(); onSubmit?.(); }}
-          style={{ width: '100%', margin: 0, padding: 0 }}
-        >
-          <input
-            ref={inputRef}
-            id="voter-search-input"
-            type="text"
-            value={value}
-            onChange={e => onChange(e.target.value)}
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            placeholder={placeholder}
-            style={{
-              width: '100%',
-              padding: '18px 56px 18px 54px',
-              background: 'transparent',
-              border: 'none',
-              outline: 'none',
-              fontSize: 18,
-              color: 'var(--color-text-primary)',
-              fontFamily: value.match(/[\u0C00-\u0C7F]/) ? 'var(--font-telugu)' : 'var(--font-sans)',
-            }}
-            aria-label="Search voters"
-            autoComplete="off"
-            spellCheck={false}
-          />
-        </form>
+        <input
+          ref={inputRef}
+          id="voter-search-input"
+          type="text"
+          value={value}
+          onChange={e => onChange(e.target.value)}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          placeholder={placeholder}
+          style={{
+            width: '100%',
+            padding: '18px 160px 18px 54px', /* Increased right padding for the big button */
+            background: 'transparent',
+            border: 'none',
+            outline: 'none',
+            fontSize: 18,
+            color: 'var(--color-text-primary)',
+            fontFamily: value.match(/[\u0C00-\u0C7F]/) ? 'var(--font-telugu)' : 'var(--font-sans)',
+          }}
+          aria-label="Search voters"
+          autoComplete="off"
+          spellCheck={false}
+        />
 
-        {/* Right indicator */}
+        {/* Right indicator & Button */}
         <div style={{
-          position: 'absolute', right: 18, top: '50%', transform: 'translateY(-50%)',
-          display: 'flex', alignItems: 'center', gap: 8,
+          position: 'absolute', right: 8, top: '50%', transform: 'translateY(-50%)',
+          display: 'flex', alignItems: 'center', gap: 12,
         }}>
+          {resultCount !== undefined && value && !isLoading && (
+            <span style={{
+              fontSize: 13, color: 'var(--color-text-muted)',
+              whiteSpace: 'nowrap', fontWeight: 500
+            }}>
+              {resultCount} results
+            </span>
+          )}
           {value && !isLoading && (
             <button
-              onClick={() => onChange('')}
+              type="button"
+              onClick={() => { onChange(''); onSubmit?.(); }}
               style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                color: 'var(--color-text-muted)', fontSize: 18, padding: 4,
-                borderRadius: 4, transition: 'color 0.15s',
+                background: 'rgba(255,255,255,0.1)', border: 'none', cursor: 'pointer',
+                color: 'var(--color-text-muted)', fontSize: 14, width: 28, height: 28,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                borderRadius: '50%', transition: 'all 0.2s',
               }}
               aria-label="Clear search"
+              title="Clear"
             >
               ✕
             </button>
           )}
-          {resultCount !== undefined && value && !isLoading && (
-            <span style={{
-              fontSize: 12, color: 'var(--color-text-muted)',
-              whiteSpace: 'nowrap',
-            }}>
-              {resultCount} result{resultCount !== 1 ? 's' : ''}
-            </span>
-          )}
+          <button
+            type="submit"
+            style={{
+              background: 'linear-gradient(90deg, #3b82f6, #10b981)',
+              border: 'none',
+              color: 'white',
+              padding: '10px 24px',
+              borderRadius: '100px',
+              fontWeight: 600,
+              fontSize: 15,
+              cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(59, 130, 246, 0.3)',
+              transition: 'transform 0.15s ease, box-shadow 0.15s ease',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              opacity: isLoading ? 0.7 : 1,
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = 'translateY(-1px)';
+              e.currentTarget.style.boxShadow = '0 6px 16px rgba(59, 130, 246, 0.4)';
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = 'translateY(0)';
+              e.currentTarget.style.boxShadow = '0 4px 12px rgba(59, 130, 246, 0.3)';
+            }}
+          >
+            {isLoading ? 'Searching...' : 'Search'}
+          </button>
         </div>
-      </div>
+      </form>
 
       {/* AI hint */}
       {isFocused && !value && (
