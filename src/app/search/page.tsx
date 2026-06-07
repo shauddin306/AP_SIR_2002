@@ -132,7 +132,7 @@ function SearchPageInner() {
   const filteredResults = matchFilter === 'ALL' ? results : results.filter(r => r.match_type === matchFilter)
 
   return (
-    <div style={{ maxWidth: 1600, margin: '0 auto', padding: '32px 24px' }}>
+    <div className="search-page-container" style={{ maxWidth: 1600, margin: '0 auto', padding: '32px 24px' }}>
 
       {/* Header */}
       <div style={{ marginBottom: 28 }}>
@@ -195,12 +195,12 @@ function SearchPageInner() {
       {/* Filters (also hidden in family view usually, but let's keep the existing logic) */}
       {!familyView && (
         <>
-          <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
+          <div className="filter-bar" style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <label style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Relative Name:</label>
               <input
                 id="filter-relative-name"
-                className="input"
+                className="input filter-input"
                 type="text"
                 value={filterRelativeName}
                 onChange={e => setFilterRelativeName(e.target.value)}
@@ -297,7 +297,7 @@ function SearchPageInner() {
 
       {/* Match type summary */}
       {hasSearched && results.length > 0 && (
-        <div className="animate-fade-in" style={{ display: 'flex', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
+        <div className="animate-fade-in match-summary" style={{ display: 'flex', gap: 12, marginBottom: 16, flexWrap: 'wrap' }}>
           {exactCount > 0 && (
             <button
               onClick={() => setMatchFilter(matchFilter === 'EXACT' ? 'ALL' : 'EXACT')}
@@ -338,7 +338,7 @@ function SearchPageInner() {
             </button>
           )}
 
-          <div style={{
+          <div className="match-summary-text" style={{
             marginLeft: 'auto', display: 'flex', alignItems: 'center',
             fontSize: 13, color: 'var(--color-text-muted)',
           }}>

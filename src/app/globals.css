@@ -455,3 +455,75 @@ body {
 .nav-link:hover {
   color: #f8fafc;
 }
+
+/* ============================================================
+   MOBILE RESPONSIVENESS
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Prevent iOS Safari zooming on inputs */
+  input, select, textarea {
+    font-size: 16px !important;
+  }
+
+  /* Navigation */
+  .nav-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 16px !important;
+    align-items: stretch !important;
+  }
+  .nav-links {
+    order: 3;
+    width: 100%;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    justify-content: flex-start !important;
+  }
+  .nav-right {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+  }
+
+  /* Search Page Container */
+  .search-page-container {
+    padding: 16px 12px !important;
+    margin-top: 60px !important; /* space for absolute right nav */
+  }
+
+  /* Search Bar */
+  .search-input {
+    padding: 14px 110px 14px 44px !important;
+  }
+  .search-btn {
+    padding: 8px 16px !important;
+    font-size: 14px !important;
+  }
+  .search-icon-left {
+    left: 14px !important;
+  }
+
+  /* Filters */
+  .filter-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 12px !important;
+  }
+  .filter-bar > div {
+    justify-content: space-between;
+  }
+  .filter-input {
+    flex: 1;
+    width: auto !important;
+  }
+
+  /* Match Summary */
+  .match-summary {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  .match-summary-text {
+    margin-left: 0 !important;
+    margin-top: 8px;
+  }
+}

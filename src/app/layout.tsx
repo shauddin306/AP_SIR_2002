@@ -112,7 +112,7 @@ async function TopNav() {
       zIndex: 100,
     }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '16px 24px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center' }}>
+        <div className="nav-grid" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center' }}>
           
           {/* Logo */}
           <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
@@ -131,14 +131,14 @@ async function TopNav() {
           </a>
 
           {/* Centered Nav */}
-          <nav style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+          <nav className="nav-links" style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
             <NavLink href="/" label="Home" />
             <NavLink href="/search" label="Search" />
             <NavLink href="/browse" label="Directory" />
           </nav>
 
           {/* Right Action */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
+          <div className="nav-right" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
             {user ? (
               <>
                 <a href="/admin/dashboard" style={{
