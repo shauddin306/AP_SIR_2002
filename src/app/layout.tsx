@@ -96,7 +96,13 @@ function GlobalFooter() {
   )
 }
 
-function TopNav() {
+import { createClient } from '@/lib/supabase/server'
+import { LogoutButton } from '@/components/LogoutButton'
+
+async function TopNav() {
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
   return (
     <header style={{
       background: 'transparent',
@@ -132,15 +138,27 @@ function TopNav() {
           </nav>
 
           {/* Right Action */}
-          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <a href="/admin/login" style={{
-              border: '1px solid rgba(255,255,255,0.2)', padding: '6px 24px', borderRadius: 20,
-              color: 'white', textDecoration: 'none', fontSize: 13, fontWeight: 500,
-              background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)',
-              transition: 'all 0.2s'
-            }}>
-              Admin Login
-            </a>
+          <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
+            {user ? (
+              <>
+                <a href="/admin/dashboard" style={{
+                  color: 'var(--color-accent-text)', textDecoration: 'none', fontSize: 13, fontWeight: 600,
+                  opacity: 0.9, transition: 'opacity 0.2s'
+                }} className="hover:opacity-100">
+                  Dashboard
+                </a>
+                <LogoutButton />
+              </>
+            ) : (
+              <a href="/admin/login" style={{
+                border: '1px solid rgba(255,255,255,0.2)', padding: '6px 24px', borderRadius: 20,
+                color: 'white', textDecoration: 'none', fontSize: 13, fontWeight: 500,
+                background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)',
+                transition: 'all 0.2s'
+              }}>
+                Admin Login
+              </a>
+            )}
           </div>
 
         </div>
