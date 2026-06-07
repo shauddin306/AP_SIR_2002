@@ -104,6 +104,53 @@ export async function GET(req: NextRequest) {
     // ----------------------------------------------------------------------
     // MODE 2: AI 8-LAYER SEARCH
     // ----------------------------------------------------------------------
+    
+    // FAST-PATH: If it's a House Number (starts with numbers) or EPIC ID (starts with 3 letters then numbers)
+    // We bypass the AI RPC completely because dmetaphone/word_similarity will time out on non-names.
+    const isHouseNumber = /^[0-9]+[0-9-/\sA-Za-z]*$/.test(q); // e.g. "28-71-2" or "44A"
+    const isEpicId = /^[A-Za-z]{3}[0-9]{5,10}$/.test(q);     // e.g. "ABC1234567"
+    const isHouseOrEpic = isHouseNumber || isEpicId;
+    
+    if (isHouseOrEpic) {
+      let queryBuilder = supabase
+        .from('voters')
+        .select('*')
+        .or(`house_no.ilike.${q}%,epic_id.ilike.${q}%`)
+        .limit(limit);
+        
+      if (assembly_no) queryBuilder = queryBuilder.eq('assembly_no', assembly_no);
+      if (part_no) queryBuilder = queryBuilder.eq('part_no', part_no);
+      if (relative_name) {
+        queryBuilder = queryBuilder.or(`relative_name_english.ilike.%${relative_name}%,relative_name_telugu.ilike.%${relative_name}%`);
+      }
+      
+      const { data: fastResults, error: fastError } = await queryBuilder;
+      
+      if (!fastError && fastResults && fastResults.length > 0) {
+        let mappedResults = fastResults.map((r: any) => ({
+          ...r,
+          match_type: 'EXACT',
+          match_score: 1.0,
+        }));
+        
+        return NextResponse.json({
+          results: mappedResults,
+          query: q,
+          total: mappedResults.length,
+          mode: 'house_or_epic_fast_path'
+        })
+      }
+      
+      // If fast path finds nothing for a house/EPIC, we return empty rather than crashing the DB
+      // with a word_similarity full table scan.
+      return NextResponse.json({
+        results: [],
+        query: q,
+        total: 0,
+        mode: 'house_or_epic_fast_path'
+      })
+    }
+
     const { data: results, error } = await supabase.rpc('search_voters', {
       query_text: q,
       p_telugu_query: telugu_q || null,
