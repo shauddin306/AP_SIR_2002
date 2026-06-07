@@ -106,7 +106,7 @@ function SearchPageInner() {
     }
   }, [])
 
-  // Debounced search
+  // Debounced search for filters only
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current)
     debounceRef.current = setTimeout(() => {
@@ -117,6 +117,11 @@ function SearchPageInner() {
       }
     }, 300)
     return () => { if (debounceRef.current) clearTimeout(debounceRef.current) }
+  }, [filterAssemblyNo, filterPartNo, filterRelativeName, familyView]) // Removed query to stop live-search
+
+  const handleSearchSubmit = useCallback(() => {
+    if (familyView) return
+    doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName)
   }, [query, filterAssemblyNo, filterPartNo, filterRelativeName, familyView, doSearch])
 
   // Count by match type
@@ -171,19 +176,25 @@ function SearchPageInner() {
       )}
 
       {!familyView && (
-        <>
-          {/* Search bar */}
-          <div style={{ marginBottom: 20 }}>
-            <SearchBar
-              value={query}
-              onChange={setQuery}
-              autoFocus
-              isLoading={isLoading}
-              resultCount={hasSearched ? results.length : undefined}
-            />
-          </div>
+        <div style={{
+          display: 'flex', gap: 16, marginBottom: 24,
+          flexDirection: 'column',
+        }}>
+          {/* Search Input */}
+          <SearchBar
+            value={query}
+            onChange={setQuery}
+            onSubmit={handleSearchSubmit}
+            isLoading={isLoading}
+            resultCount={hasSearched ? results.length : undefined}
+            autoFocus
+          />
+        </div>
+      )}
 
-          {/* Filters */}
+      {/* Filters (also hidden in family view usually, but let's keep the existing logic) */}
+      {!familyView && (
+        <>
           <div style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <label style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Relative Name:</label>

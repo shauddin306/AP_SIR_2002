@@ -104,33 +104,78 @@ export async function GET(req: NextRequest) {
     // ----------------------------------------------------------------------
     // MODE 2: AI 8-LAYER SEARCH
     // ----------------------------------------------------------------------
-    const { data: results, error } = await supabase.rpc('search_voters', {
-      query_text: q,
-      p_telugu_query: telugu_q || null,
-      p_limit: limit,
-      p_assembly_no: assembly_no ?? null,
-      p_part_no: part_no ?? null,
-      p_relative_name: relative_name || null,
-      p_canonical_query: canonical_q || null,
-      p_nysiis_query: nysiis_q || null,
-    })
+    
+    // OPTIMAL APPROACH UPGRADE:
+    // If the query is a house number (e.g. 44-123 or 44/123), we bypass text search
+    // and query the normalized numeric column directly for absolute precision.
+    let isHouseNumberSearch = false;
+    let houseNumberNormalizedQuery = null;
+    
+    // Check if query is mostly numbers, optionally containing -, /, or letters
+    if (/^[0-9]+[-/\sA-Za-z0-9]*$/.test(q) && q.replace(/[^0-9]/g, '').length > 0) {
+      const numMatch = q.replace(/[^0-9.]/g, '');
+      if (numMatch) {
+        isHouseNumberSearch = true;
+        houseNumberNormalizedQuery = parseFloat(numMatch);
+      }
+    }
 
-    if (error) throw error
+    let finalResults: any[] = [];
 
-    let finalResults = results || []
+    // Layer 0: Direct House Number Normalized Match
+    if (isHouseNumberSearch && houseNumberNormalizedQuery !== null) {
+      let dbQuery = supabase
+        .from('voters')
+        .select('*')
+        .eq('house_no_normalized', houseNumberNormalizedQuery)
+        .limit(limit);
+        
+      if (assembly_no) dbQuery = dbQuery.eq('assembly_no', assembly_no);
+      if (part_no) dbQuery = dbQuery.eq('part_no', part_no);
+      if (relative_name) {
+        dbQuery = dbQuery.or(`relative_name_english.ilike.%${relative_name}%,relative_name_telugu.ilike.%${relative_name}%`);
+      }
+      
+      const { data: houseResults, error: houseError } = await dbQuery;
+      
+      if (!houseError && houseResults && houseResults.length > 0) {
+        finalResults = houseResults.map((r: any) => ({
+          ...r,
+          match_type: 'EXACT',
+          match_score: 1.0,
+        }));
+      }
+    }
 
-    // If no results at all, try a broader fuzzy search (Phase 1 Typo Tolerance)
+    // If no absolute house matches found, fallback to AI Text Search
     if (finalResults.length === 0) {
-      const { data: fallback } = await supabase.rpc('fuzzy_search_voters', {
+      const { data: results, error } = await supabase.rpc('search_voters', {
         query_text: q,
-        p_limit: limit
+        p_telugu_query: telugu_q || null,
+        p_limit: limit,
+        p_assembly_no: assembly_no ?? null,
+        p_part_no: part_no ?? null,
+        p_relative_name: relative_name || null,
+        p_canonical_query: canonical_q || null,
+        p_nysiis_query: nysiis_q || null,
       })
 
-      finalResults = (fallback || []).map((r: Record<string, unknown>) => ({
-        ...r,
-        match_type: 'POSSIBLE',
-        match_score: 0.5,
-      }))
+      if (error) throw error
+      finalResults = results || []
+
+      // If no results at all, try a broader fuzzy search (Phase 1 Typo Tolerance)
+      if (finalResults.length === 0) {
+        const { data: fallback } = await supabase.rpc('fuzzy_search_voters', {
+          query_text: q,
+          p_limit: limit
+        })
+
+        finalResults = (fallback || []).map((r: Record<string, unknown>) => ({
+          ...r,
+          match_type: 'POSSIBLE',
+          match_score: 0.5,
+        }))
+      }
     }
 
     // Apply the requested limit after filtering

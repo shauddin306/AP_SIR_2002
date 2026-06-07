@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react'
 interface SearchBarProps {
   value: string
   onChange: (val: string) => void
+  onSubmit?: () => void
   placeholder?: string
   autoFocus?: boolean
   isLoading?: boolean
@@ -14,6 +15,7 @@ interface SearchBarProps {
 export function SearchBar({
   value,
   onChange,
+  onSubmit,
   placeholder = 'Search by name, EPIC ID, house no... Telugu or English',
   autoFocus,
   isLoading,
@@ -47,29 +49,34 @@ export function SearchBar({
         </div>
 
         {/* Input */}
-        <input
-          ref={inputRef}
-          id="voter-search-input"
-          type="text"
-          value={value}
-          onChange={e => onChange(e.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
-          placeholder={placeholder}
-          style={{
-            width: '100%',
-            padding: '18px 56px 18px 54px',
-            background: 'transparent',
-            border: 'none',
-            outline: 'none',
-            fontSize: 18,
-            color: 'var(--color-text-primary)',
-            fontFamily: value.match(/[\u0C00-\u0C7F]/) ? 'var(--font-telugu)' : 'var(--font-sans)',
-          }}
-          aria-label="Search voters"
-          autoComplete="off"
-          spellCheck={false}
-        />
+        <form 
+          onSubmit={(e) => { e.preventDefault(); onSubmit?.(); }}
+          style={{ width: '100%', margin: 0, padding: 0 }}
+        >
+          <input
+            ref={inputRef}
+            id="voter-search-input"
+            type="text"
+            value={value}
+            onChange={e => onChange(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
+            placeholder={placeholder}
+            style={{
+              width: '100%',
+              padding: '18px 56px 18px 54px',
+              background: 'transparent',
+              border: 'none',
+              outline: 'none',
+              fontSize: 18,
+              color: 'var(--color-text-primary)',
+              fontFamily: value.match(/[\u0C00-\u0C7F]/) ? 'var(--font-telugu)' : 'var(--font-sans)',
+            }}
+            aria-label="Search voters"
+            autoComplete="off"
+            spellCheck={false}
+          />
+        </form>
 
         {/* Right indicator */}
         <div style={{
