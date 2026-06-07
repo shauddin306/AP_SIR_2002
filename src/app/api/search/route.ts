@@ -104,51 +104,6 @@ export async function GET(req: NextRequest) {
     // ----------------------------------------------------------------------
     // MODE 2: AI 8-LAYER SEARCH
     // ----------------------------------------------------------------------
-    
-    // OPTIMAL APPROACH UPGRADE:
-    // If the query is a house number (e.g. 44-123 or 44/123), we bypass text search
-    // and query the normalized numeric column directly for absolute precision.
-    let isHouseNumberSearch = false;
-    let houseNumberNormalizedQuery = null;
-    
-    // Check if query is mostly numbers, optionally containing -, /, or letters
-    if (/^[0-9]+[-/\sA-Za-z0-9]*$/.test(q) && q.replace(/[^0-9]/g, '').length > 0) {
-      const numMatch = q.replace(/[^0-9.]/g, '');
-      if (numMatch) {
-        isHouseNumberSearch = true;
-        houseNumberNormalizedQuery = parseFloat(numMatch);
-      }
-    }
-
-    let finalResults: any[] = [];
-
-    // Layer 0: Direct House Number Normalized Match
-    let houseResults: any[] = [];
-    if (isHouseNumberSearch && houseNumberNormalizedQuery !== null) {
-      let dbQuery = supabase
-        .from('voters')
-        .select('*')
-        .eq('house_no_normalized', houseNumberNormalizedQuery)
-        .limit(limit);
-        
-      if (assembly_no) dbQuery = dbQuery.eq('assembly_no', assembly_no);
-      if (part_no) dbQuery = dbQuery.eq('part_no', part_no);
-      if (relative_name) {
-        dbQuery = dbQuery.or(`relative_name_english.ilike.%${relative_name}%,relative_name_telugu.ilike.%${relative_name}%`);
-      }
-      
-      const { data: hRes, error: houseError } = await dbQuery;
-      
-      if (!houseError && hRes && hRes.length > 0) {
-        houseResults = hRes.map((r: any) => ({
-          ...r,
-          match_type: 'EXACT',
-          match_score: 1.0,
-        }));
-      }
-    }
-
-    // ALWAYS run AI Text Search (for EPIC IDs, Serial Numbers, Names, and Prefix House Numbers)
     const { data: results, error } = await supabase.rpc('search_voters', {
       query_text: q,
       p_telugu_query: telugu_q || null,
@@ -161,21 +116,8 @@ export async function GET(req: NextRequest) {
     })
 
     if (error) throw error
-    let aiResults = results || []
 
-    // Merge Layer 0 and AI Results, removing duplicates
-    const seenIds = new Set<string>();
-    for (const r of houseResults) {
-      seenIds.add(r.id);
-      finalResults.push(r);
-    }
-    
-    for (const r of aiResults) {
-      if (!seenIds.has(r.id)) {
-        seenIds.add(r.id);
-        finalResults.push(r);
-      }
-    }
+    let finalResults = results || []
 
     // If no results at all, try a broader fuzzy search (Phase 1 Typo Tolerance)
     if (finalResults.length === 0) {
@@ -184,13 +126,11 @@ export async function GET(req: NextRequest) {
         p_limit: limit
       })
 
-      const fallbackResults = (fallback || []).map((r: Record<string, unknown>) => ({
+      finalResults = (fallback || []).map((r: Record<string, unknown>) => ({
         ...r,
         match_type: 'POSSIBLE',
         match_score: 0.5,
       }))
-      
-      finalResults = fallbackResults;
     }
 
     // Apply the requested limit after filtering
