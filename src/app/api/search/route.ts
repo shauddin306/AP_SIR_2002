@@ -123,6 +123,7 @@ export async function GET(req: NextRequest) {
     let finalResults: any[] = [];
 
     // Layer 0: Direct House Number Normalized Match
+    let houseResults: any[] = [];
     if (isHouseNumberSearch && houseNumberNormalizedQuery !== null) {
       let dbQuery = supabase
         .from('voters')
@@ -136,10 +137,10 @@ export async function GET(req: NextRequest) {
         dbQuery = dbQuery.or(`relative_name_english.ilike.%${relative_name}%,relative_name_telugu.ilike.%${relative_name}%`);
       }
       
-      const { data: houseResults, error: houseError } = await dbQuery;
+      const { data: hRes, error: houseError } = await dbQuery;
       
-      if (!houseError && houseResults && houseResults.length > 0) {
-        finalResults = houseResults.map((r: any) => ({
+      if (!houseError && hRes && hRes.length > 0) {
+        houseResults = hRes.map((r: any) => ({
           ...r,
           match_type: 'EXACT',
           match_score: 1.0,
@@ -147,35 +148,49 @@ export async function GET(req: NextRequest) {
       }
     }
 
-    // If no absolute house matches found, fallback to AI Text Search
+    // ALWAYS run AI Text Search (for EPIC IDs, Serial Numbers, Names, and Prefix House Numbers)
+    const { data: results, error } = await supabase.rpc('search_voters', {
+      query_text: q,
+      p_telugu_query: telugu_q || null,
+      p_limit: limit,
+      p_assembly_no: assembly_no ?? null,
+      p_part_no: part_no ?? null,
+      p_relative_name: relative_name || null,
+      p_canonical_query: canonical_q || null,
+      p_nysiis_query: nysiis_q || null,
+    })
+
+    if (error) throw error
+    let aiResults = results || []
+
+    // Merge Layer 0 and AI Results, removing duplicates
+    const seenIds = new Set<string>();
+    for (const r of houseResults) {
+      seenIds.add(r.id);
+      finalResults.push(r);
+    }
+    
+    for (const r of aiResults) {
+      if (!seenIds.has(r.id)) {
+        seenIds.add(r.id);
+        finalResults.push(r);
+      }
+    }
+
+    // If no results at all, try a broader fuzzy search (Phase 1 Typo Tolerance)
     if (finalResults.length === 0) {
-      const { data: results, error } = await supabase.rpc('search_voters', {
+      const { data: fallback } = await supabase.rpc('fuzzy_search_voters', {
         query_text: q,
-        p_telugu_query: telugu_q || null,
-        p_limit: limit,
-        p_assembly_no: assembly_no ?? null,
-        p_part_no: part_no ?? null,
-        p_relative_name: relative_name || null,
-        p_canonical_query: canonical_q || null,
-        p_nysiis_query: nysiis_q || null,
+        p_limit: limit
       })
 
-      if (error) throw error
-      finalResults = results || []
-
-      // If no results at all, try a broader fuzzy search (Phase 1 Typo Tolerance)
-      if (finalResults.length === 0) {
-        const { data: fallback } = await supabase.rpc('fuzzy_search_voters', {
-          query_text: q,
-          p_limit: limit
-        })
-
-        finalResults = (fallback || []).map((r: Record<string, unknown>) => ({
-          ...r,
-          match_type: 'POSSIBLE',
-          match_score: 0.5,
-        }))
-      }
+      const fallbackResults = (fallback || []).map((r: Record<string, unknown>) => ({
+        ...r,
+        match_type: 'POSSIBLE',
+        match_score: 0.5,
+      }))
+      
+      finalResults = fallbackResults;
     }
 
     // Apply the requested limit after filtering
