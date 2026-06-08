@@ -12,6 +12,8 @@ type ReviewItem = {
   db_voter_name_telugu: string
   ocr_voter_name_english: string
   ocr_voter_name_telugu: string
+  ocr_relative_name_english?: string
+  ocr_relative_name_telugu?: string
   status: string
   db_epic_id?: string;
   db_house_no?: string;
