@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { supabase } from '@/lib/supabase/client'
+import { createClient } from '@/lib/supabase/browser'
 
 type ReviewItem = {
   id: string
@@ -18,6 +18,7 @@ type ReviewItem = {
 export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
   const [items, setItems] = useState<ReviewItem[]>([])
   const [isLoading, setIsLoading] = useState(true)
+  const supabase = createClient()
 
   const fetchQueue = async () => {
     setIsLoading(true)
