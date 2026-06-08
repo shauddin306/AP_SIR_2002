@@ -102,13 +102,12 @@ export async function GET(req: NextRequest) {
     }
 
     // ----------------------------------------------------------------------
-    // MODE 2: AI 8-LAYER SEARCH
+    // MODE 2: AI 8-LAYER SEARCH (via Python Indic Microservice)
     // ----------------------------------------------------------------------
     
-    // FAST-PATH: If it's a House Number (starts with numbers) or EPIC ID (starts with 3 letters then numbers)
-    // We bypass the AI RPC completely because dmetaphone/word_similarity will time out on non-names.
-    const isHouseNumber = /^[0-9]+[0-9-/\sA-Za-z]*$/.test(q); // e.g. "28-71-2" or "44A"
-    const isEpicId = /^[A-Za-z]{3}[0-9]{5,10}$/.test(q);     // e.g. "ABC1234567"
+    // FAST-PATH: If it's a House Number or EPIC ID
+    const isHouseNumber = /^[0-9]+[0-9-/\sA-Za-z]*$/.test(q);
+    const isEpicId = /^[A-Za-z]{3}[0-9]{5,10}$/.test(q);
     const isHouseOrEpic = isHouseNumber || isEpicId;
     
     if (isHouseOrEpic) {
@@ -127,57 +126,68 @@ export async function GET(req: NextRequest) {
       const { data: fastResults, error: fastError } = await queryBuilder;
       
       if (!fastError && fastResults && fastResults.length > 0) {
-        let mappedResults = fastResults.map((r: any) => ({
-          ...r,
-          match_type: 'EXACT',
-          match_score: 1.0,
-        }));
-        
         return NextResponse.json({
-          results: mappedResults,
+          results: fastResults.map((r: any) => ({ ...r, match_type: 'EXACT', match_score: 1.0 })),
           query: q,
-          total: mappedResults.length,
+          total: fastResults.length,
           mode: 'house_or_epic_fast_path'
         })
       }
-      
-      // If fast path finds nothing for a house/EPIC, we return empty rather than crashing the DB
-      // with a word_similarity full table scan.
-      return NextResponse.json({
-        results: [],
-        query: q,
-        total: 0,
-        mode: 'house_or_epic_fast_path'
-      })
+      return NextResponse.json({ results: [], query: q, total: 0, mode: 'house_or_epic_fast_path' })
     }
 
-    const { data: results, error } = await supabase.rpc('search_voters', {
-      query_text: q,
-      p_telugu_query: telugu_q || null,
-      p_limit: limit,
-      p_assembly_no: assembly_no ?? null,
-      p_part_no: part_no ?? null,
-      p_relative_name: relative_name || null,
-      p_canonical_query: canonical_q || null,
-      p_nysiis_query: nysiis_q || null,
-    })
+    let finalResults: any[] = []
 
-    if (error) throw error
-
-    let finalResults = results || []
-
-    // If no results at all, try a broader fuzzy search (Phase 1 Typo Tolerance)
-    if (finalResults.length === 0) {
-      const { data: fallback } = await supabase.rpc('fuzzy_search_voters', {
+    try {
+      // Attempt to hit the Python Indic NLP Microservice
+      const pythonRes = await fetch('http://127.0.0.1:8001/v1/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          query: q,
+          assembly_no: assembly_no,
+          part_no: part_no,
+          relative_name: relative_name,
+          limit: limit
+        }),
+        signal: AbortSignal.timeout(3000) // 3-second timeout for the Python engine
+      })
+      
+      if (pythonRes.ok) {
+        const pyData = await pythonRes.json()
+        finalResults = pyData.results || []
+        console.log(`[Python Engine] Found ${finalResults.length} results. Variants tested:`, pyData.variants_tested)
+      } else {
+        throw new Error('Python API returned ' + pythonRes.status)
+      }
+    } catch (pyErr) {
+      console.warn('[Python Engine] Unreachable or failed, falling back to PostgreSQL RPC:', pyErr)
+      
+      // Fallback: Original Postgres search_voters RPC
+      const { data: results, error } = await supabase.rpc('search_voters', {
         query_text: q,
-        p_limit: limit
+        p_telugu_query: telugu_q || null,
+        p_limit: limit,
+        p_assembly_no: assembly_no ?? null,
+        p_part_no: part_no ?? null,
+        p_relative_name: relative_name || null,
+        p_canonical_query: canonical_q || null,
+        p_nysiis_query: nysiis_q || null,
       })
 
-      finalResults = (fallback || []).map((r: Record<string, unknown>) => ({
-        ...r,
-        match_type: 'POSSIBLE',
-        match_score: 0.5,
-      }))
+      if (error) throw error
+      finalResults = results || []
+
+      // Fallback Phase 2: Fuzzy search
+      if (finalResults.length === 0) {
+        const { data: fallback } = await supabase.rpc('fuzzy_search_voters', {
+          query_text: q,
+          p_limit: limit
+        })
+        finalResults = (fallback || []).map((r: Record<string, unknown>) => ({
+          ...r, match_type: 'POSSIBLE', match_score: 0.5
+        }))
+      }
     }
 
     // Apply the requested limit after filtering
