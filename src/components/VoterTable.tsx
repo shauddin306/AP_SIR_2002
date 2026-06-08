@@ -157,9 +157,9 @@ export function VoterTable({
     return activeSort.dir === 'asc' ? cmp : -cmp
   })
 
-  // If onViewFamily isn't provided, don't show the actions column
+  // If onViewFamily isn't provided AND user is not logged in, don't show the actions column
   let visibleColumns = COLUMNS.filter(c => showMatchType || !('searchOnly' in c && c.searchOnly))
-  if (!onViewFamily) {
+  if (!onViewFamily && !isLoggedIn) {
     visibleColumns = visibleColumns.filter(c => c.key !== 'actions')
   }
 
@@ -281,11 +281,11 @@ export function VoterTable({
                 <td style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>
                   {v.polling_station_name as string || '—'}
                 </td>
-                {onViewFamily && (
+                {(onViewFamily || isLoggedIn) && (
                   <td style={{ textAlign: 'right', display: 'flex', gap: 8, justifyContent: 'flex-end', alignItems: 'center' }}>
                     
                     {/* VERIFY BUTTON (Available to ALL logged-in users) */}
-                    {userRole && v.source_pdf && v.page_no ? (
+                    {isLoggedIn && v.source_pdf && v.page_no ? (
                       <button
                         className="btn-ghost"
                         style={{ fontSize: 11, padding: '4px 8px', color: '#f59e0b' }}
@@ -295,7 +295,7 @@ export function VoterTable({
                         }}
                         title="Verify extracted data against original PDF"
                       >
-                        📄 Verify
+                        👁️ View PDF
                       </button>
                     ) : null}
 
@@ -331,7 +331,7 @@ export function VoterTable({
                         )}
                       </>
                     )}
-                    {v.house_no_normalized != null && v.part_no && isValidHouseNo(v.house_no as string) ? (
+                    {onViewFamily && v.house_no_normalized != null && v.part_no && isValidHouseNo(v.house_no as string) ? (
                       <button
                         className="btn-ghost"
                         style={{ fontSize: 11, padding: '4px 8px', color: 'var(--color-accent)' }}
@@ -340,7 +340,7 @@ export function VoterTable({
                           onViewFamily(v.house_no_normalized as number, v.part_no as number, v.house_no as string)
                         }}
                       >
-                        👁️ Family
+                        👥 Family
                       </button>
                     ) : null}
                   </td>
