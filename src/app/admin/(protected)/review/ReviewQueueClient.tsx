@@ -13,6 +13,10 @@ type ReviewItem = {
   ocr_voter_name_english: string
   ocr_voter_name_telugu: string
   status: string
+  voters?: {
+    epic_id: string
+    house_no: string
+  }
 }
 
 export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
@@ -24,7 +28,7 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
     setIsLoading(true)
     const { data, error } = await supabase
       .from('voter_staging_queue')
-      .select('*')
+      .select('*, voters(epic_id, house_no)')
       .eq('status', 'PENDING')
       .order('created_at', { ascending: false })
       .limit(100)
@@ -119,6 +123,7 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
           <thead>
             <tr>
               <th>PDF Source</th>
+              <th>Voter Details</th>
               <th>Current DB Value</th>
               <th>Proposed OCR Value</th>
               <th style={{ textAlign: 'right' }}>Action</th>
@@ -130,6 +135,10 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
                 <td style={{ color: 'var(--color-text-secondary)' }}>
                   {item.source_pdf} <br/>
                   <span style={{ fontSize: 12 }}>Page {item.page_no}</span>
+                </td>
+                <td style={{ color: 'var(--color-text-secondary)' }}>
+                  <span style={{ fontSize: 13, color: 'var(--color-accent-text)' }}>EPIC: {item.voters?.epic_id}</span><br/>
+                  <span style={{ fontSize: 13 }}>House: {item.voters?.house_no}</span>
                 </td>
                 <td style={{ color: 'var(--color-text-secondary)' }}>
                   <div style={{ color: '#ef4444', textDecoration: 'line-through' }}>
