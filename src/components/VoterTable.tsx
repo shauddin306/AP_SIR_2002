@@ -164,7 +164,11 @@ export function VoterTable({
       
       // Attempt to save logs (fail silently if table not created yet)
       if (changes.length > 0 && adminUserId) {
-        await supabase.from('correction_log').insert(changes).catch(() => {})
+        try {
+          await supabase.from('correction_log').insert(changes)
+        } catch (err) {
+          console.log('Correction log insert failed (expected if table not created)', err)
+        }
       }
 
       // Optimistically update the local state without a full reload
