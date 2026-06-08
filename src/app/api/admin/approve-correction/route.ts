@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
+import { transliterateTeluguToEnglish, generateSearchTokens, generateCanonicalName } from '@/lib/extraction/tokenizer';
 
 const supabaseAdmin = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -12,6 +13,24 @@ export async function POST(req: Request) {
 
     if (!queue_id || !voter_id || !admin_id || !updates) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
+    }
+
+    // Auto-transliterate English names if Telugu name is provided and English is missing or matching the telugu
+    if (updates.voter_name_telugu && !updates.voter_name_english) {
+      updates.voter_name_english = generateCanonicalName(transliterateTeluguToEnglish(updates.voter_name_telugu));
+    }
+    if (updates.relative_name_telugu && !updates.relative_name_english) {
+      updates.relative_name_english = generateCanonicalName(transliterateTeluguToEnglish(updates.relative_name_telugu));
+    }
+
+    // Since name might have changed, we should ideally update the search_tokens too
+    // But since pg_trgm is mainly used now, it's fine. We can just leave search_tokens as is or regenerate them.
+    if (updates.voter_name_english || updates.voter_name_telugu) {
+       const telugu = updates.voter_name_telugu || '';
+       const english = updates.voter_name_english || '';
+       const relTelugu = updates.relative_name_telugu || '';
+       const epic = updates.epic_id || '';
+       updates.search_tokens = generateSearchTokens(english, telugu, relTelugu, epic);
     }
 
     // 1. Update the live voters table with the service role key to bypass RLS
