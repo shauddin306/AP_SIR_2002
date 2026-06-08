@@ -12,7 +12,7 @@ dotenv_path = os.path.join(os.path.dirname(__file__), '..', '.env.local')
 load_dotenv(dotenv_path=dotenv_path)
 
 url = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
-key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY")
+key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ.get("MY_SUPA_VAL")
 
 if not url or not key:
     print("WARNING: Supabase URL or Key not found in .env.local!")
