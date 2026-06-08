@@ -147,6 +147,12 @@ async function TopNav() {
                 }} className="hover:opacity-100">
                   Dashboard
                 </a>
+                <a href="/admin/review" style={{
+                  color: 'var(--color-accent-text)', textDecoration: 'none', fontSize: 13, fontWeight: 600,
+                  opacity: 0.9, transition: 'opacity 0.2s', marginLeft: 8
+                }} className="hover:opacity-100">
+                  Review Queue
+                </a>
                 <LogoutButton />
               </>
             ) : (
