@@ -17,16 +17,15 @@ export function AuditViewModal({ sourcePdf, pageNo, onClose }: AuditViewModalPro
   useEffect(() => {
     async function loadPdf() {
       try {
-        const supabase = createClient()
+        // Fetch signed URL from secure server route
+        const response = await fetch(`/api/pdf?file=${encodeURIComponent(sourcePdf)}`)
         
-        // Try getting a signed URL (valid for 1 hour)
-        const { data, error } = await supabase.storage
-          .from('voter-pdfs')
-          .createSignedUrl(sourcePdf, 3600)
-
-        if (error) {
-          throw error
+        if (!response.ok) {
+          const err = await response.json()
+          throw new Error(err.error || 'Failed to get PDF link')
         }
+
+        const data = await response.json()
 
         if (data?.signedUrl) {
           // Append #page=X to tell the browser's native PDF viewer to jump to that page

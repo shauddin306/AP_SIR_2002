@@ -94,43 +94,61 @@ export class GeminiExtractor {
     mimeType: string,
     pageNo: number
   ): Promise<PageExtractionResult> {
-    try {
-      const result = await model.generateContent({
-        contents: [{
-          role: 'user',
-          parts: [
-            { text: EXTRACTION_PROMPT },
-            { inlineData: { mimeType: mimeType, data: imageBase64 } }
-          ]
-        }],
-        generationConfig: {
-          temperature: 0.0,
-          responseMimeType: "application/json"
+    const maxRetries = 5;
+    let attempt = 0;
+    
+    while (attempt < maxRetries) {
+      try {
+        const result = await model.generateContent({
+          contents: [{
+            role: 'user',
+            parts: [
+              { text: EXTRACTION_PROMPT },
+              { inlineData: { mimeType: mimeType, data: imageBase64 } }
+            ]
+          }],
+          generationConfig: {
+            temperature: 0.0,
+            responseMimeType: "application/json"
+          }
+        })
+
+        const text = result.response.text().trim()
+
+        if (!text) throw new Error('Gemini returned empty response')
+
+        // Strip markdown code fences if model adds them
+        const jsonText = text.replace(/^```json?\n?/, '').replace(/\n?```$/, '')
+
+        const parsed = JSON.parse(jsonText)
+        const voters: ExtractedVoter[] = (parsed.voters || []).map((v: ExtractedVoter) => ({
+          ...v,
+          page_no: pageNo,
+          voter_name_telugu: sanitizeVoterName(v.voter_name_telugu, v.epic_id),
+          voter_name_english: sanitizeVoterName(v.voter_name_english || transliterateTeluguToEnglish(v.voter_name_telugu), v.epic_id),
+          relative_name_telugu: sanitizeVoterName(v.relative_name_telugu, v.epic_id),
+          relative_name_english: sanitizeVoterName(v.relative_name_english || transliterateTeluguToEnglish(v.relative_name_telugu), v.epic_id),
+        }))
+
+        return { page_no: pageNo, voters }
+      } catch (err: any) {
+        const errMsg = String(err.message || err);
+        if (errMsg.includes('503') || errMsg.includes('429') || errMsg.includes('fetch failed')) {
+          attempt++;
+          if (attempt >= maxRetries) {
+            console.error(`[GeminiExtractor] Page ${pageNo} failed after ${maxRetries} retries:`, errMsg);
+            return { page_no: pageNo, voters: [], error: errMsg };
+          }
+          const backoff = Math.pow(2, attempt) * 2000; // 4s, 8s, 16s, 32s
+          console.warn(`[GeminiExtractor] Page ${pageNo} rate limited (${errMsg}). Retrying in ${backoff/1000}s (Attempt ${attempt}/${maxRetries})...`);
+          await new Promise(resolve => setTimeout(resolve, backoff));
+        } else {
+          console.error(`[GeminiExtractor] Page ${pageNo} parsing error:`, errMsg);
+          return { page_no: pageNo, voters: [], error: errMsg };
         }
-      })
-
-      const text = result.response.text().trim()
-
-      if (!text) throw new Error('Gemini returned empty response')
-
-      // Strip markdown code fences if model adds them
-      const jsonText = text.replace(/^```json?\n?/, '').replace(/\n?```$/, '')
-
-      const parsed = JSON.parse(jsonText)
-      const voters: ExtractedVoter[] = (parsed.voters || []).map((v: ExtractedVoter) => ({
-        ...v,
-        page_no: pageNo,
-        voter_name_telugu: sanitizeVoterName(v.voter_name_telugu, v.epic_id),
-        voter_name_english: sanitizeVoterName(v.voter_name_english || transliterateTeluguToEnglish(v.voter_name_telugu), v.epic_id),
-        relative_name_telugu: sanitizeVoterName(v.relative_name_telugu, v.epic_id),
-        relative_name_english: sanitizeVoterName(v.relative_name_english || transliterateTeluguToEnglish(v.relative_name_telugu), v.epic_id),
-      }))
-
-      return { page_no: pageNo, voters }
-    } catch (err: any) {
-      console.error(`[GeminiExtractor] Page ${pageNo} error:`, err.message)
-      return { page_no: pageNo, voters: [], error: String(err) }
+      }
     }
+    return { page_no: pageNo, voters: [], error: 'Max retries exceeded' };
   }
 
   // EMBEDDINGS DISABLED — saves ~95% of API cost.

@@ -164,20 +164,19 @@ export async function GET(req: NextRequest) {
     } catch (pyErr) {
       console.warn('[Python Engine] Unreachable or failed, falling back to PostgreSQL RPC:', pyErr)
       
-      // Fallback: Original Postgres search_voters RPC
-      const { data: results, error } = await supabase.rpc('search_voters', {
-        query_text: q,
-        p_telugu_query: telugu_q || null,
-        p_limit: limit,
-        p_assembly_no: assembly_no ?? null,
-        p_part_no: part_no ?? null,
-        p_relative_name: relative_name || null,
-        p_canonical_query: canonical_q || null,
-        p_nysiis_query: nysiis_q || null,
-      })
+      // Fallback: Use fast JS query builder instead of search_voters to avoid timeout without index
+      let queryBuilder = supabase.from('voters').select('*').limit(limit)
+      
+      if (q) {
+        queryBuilder = queryBuilder.or(`voter_name_english.ilike.%${q}%,voter_name_telugu.ilike.%${q}%,relative_name_english.ilike.%${q}%`)
+      }
+      if (assembly_no) queryBuilder = queryBuilder.eq('assembly_no', assembly_no)
+      if (part_no) queryBuilder = queryBuilder.eq('part_no', part_no)
+      
+      const { data: results, error } = await queryBuilder
 
       if (error) throw error
-      finalResults = results || []
+      finalResults = (results || []).map((r: any) => ({ ...r, match_type: 'CLOSE', match_score: 0.9 }))
 
       // Fallback Phase 2: Fuzzy search
       if (finalResults.length === 0) {
