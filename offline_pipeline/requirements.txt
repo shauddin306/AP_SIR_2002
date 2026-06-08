@@ -1,0 +1,6 @@
+opencv-python
+pdf2image
+surya-ocr
+rapidfuzz
+supabase
+python-dotenv

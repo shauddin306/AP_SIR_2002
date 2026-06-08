@@ -13,10 +13,10 @@ type ReviewItem = {
   ocr_voter_name_english: string
   ocr_voter_name_telugu: string
   status: string
-  voters?: {
-    epic_id: string
-    house_no: string
-  }
+  db_epic_id?: string;
+  db_house_no?: string;
+  ocr_epic_id?: string;
+  ocr_house_no?: string;
 }
 
 export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
@@ -28,7 +28,7 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
     setIsLoading(true)
     const { data, error } = await supabase
       .from('voter_staging_queue')
-      .select('*, voters(epic_id, house_no)')
+      .select('*')
       .eq('status', 'PENDING')
       .order('created_at', { ascending: false })
       .limit(100)
@@ -42,55 +42,41 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
   }, [])
 
   const handleApprove = async (item: ReviewItem) => {
-    // 1. Update the live voters table
-    const { error: updateError } = await supabase
-      .from('voters')
-      .update({
-        voter_name_english: item.ocr_voter_name_english,
-        voter_name_telugu: item.ocr_voter_name_telugu
-      })
-      .eq('id', item.voter_id)
+    // Collect all valid updates
+    const updates: Record<string, string> = {};
+    if (item.ocr_voter_name_english) updates.voter_name_english = item.ocr_voter_name_english;
+    if (item.ocr_voter_name_telugu) updates.voter_name_telugu = item.ocr_voter_name_telugu;
+    if (item.ocr_relative_name_english) updates.relative_name_english = item.ocr_relative_name_english;
+    if (item.ocr_relative_name_telugu) updates.relative_name_telugu = item.ocr_relative_name_telugu;
+    if (item.ocr_epic_id && item.ocr_epic_id !== item.db_epic_id) updates.epic_id = item.ocr_epic_id;
+    if (item.ocr_house_no && item.ocr_house_no !== item.db_house_no) updates.house_no = item.ocr_house_no;
 
-    if (updateError) {
-      alert('Failed to update live table')
-      return
+    if (Object.keys(updates).length === 0) {
+      alert('No updates to apply');
+      return;
     }
 
-    // 2. Mark queue item as approved
-    await supabase
-      .from('voter_staging_queue')
-      .update({ status: 'APPROVED', reviewer_id: adminUserId, reviewed_at: new Date().toISOString() })
-      .eq('id', item.id)
+    try {
+      const res = await fetch('/api/admin/approve-correction', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          queue_id: item.id,
+          voter_id: item.voter_id,
+          admin_id: adminUserId,
+          updates: updates
+        })
+      });
 
-    // 3. Log it
-    const logEntries = []
-    if (item.db_voter_name_english !== item.ocr_voter_name_english) {
-      logEntries.push({
-        voter_id: item.voter_id,
-        admin_id: adminUserId,
-        field_changed: 'voter_name_english',
-        old_value: item.db_voter_name_english,
-        new_value: item.ocr_voter_name_english
-      })
-    }
-    if (item.db_voter_name_telugu !== item.ocr_voter_name_telugu) {
-      logEntries.push({
-        voter_id: item.voter_id,
-        admin_id: adminUserId,
-        field_changed: 'voter_name_telugu',
-        old_value: item.db_voter_name_telugu,
-        new_value: item.ocr_voter_name_telugu
-      })
-    }
-    if (logEntries.length > 0) {
-      try {
-        await supabase.from('correction_log').insert(logEntries)
-      } catch (err) {
-        console.error(err)
+      if (!res.ok) {
+        throw new Error('Failed to approve correction');
       }
-    }
 
-    setItems(items.filter(i => i.id !== item.id))
+      setItems(items.filter(i => i.id !== item.id));
+    } catch (err) {
+      console.error(err);
+      alert('Error approving correction. Check console.');
+    }
   }
 
   const handleReject = async (item: ReviewItem) => {
@@ -137,8 +123,24 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
                   <span style={{ fontSize: 12 }}>Page {item.page_no}</span>
                 </td>
                 <td style={{ color: 'var(--color-text-secondary)' }}>
-                  <span style={{ fontSize: 13, color: 'var(--color-accent-text)' }}>EPIC: {item.voters?.epic_id}</span><br/>
-                  <span style={{ fontSize: 13 }}>House: {item.voters?.house_no}</span>
+                  <div style={{ fontSize: 13, marginBottom: 4 }}>
+                    <span style={{ color: 'var(--color-text-secondary)' }}>EPIC: </span>
+                    <span style={{ color: '#ef4444', textDecoration: item.db_epic_id !== item.ocr_epic_id ? 'line-through' : 'none', marginRight: 4 }}>
+                      {item.db_epic_id || 'N/A'}
+                    </span>
+                    {item.db_epic_id !== item.ocr_epic_id && (
+                      <span style={{ color: '#10b981', fontWeight: 500 }}>{item.ocr_epic_id}</span>
+                    )}
+                  </div>
+                  <div style={{ fontSize: 13 }}>
+                    <span style={{ color: 'var(--color-text-secondary)' }}>House: </span>
+                    <span style={{ color: '#ef4444', textDecoration: item.db_house_no !== item.ocr_house_no ? 'line-through' : 'none', marginRight: 4 }}>
+                      {item.db_house_no || 'N/A'}
+                    </span>
+                    {item.db_house_no !== item.ocr_house_no && (
+                      <span style={{ color: '#10b981', fontWeight: 500 }}>{item.ocr_house_no}</span>
+                    )}
+                  </div>
                 </td>
                 <td style={{ color: 'var(--color-text-secondary)' }}>
                   <div style={{ color: '#ef4444', textDecoration: 'line-through' }}>
