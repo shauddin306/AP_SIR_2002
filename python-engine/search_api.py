@@ -14,10 +14,16 @@ load_dotenv(dotenv_path=dotenv_path)
 url = os.environ.get("NEXT_PUBLIC_SUPABASE_URL")
 key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY") or os.environ.get("MY_SUPA_VAL")
 
-if not url or not key:
-    print("WARNING: Supabase URL or Key not found in .env.local!")
-    
-supabase: Client = create_client(url, key)
+if not url:
+    print("CRITICAL ERROR: NEXT_PUBLIC_SUPABASE_URL is missing or empty!")
+if not key:
+    print("CRITICAL ERROR: Supabase Key (MY_SUPA_VAL) is missing or empty!")
+
+if url and key:
+    supabase: Client = create_client(url, key)
+else:
+    print("Falling back to a dummy Supabase client so the server doesn't crash loop...")
+    supabase = None
 
 app = FastAPI(title="Indic NLP Search Engine")
 
