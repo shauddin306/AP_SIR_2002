@@ -29,21 +29,35 @@ export interface PageExtractionResult {
 
 const EXTRACTION_PROMPT = `You are an expert AI system extracting voter data from Election Commission of India voter list PDFs (Andhra Pradesh).
 
-Extract every voter row visible on this page and return ONLY valid JSON.
+The page shows a grid of individual voter boxes. Each voter box contains Telugu text with labeled fields.
 
-Rules:
-1. Preserve Telugu text EXACTLY as shown visually on the page. 
-2. DO NOT GUESS OR AUTOCORRECT NAMES. Even if a name seems misspelled or rare (e.g. "Sharfunnisa"), transcribe the Telugu characters exactly as printed. Never substitute with common names.
-3. Pay special attention to similar looking characters in Telugu (e.g., న్ vs క్). Do not hallucinate "ముస్తాక్" (Mustaq) if the text says "మస్తాన్" (Mastan), or vice-versa. Read the pixels carefully!
-4. Generate English transliteration for every Telugu name.
-5. Keep house numbers EXACTLY as shown (including A, B, 1-2, [D], 44-3A etc.)
-5. Keep EPIC IDs and serial numbers EXACTLY as shown.
-6. If a field is unclear or missing, set it to null.
-7. Do NOT skip any voter row.
-8. relation_type: బ = father, తల్లి = mother, భ = husband, etc.
-9. gender: స్త్రీ = female, పురుషుడు = male.
-10. Set confidence: "high" if text is clear, "medium" if slightly unclear, "low" if very blurry.
-11. CRITICAL: You must output valid, strictly formatted JSON. Do NOT truncate. Do NOT use ellipses (...). You must extract EVERY single voter on the page.
+FIELD IDENTIFICATION — CRITICAL: Find each field BY ITS TELUGU LABEL, not by position.
+Telugu field labels you will see in each voter box:
+- "పేరు" or "పేరు:" → VOTER NAME (voter_name_telugu). This is the voter's own name.
+- "తండ్రి పేరు", "భర్త పేరు", "తల్లి పేరు", "తండ్రి/భర్త పేరు" → RELATIVE NAME (relative_name_telugu). This is father/husband/mother's name.
+- "గృహ సంఖ్య" or "గృ.సం" → house number
+- "వయసు" or "వయస్సు" → age (a 2-digit number like 35, 42, 67)
+- "లింగం" → gender (పురుషుడు = Male, స్త్రీ = Female)
+- VOTER ID / EPIC No → always a pattern of 2-3 uppercase English letters + 5-8 digits (e.g., AP2215200001, APC0123456)
+
+EXTRACTION RULES:
+1. Find the VOTER NAME by looking for "పేరు:" label. The name text comes after the colon or on the next line.
+2. Find the RELATIVE NAME by looking for "తండ్రి పేరు:", "భర్త పేరు:", or "తల్లి పేరు:" label.
+3. Be careful not to confuse the voter_name field with the EPIC voter ID or house number.
+4. NEVER put the voter_name in the relative_name field or vice versa.
+5. Preserve Telugu text EXACTLY as shown visually. DO NOT GUESS OR AUTOCORRECT NAMES.
+6. Even if a name seems rare (e.g. "Sharfunnisa", "Mastanaiah"), transcribe the Telugu characters exactly as printed. Never substitute with a common/similar name.
+7. Pay special attention to similar-looking Telugu characters (e.g., న్ vs క్). Do not hallucinate "ముస్తాక్" (Mustaq) if the text says "మస్తాన్" (Mastan).
+8. Generate English transliteration for every Telugu name.
+9. Keep house numbers EXACTLY as shown (including A, B, 1-2, [D], 44-3A etc.)
+10. Keep EPIC IDs and serial numbers EXACTLY as shown.
+11. Extract whatever text is in the name field area, EXACTLY as it appears, even if it looks like garbage, contains typos, or is slightly blurry. Give it as it is.
+12. Do NOT skip any voter row.
+13. relation_type: బ = father (తండ్రి), తల్లి = mother, భ = husband, etc.
+14. gender: స్త్రీ = female, పురుషుడు = male.
+15. Set confidence: "high" if text is clear, "medium" if slightly unclear, "low" if very blurry.
+16. CRITICAL: You must output valid, strictly formatted JSON. Do NOT truncate. Do NOT use ellipses (...). Extract EVERY single voter on the page.
+
 Return ONLY this JSON structure (no markdown, no explanation):
 {
   "voters": [
@@ -62,6 +76,17 @@ Return ONLY this JSON structure (no markdown, no explanation):
     }
   ]
 }`
+
+/**
+ * Passes through whatever the OCR extracted exactly as is, without nullifying it.
+ * Only returns null if the string is completely empty.
+ */
+function sanitizeVoterName(name: string | null, epicId: string | null): string | null {
+  if (!name) return null
+  const trimmed = name.trim()
+  if (!trimmed) return null
+  return trimmed
+}
 
 export class GeminiExtractor {
   async extractVotersFromImage(
@@ -95,10 +120,10 @@ export class GeminiExtractor {
       const voters: ExtractedVoter[] = (parsed.voters || []).map((v: ExtractedVoter) => ({
         ...v,
         page_no: pageNo,
-        voter_name_english: v.voter_name_english
-          || transliterateTeluguToEnglish(v.voter_name_telugu),
-        relative_name_english: v.relative_name_english
-          || transliterateTeluguToEnglish(v.relative_name_telugu),
+        voter_name_telugu: sanitizeVoterName(v.voter_name_telugu, v.epic_id),
+        voter_name_english: sanitizeVoterName(v.voter_name_english || transliterateTeluguToEnglish(v.voter_name_telugu), v.epic_id),
+        relative_name_telugu: sanitizeVoterName(v.relative_name_telugu, v.epic_id),
+        relative_name_english: sanitizeVoterName(v.relative_name_english || transliterateTeluguToEnglish(v.relative_name_telugu), v.epic_id),
       }))
 
       return { page_no: pageNo, voters }

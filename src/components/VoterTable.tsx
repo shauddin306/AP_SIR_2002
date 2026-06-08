@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { VoterRow, SearchResult } from '@/lib/supabase/client'
 import { createClient } from '@/lib/supabase/browser'
+import { AuditViewModal } from './AuditViewModal'
 
 type VoterData = VoterRow | SearchResult
 
@@ -81,7 +82,23 @@ export function VoterTable({
   const [editNameEn, setEditNameEn] = useState('')
   const [editNameTe, setEditNameTe] = useState('')
   const [isSaving, setIsSaving] = useState(false)
+  const [auditVoter, setAuditVoter] = useState<{ sourcePdf: string, pageNo: number } | null>(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const supabase = createClient()
+
+  useEffect(() => {
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      setIsLoggedIn(!!session)
+    })
+    
+    const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
+      setIsLoggedIn(!!session)
+    })
+
+    return () => {
+      authListener.subscription.unsubscribe()
+    }
+  }, [])
 
   const handleEdit = (voter: Record<string, unknown>) => {
     setEditingId(voter.id as string)
@@ -266,6 +283,23 @@ export function VoterTable({
                 </td>
                 {onViewFamily && (
                   <td style={{ textAlign: 'right', display: 'flex', gap: 8, justifyContent: 'flex-end', alignItems: 'center' }}>
+                    
+                    {/* VERIFY BUTTON (Available to ALL logged-in users) */}
+                    {userRole && v.source_pdf && v.page_no ? (
+                      <button
+                        className="btn-ghost"
+                        style={{ fontSize: 11, padding: '4px 8px', color: '#f59e0b' }}
+                        onClick={(e) => { 
+                          e.stopPropagation(); 
+                          setAuditVoter({ sourcePdf: v.source_pdf as string, pageNo: v.page_no as number });
+                        }}
+                        title="Verify extracted data against original PDF"
+                      >
+                        📄 Verify
+                      </button>
+                    ) : null}
+
+                    {/* EDIT CONTROLS (Admins only) */}
                     {(userRole === 'admin' || userRole === 'super-admin') && (
                       <>
                         {editingId === v.id ? (
@@ -316,6 +350,14 @@ export function VoterTable({
           })}
         </tbody>
       </table>
+
+      {auditVoter && (
+        <AuditViewModal 
+          sourcePdf={auditVoter.sourcePdf} 
+          pageNo={auditVoter.pageNo} 
+          onClose={() => setAuditVoter(null)} 
+        />
+      )}
     </div>
   )
 }

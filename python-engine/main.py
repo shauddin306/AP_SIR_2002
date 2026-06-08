@@ -90,39 +90,138 @@ def extract_voter_boxes(img):
         
     return cropped_images
 
+def _is_valid_name_candidate(text: str, epic_no: str) -> bool:
+    """Returns False if the text is clearly NOT a name (is an ID, number, house no, etc.)"""
+    if not text or len(text) < 2:
+        return False
+    # Reject if it looks like an EPIC ID (2-3 uppercase letters + 5-8 digits)
+    if re.match(r'^[A-Z]{2,3}\d{5,8}$', text):
+        return False
+    # Reject if it matches the extracted EPIC ID
+    if epic_no and text.strip() == epic_no:
+        return False
+    # Reject if purely numeric
+    if re.match(r'^\d+$', text):
+        return False
+    # Reject if it looks like a house number pattern (e.g. 44-3A, 12/B)
+    if re.match(r'^\d+[\-\/]\d*[A-Za-z]?$', text):
+        return False
+    # Reject if only punctuation / special chars (no Telugu or Latin letters)
+    if not re.search(r'[a-zA-Z\u0C00-\u0C7F]', text):
+        return False
+    return True
+
+
 def parse_surya_text(text: str):
+    """
+    Parse OCR text from a single voter box into structured fields.
+    Uses Telugu field LABELS (పేరు:, తండ్రి పేరు:, etc.) to locate names,
+    falling back to positional logic only as a last resort with sanity checks.
+    """
     voter_data = {
         "voter_name": "",
         "relative_name": "",
         "house_no": "",
         "age": 0,
         "gender": "",
-        "epic_no": ""
+        "epic_no": "",
+        "_found_by_label": False,  # internal flag for confidence scoring
     }
     
     lines = [line.strip() for line in text.split('\n') if line.strip()]
     
+    # ── 1. EPIC ID: most structurally unique, extract first ──────────────────
     for line in lines:
         epic_match = re.search(r'[A-Z]{2,3}[0-9]{5,8}', line)
         if epic_match:
             voter_data["epic_no"] = epic_match.group(0)
-            
+            break
+
+    # ── 2. Age: look for label + 2-digit number ──────────────────────────────
+    AGE_LABELS = ['వయస్సు', 'వయసు', 'Age', 'age']
     for line in lines:
-        if 'వయస్సు' in line or 'Age' in line:
-            age_match = re.search(r'(\d{2})', line)
+        if any(lbl in line for lbl in AGE_LABELS):
+            age_match = re.search(r'\b(\d{2})\b', line)
             if age_match:
                 voter_data["age"] = int(age_match.group(1))
-        
-        if 'పు' in line or 'స్త్రీ' in line or 'Male' in line or 'Female' in line:
-            if 'పు' in line or 'Male' in line:
+            break
+
+    # ── 3. Gender: label-based ───────────────────────────────────────────────
+    GENDER_LABELS = ['లింగం', 'Gender', 'gender']
+    for line in lines:
+        if any(lbl in line for lbl in GENDER_LABELS):
+            if any(w in line for w in ['పురుషుడు', 'Male', 'పు']):
                 voter_data["gender"] = "Male"
-            elif 'స్త్రీ' in line or 'Female' in line:
+            elif any(w in line for w in ['స్త్రీ', 'Female', 'మ']):
                 voter_data["gender"] = "Female"
-                
-    if len(lines) > 2:
-        voter_data["voter_name"] = lines[1]
-        voter_data["relative_name"] = lines[2]
-        
+            break
+        # Also catch gender without label (common in Surya output)
+        if 'పురుషుడు' in line or 'Male' in line:
+            voter_data["gender"] = "Male"
+        elif 'స్త్రీ' in line or 'Female' in line:
+            voter_data["gender"] = "Female"
+
+    # ── 4. House Number: look for label or numeric-dash pattern ──────────────
+    HOUSE_LABELS = ['గృహ సంఖ్య', 'గృహసంఖ్య', 'House', 'house', 'ఇల్లు', 'ఇంటి సంఖ్య']
+    for line in lines:
+        if any(lbl in line for lbl in HOUSE_LABELS):
+            after = line.split(':', 1)[-1].strip()
+            if after:
+                voter_data["house_no"] = after
+            break
+        elif re.match(r'^\d+[\-\/]\d', line):
+            voter_data["house_no"] = line
+
+    # ── 5. Voter Name: look for పేరు: label ──────────────────────────────────
+    VOTER_NAME_LABELS = ['పేరు', 'Name', 'name']
+    RELATIVE_LABELS = ['తండ్రి పేరు', 'భర్త పేరు', 'తల్లి పేరు', 'తండ్రి', 'భర్త', 'తల్లి', 'Relative']
+    
+    # To avoid matching relative-name labels when looking for voter name:
+    # only match a line that has a voter-name label but NOT a relative-name label
+    for i, line in enumerate(lines):
+        has_voter_label = any(lbl in line for lbl in VOTER_NAME_LABELS)
+        has_rel_label = any(lbl in line for lbl in RELATIVE_LABELS)
+        if has_voter_label and not has_rel_label:
+            after = line.split(':', 1)[-1].strip()
+            if after and _is_valid_name_candidate(after, voter_data["epic_no"]):
+                voter_data["voter_name"] = after
+                voter_data["_found_by_label"] = True
+            elif i + 1 < len(lines):
+                candidate = lines[i + 1]
+                if _is_valid_name_candidate(candidate, voter_data["epic_no"]):
+                    voter_data["voter_name"] = candidate
+                    voter_data["_found_by_label"] = True
+            break
+
+    # ── 6. Relative Name: look for తండ్రి/భర్త/తల్లి label ──────────────────
+    for i, line in enumerate(lines):
+        if any(lbl in line for lbl in RELATIVE_LABELS):
+            after = line.split(':', 1)[-1].strip()
+            if after and _is_valid_name_candidate(after, voter_data["epic_no"]):
+                voter_data["relative_name"] = after
+            elif i + 1 < len(lines):
+                candidate = lines[i + 1]
+                if _is_valid_name_candidate(candidate, voter_data["epic_no"]):
+                    voter_data["relative_name"] = candidate
+            break
+
+    # ── 7. Fallback: positional (ONLY if label-based search failed) ───────────
+    # We are very conservative here: skip any line that fails the name sanity check
+    if not voter_data["voter_name"] and len(lines) > 1:
+        print(f"WARN: No label found for voter name. Attempting positional fallback.")
+        for candidate in lines[1:4]:  # check lines 2-4 (not line 0 which is serial/header)
+            if _is_valid_name_candidate(candidate, voter_data["epic_no"]):
+                voter_data["voter_name"] = candidate
+                break
+
+    if not voter_data["relative_name"] and voter_data["voter_name"] and len(lines) > 2:
+        start_idx = lines.index(voter_data["voter_name"]) + 1 if voter_data["voter_name"] in lines else 3
+        for candidate in lines[start_idx:start_idx + 2]:
+            if (_is_valid_name_candidate(candidate, voter_data["epic_no"])
+                    and candidate != voter_data["voter_name"]):
+                voter_data["relative_name"] = candidate
+                break
+
     return voter_data
 
 
@@ -163,26 +262,39 @@ async def extract_voters(req: ExtractRequest):
                     box_text += re.sub('<[^<]+?>', '', b.html) + "\n"
 
             parsed = parse_surya_text(box_text)
-            
+
             # Print exactly what Surya saw for debugging!
             print(f"--- BOX {idx} ---")
             print(box_text)
+            print(f"    → name='{parsed.get('voter_name','')}' rel='{parsed.get('relative_name','')}' epic='{parsed.get('epic_no','')}' by_label={parsed.get('_found_by_label')}")
             print("-----------------")
-            
+
+            # Compute real confidence based on what was found
+            found_epic = bool(re.match(r'^[A-Z]{2,3}\d{5,8}$', parsed.get('epic_no', '')))
+            found_by_label = parsed.get('_found_by_label', False)
+            found_age_valid = 18 <= parsed.get('age', 0) <= 100
+            found_relative = bool(parsed.get('relative_name', ''))
+            score = (2 if found_epic else 0) + (2 if found_by_label else 0) + \
+                    (1 if found_age_valid else 0) + (1 if found_relative else 0)
+            confidence = 'high' if score >= 5 else ('medium' if score >= 3 else 'low')
+
+            # Use None instead of "Unknown idx" so UI/downstream knows name is truly missing
+            voter_name = parsed.get('voter_name', '').strip() or None
+
             # Force append the voter matching ExtractedVoter interface
             voters.append({
                 "serial_no": idx + 1,
-                "voter_name_telugu": parsed.get('voter_name', '') or f"Unknown {idx}",
+                "voter_name_telugu": voter_name,
                 "voter_name_english": "",
-                "relative_name_telugu": parsed.get('relative_name', ''),
+                "relative_name_telugu": parsed.get('relative_name', '') or None,
                 "relative_name_english": "",
                 "relation_type": "తం",
-                "house_no": parsed.get('house_no', ''),
+                "house_no": parsed.get('house_no', '') or None,
                 "age": parsed.get('age', 0),
                 "gender": parsed.get('gender', ''),
                 "epic_id": parsed.get('epic_no', '') or f"NO_EPIC_{idx}",
                 "page_no": req.page_no,
-                "confidence": "medium"
+                "confidence": confidence
             })
 
         return {
