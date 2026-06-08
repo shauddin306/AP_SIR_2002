@@ -140,7 +140,8 @@ export async function GET(req: NextRequest) {
 
     try {
       // Attempt to hit the Python Indic NLP Microservice
-      const pythonRes = await fetch('http://127.0.0.1:8001/v1/search', {
+      const pythonBaseUrl = process.env.PYTHON_ENGINE_URL || 'http://127.0.0.1:8001'
+      const pythonRes = await fetch(`${pythonBaseUrl}/v1/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
