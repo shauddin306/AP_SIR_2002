@@ -81,18 +81,30 @@ export function VoterTable({
   const [editingId, setEditingId] = useState<string | null>(null)
   const [editNameEn, setEditNameEn] = useState('')
   const [editNameTe, setEditNameTe] = useState('')
+  const [editRelNameEn, setEditRelNameEn] = useState('')
+  const [editRelNameTe, setEditRelNameTe] = useState('')
+  const [editHouseNo, setEditHouseNo] = useState('')
   const [isSaving, setIsSaving] = useState(false)
   const [auditVoter, setAuditVoter] = useState<{ sourcePdf: string, pageNo: number } | null>(null)
   const [isLoggedIn, setIsLoggedIn] = useState(false)
+  const [adminUserId, setAdminUserId] = useState<string | null>(null)
   const supabase = createClient()
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setIsLoggedIn(!!session)
+      if (session?.user) {
+        setAdminUserId(session.user.id)
+      }
     })
     
     const { data: authListener } = supabase.auth.onAuthStateChange((event, session) => {
       setIsLoggedIn(!!session)
+      if (session?.user) {
+        setAdminUserId(session.user.id)
+      } else {
+        setAdminUserId(null)
+      }
     })
 
     return () => {
@@ -104,6 +116,9 @@ export function VoterTable({
     setEditingId(voter.id as string)
     setEditNameEn((voter.voter_name_english as string) || '')
     setEditNameTe((voter.voter_name_telugu as string) || '')
+    setEditRelNameEn((voter.relative_name_english as string) || '')
+    setEditRelNameTe((voter.relative_name_telugu as string) || '')
+    setEditHouseNo((voter.house_no as string) || '')
   }
 
   const handleSave = async (voter: Record<string, unknown>) => {
@@ -112,22 +127,52 @@ export function VoterTable({
       const is2002 = voter.source_table === 'voters_2002'
       const table = is2002 ? 'voters_2002' : 'voters'
       
-      const { error } = await supabase
+      const newValues = {
+        voter_name_english: editNameEn,
+        voter_name_telugu: editNameTe,
+        relative_name_english: editRelNameEn,
+        relative_name_telugu: editRelNameTe,
+        house_no: editHouseNo
+      }
+
+      // 1. Log the changes if any fields changed
+      const changes: any[] = []
+      for (const [key, newValue] of Object.entries(newValues)) {
+        const oldValue = (voter as any)[key]
+        if (oldValue !== newValue) {
+          changes.push({
+            voter_id: voter.id,
+            admin_id: adminUserId,
+            field_changed: key,
+            old_value: String(oldValue || ''),
+            new_value: String(newValue || '')
+          })
+        }
+      }
+
+      // Update the main voters table
+      const { error: updateError } = await supabase
         .from(table)
-        .update({ 
-          voter_name_english: editNameEn,
-          voter_name_telugu: editNameTe
-        })
+        .update(newValues)
         .eq('id', voter.id)
         
-      if (error) {
-        console.error('Failed to update voter:', error)
+      if (updateError) {
+        console.error('Failed to update voter:', updateError)
         alert('Failed to update voter. Make sure you are an Admin.')
-      } else {
-        // Optimistically update the local state without a full reload
-        voter.voter_name_english = editNameEn
-        voter.voter_name_telugu = editNameTe
+        return
+      } 
+      
+      // Attempt to save logs (fail silently if table not created yet)
+      if (changes.length > 0 && adminUserId) {
+        await supabase.from('correction_log').insert(changes).catch(() => {})
       }
+
+      // Optimistically update the local state without a full reload
+      voter.voter_name_english = editNameEn
+      voter.voter_name_telugu = editNameTe
+      voter.relative_name_english = editRelNameEn
+      voter.relative_name_telugu = editRelNameTe
+      voter.house_no = editHouseNo
     } finally {
       setIsSaving(false)
       setEditingId(null)
@@ -226,7 +271,16 @@ export function VoterTable({
                   </div>
                 </td>
                 <td style={{ fontWeight: 600, color: 'var(--color-accent-text)' }}>
-                  {v.house_no as string || '—'}
+                  {editingId === v.id ? (
+                    <input 
+                      type="text" 
+                      value={editHouseNo} 
+                      onChange={(e) => setEditHouseNo(e.target.value)}
+                      style={{ width: '100%', background: 'rgba(0,0,0,0.5)', color: 'white', border: '1px solid var(--color-border)', padding: '4px 8px', borderRadius: 4 }}
+                    />
+                  ) : (
+                    v.house_no as string || '—'
+                  )}
                 </td>
                 <td lang="te" className="telugu" style={{ color: 'var(--color-text-primary)' }}>
                   {editingId === v.id ? (
@@ -253,10 +307,28 @@ export function VoterTable({
                   )}
                 </td>
                 <td lang="te" className="telugu" style={{ color: 'var(--color-text-secondary)' }}>
-                  {v.relative_name_telugu as string || '—'}
+                  {editingId === v.id ? (
+                    <input 
+                      type="text" 
+                      value={editRelNameTe} 
+                      onChange={(e) => setEditRelNameTe(e.target.value)}
+                      style={{ width: '100%', background: 'rgba(0,0,0,0.5)', color: 'white', border: '1px solid var(--color-border)', padding: '4px 8px', borderRadius: 4 }}
+                    />
+                  ) : (
+                    v.relative_name_telugu as string || '—'
+                  )}
                 </td>
                 <td style={{ color: 'var(--color-text-secondary)' }}>
-                  {v.relative_name_english as string || '—'}
+                  {editingId === v.id ? (
+                    <input 
+                      type="text" 
+                      value={editRelNameEn} 
+                      onChange={(e) => setEditRelNameEn(e.target.value)}
+                      style={{ width: '100%', background: 'rgba(0,0,0,0.5)', color: 'white', border: '1px solid var(--color-border)', padding: '4px 8px', borderRadius: 4 }}
+                    />
+                  ) : (
+                    v.relative_name_english as string || '—'
+                  )}
                 </td>
                 <td style={{ color: 'var(--color-text-muted)', textAlign: 'center' }}>
                   {v.relation_type as string || '—'}
