@@ -1,5 +1,6 @@
 [phases.setup]
-nixPkgs = ["...", "graphicsmagick", "ghostscript"]
+nixPkgs = ["graphicsmagick", "ghostscript"]
+aptPkgs = ["graphicsmagick", "ghostscript"]
 
 [phases.install]
 cmds = ['npm ci || npm install']
