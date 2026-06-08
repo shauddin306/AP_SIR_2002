@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { createClient } from '@/lib/supabase/browser'
 import UploadPdfClient from '@/components/UploadPdfClient'
 import UserManagementClient from '@/components/UserManagementClient'
+import { ActiveJobsQueue } from '@/components/ActiveJobsQueue'
 
 export default function AdminDashboard() {
   const [role, setRole] = useState<string | null>(null)
@@ -72,16 +73,13 @@ export default function AdminDashboard() {
                 <span>📊</span> System Status
               </h2>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(51, 65, 85, 0.5)', paddingBottom: 12 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(51, 65, 85, 0.5)', paddingBottom: 12, marginBottom: 8 }}>
                   <span style={{ color: '#94a3b8' }}>Search Engine</span>
                   <span style={{ color: '#34d399', fontWeight: 600, display: 'flex', alignItems: 'center', gap: 8 }}>
                     <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#10b981' }}></span> Online
                   </span>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', borderBottom: '1px solid rgba(51, 65, 85, 0.5)', paddingBottom: 12 }}>
-                  <span style={{ color: '#94a3b8' }}>Extraction Queue</span>
-                  <span style={{ color: '#e2e8f0', fontWeight: 600 }}>0 Active Jobs</span>
-                </div>
+                <ActiveJobsQueue />
               </div>
             </div>
 
