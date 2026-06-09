@@ -14,10 +14,18 @@ from bs4 import BeautifulSoup
 from surya.inference import SuryaInferenceManager
 from surya.recognition import RecognitionPredictor
 
-print("Loading Surya OCR AI Models... (this takes a moment and ~2.5GB RAM)")
-manager = SuryaInferenceManager()
-rec_predictor = RecognitionPredictor(manager)
-print("Surya AI Models Loaded!")
+# Lazy load models to prevent Railway boot timeouts
+manager = None
+rec_predictor = None
+
+def get_models():
+    global manager, rec_predictor
+    if manager is None:
+        print("Loading Surya OCR AI Models... (this takes a moment and ~2.5GB RAM)")
+        manager = SuryaInferenceManager()
+        rec_predictor = RecognitionPredictor(manager)
+        print("Surya AI Models Loaded!")
+    return manager, rec_predictor
 
 app = FastAPI(title="Voter OCR Python Engine")
 
@@ -266,6 +274,7 @@ def extract_voters_row_table(img, page_no: int) -> list:
         
         # Run full-page OCR with already-loaded models (fast, no model reload needed)
         print(f"Row-table: running full-page Surya OCR on page {page_no}...")
+        _, rec_predictor = get_models()
         page_results = rec_predictor([pil_img], full_page=True)
         
         if not page_results:
@@ -385,6 +394,7 @@ def extract_voters(req: ExtractRequest):
         # Sending 30 images in one batch to PyTorch requires >8GB RAM.
         page_results = []
         batch_size = 4
+        _, rec_predictor = get_models()
         for i in range(0, len(box_images), batch_size):
             chunk = box_images[i:i+batch_size]
             chunk_results = rec_predictor(chunk, full_page=True)
