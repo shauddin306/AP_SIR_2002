@@ -139,8 +139,8 @@ export async function GET(req: NextRequest) {
     let finalResults: any[] = []
 
     try {
-      // Attempt to hit the Python Indic NLP Microservice
-      const pythonBaseUrl = process.env.PYTHON_ENGINE_URL || 'http://127.0.0.1:8001'
+      // Attempt to hit the Python Indic NLP Microservice (Railway search service)
+      const pythonBaseUrl = process.env.PYTHON_SEARCH_URL || process.env.PYTHON_ENGINE_URL || 'http://127.0.0.1:8001'
       const pythonRes = await fetch(`${pythonBaseUrl}/v1/search`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },

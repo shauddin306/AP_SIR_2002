@@ -19,10 +19,14 @@ type ReviewItem = {
   db_house_no?: string;
   ocr_epic_id?: string;
   ocr_house_no?: string;
+  created_at?: string;
 }
 
 export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
   const [items, setItems] = useState<ReviewItem[]>([])
+  const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set())
+  const [partFilter, setPartFilter] = useState<string>('all')
+  const [sortBy, setSortBy] = useState<string>('date')
   const [isLoading, setIsLoading] = useState(true)
   const supabase = createClient()
 
@@ -74,7 +78,12 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
         throw new Error('Failed to approve correction');
       }
 
-      setItems(items.filter(i => i.id !== item.id));
+      setItems(prev => prev.filter(i => i.id !== item.id));
+      setSelectedIds(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(item.id);
+        return newSet;
+      });
     } catch (err) {
       console.error(err);
       alert('Error approving correction. Check console.');
@@ -87,8 +96,88 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
       .update({ status: 'REJECTED', reviewer_id: adminUserId, reviewed_at: new Date().toISOString() })
       .eq('id', item.id)
 
-    setItems(items.filter(i => i.id !== item.id))
+    setItems(prev => prev.filter(i => i.id !== item.id));
+    setSelectedIds(prev => {
+      const newSet = new Set(prev);
+      newSet.delete(item.id);
+      return newSet;
+    });
   }
+
+  const getPartNumber = (pdfName: string): number => {
+    const match = pdfName.match(/^(\d+)_(\d+)_/);
+    return match ? parseInt(match[2], 10) : 9999;
+  };
+
+  const uniqueParts = Array.from(
+    new Set(
+      items
+        .map(item => {
+          const match = item.source_pdf.match(/^(\d+)_(\d+)_/);
+          return match ? match[2] : null;
+        })
+        .filter((x): x is string => x !== null)
+    )
+  ).sort((a, b) => parseInt(a, 10) - parseInt(b, 10));
+
+  const filteredAndSortedItems = items
+    .filter(item => {
+      if (partFilter === 'all') return true;
+      const match = item.source_pdf.match(/^(\d+)_(\d+)_/);
+      return match ? match[2] === partFilter : false;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'part') {
+        const partA = getPartNumber(a.source_pdf);
+        const partB = getPartNumber(b.source_pdf);
+        if (partA !== partB) return partA - partB;
+        return a.page_no - b.page_no;
+      }
+      if (sortBy === 'page') {
+        if (a.page_no !== b.page_no) return a.page_no - b.page_no;
+        const partA = getPartNumber(a.source_pdf);
+        const partB = getPartNumber(b.source_pdf);
+        return partA - partB;
+      }
+      // Default: date descending
+      return new Date(b.created_at || 0).getTime() - new Date(a.created_at || 0).getTime();
+    });
+
+  const handleSelectAll = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      setSelectedIds(new Set(filteredAndSortedItems.map(item => item.id)));
+    } else {
+      setSelectedIds(new Set());
+    }
+  };
+
+  const handleToggleSelect = (id: string) => {
+    setSelectedIds(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(id)) newSet.delete(id);
+      else newSet.add(id);
+      return newSet;
+    });
+  };
+
+  const handleBulkApprove = async () => {
+    if (selectedIds.size === 0) return;
+    const selectedItems = items.filter(item => selectedIds.has(item.id));
+    // Simple loop for bulk approve
+    for (const item of selectedItems) {
+      await handleApprove(item);
+    }
+    setSelectedIds(new Set());
+  };
+
+  const handleBulkReject = async () => {
+    if (selectedIds.size === 0) return;
+    const selectedItems = items.filter(item => selectedIds.has(item.id));
+    for (const item of selectedItems) {
+      await handleReject(item);
+    }
+    setSelectedIds(new Set());
+  };
 
   if (isLoading) return <div>Loading queue...</div>
 
@@ -106,10 +195,94 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
 
   return (
     <div className="card">
+      <div style={{ 
+        padding: '16px 24px', 
+        borderBottom: '1px solid var(--color-border)', 
+        display: 'flex', 
+        justifyContent: 'space-between', 
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 16
+      }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 16, flexWrap: 'wrap' }}>
+          <h3 style={{ margin: 0, color: 'var(--color-text-primary)' }}>Pending Reviews</h3>
+          
+          {/* Part Filter */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 13, color: 'var(--color-text-secondary)' }}>Part:</span>
+            <select
+              value={partFilter}
+              onChange={(e) => setPartFilter(e.target.value)}
+              style={{
+                background: 'var(--color-bg-input)',
+                border: '1px solid var(--color-border)',
+                borderRadius: '6px',
+                color: 'var(--color-text-primary)',
+                padding: '6px 12px',
+                fontSize: 13,
+                outline: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <option value="all">All Parts ({items.length})</option>
+              {uniqueParts.map(part => (
+                <option key={part} value={part}>Part {part}</option>
+              ))}
+            </select>
+          </div>
+
+          {/* Sort By */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <span style={{ fontSize: 13, color: 'var(--color-text-secondary)' }}>Sort:</span>
+            <select
+              value={sortBy}
+              onChange={(e) => setSortBy(e.target.value)}
+              style={{
+                background: 'var(--color-bg-input)',
+                border: '1px solid var(--color-border)',
+                borderRadius: '6px',
+                color: 'var(--color-text-primary)',
+                padding: '6px 12px',
+                fontSize: 13,
+                outline: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              <option value="date">Date Added (Newest)</option>
+              <option value="part">Part Number</option>
+              <option value="page">Page Number</option>
+            </select>
+          </div>
+        </div>
+
+        <div style={{ display: 'flex', gap: 12 }}>
+          <button 
+            className="btn btn-secondary" 
+            onClick={handleBulkReject}
+            disabled={selectedIds.size === 0}
+            style={{ opacity: selectedIds.size === 0 ? 0.5 : 1, color: '#ef4444' }}>
+            Reject Selected ({selectedIds.size})
+          </button>
+          <button 
+            className="btn btn-primary" 
+            onClick={handleBulkApprove}
+            disabled={selectedIds.size === 0}
+            style={{ opacity: selectedIds.size === 0 ? 0.5 : 1 }}>
+            Approve Selected ({selectedIds.size})
+          </button>
+        </div>
+      </div>
       <div style={{ overflowX: 'auto' }}>
         <table className="data-table" style={{ width: '100%', minWidth: 800 }}>
           <thead>
             <tr>
+              <th style={{ width: 40, textAlign: 'center' }}>
+                <input 
+                  type="checkbox" 
+                  checked={filteredAndSortedItems.length > 0 && selectedIds.size === filteredAndSortedItems.length}
+                  onChange={handleSelectAll}
+                />
+              </th>
               <th>PDF Source</th>
               <th>Voter Details</th>
               <th>Current DB Value</th>
@@ -118,8 +291,15 @@ export function ReviewQueueClient({ adminUserId }: { adminUserId: string }) {
             </tr>
           </thead>
           <tbody>
-            {items.map(item => (
+            {filteredAndSortedItems.map(item => (
               <tr key={item.id}>
+                <td style={{ textAlign: 'center' }}>
+                  <input 
+                    type="checkbox" 
+                    checked={selectedIds.has(item.id)}
+                    onChange={() => handleToggleSelect(item.id)}
+                  />
+                </td>
                 <td style={{ color: 'var(--color-text-secondary)' }}>
                   {item.source_pdf} <br/>
                   <span style={{ fontSize: 12 }}>Page {item.page_no}</span>

@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/client'
 import { pdfToImages } from '@/lib/extraction/pdf-extractor'
 import { GeminiExtractor } from '@/lib/extraction/gemini-client'
+import { transliterateTeluguToEnglish } from '@/lib/extraction/tokenizer'
 
 export const runtime = 'nodejs'
-export const maxDuration = 60
+// export const maxDuration = 60
 
 const RATE_LIMIT_MS = 150 // delay between Gemini calls
 
@@ -80,8 +81,9 @@ async function runExtractionJob(
     let skippedPages = 0
     const failedPages: string[] = [] // Track exact pages AND their error reasons
     const batchSize = 50
-    const CONCURRENCY = 3 // Reduced from 5 to avoid 503 Overload errors on Gemini
-
+    // Use lower concurrency for Python engine (Surya AI) as it consumes ~2.5GB RAM per model
+    // and blocks CPU heavily, which causes deadlocks/freezes when running concurrently.
+    const CONCURRENCY = meta.engine === 'python' ? 1 : 3
     console.log(`[extraction] Starting extraction of ${pageImages.length} pages in chunks of ${CONCURRENCY}...`)
 
     for (let i = 0; i < pageImages.length; i += CONCURRENCY) {
@@ -96,7 +98,9 @@ async function runExtractionJob(
           try {
             let result;
             if (meta.engine === 'python') {
-              const pyRes = await fetch('http://localhost:8001/extract', {
+              // Use env var so this works both locally and on Railway/Vercel
+              const pythonEngineUrl = process.env.PYTHON_ENGINE_URL ?? 'http://127.0.0.1:8001'
+              const pyRes = await fetch(`${pythonEngineUrl}/extract`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -109,6 +113,15 @@ async function runExtractionJob(
                 throw new Error(`Python OCR Error: ${errText}`)
               }
               result = await pyRes.json()
+              // Auto-fill English names from Telugu using local transliteration
+              // This is 100% free — no Gemini API call needed
+              result.voters = (result.voters || []).map((v: any) => ({
+                ...v,
+                voter_name_english: v.voter_name_english ||
+                  transliterateTeluguToEnglish(v.voter_name_telugu),
+                relative_name_english: v.relative_name_english ||
+                  transliterateTeluguToEnglish(v.relative_name_telugu),
+              }))
             } else {
               result = await extractor.extractVotersFromImage(
                 image.base64,

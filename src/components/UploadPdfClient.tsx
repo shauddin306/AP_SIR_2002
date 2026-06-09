@@ -26,7 +26,7 @@ const ASSEMBLY_DICT: Record<string, string> = {
 export default function UploadPdfClient() {
   const [step, setStep] = useState<Step>('upload')
   const [uploadMode, setUploadMode] = useState<UploadMode>('file')
-  const [engine, setEngine] = useState<ExtractionEngine>('gemini')
+  const [engine, setEngine] = useState<ExtractionEngine>('python')
   const [file, setFile] = useState<File | null>(null)
   const [pdfUrl, setPdfUrl] = useState('')
   const [urlFetching, setUrlFetching] = useState(false)
@@ -711,39 +711,75 @@ export default function UploadPdfClient() {
                 </FormField>
 
                 <div style={{ marginTop: 8, padding: 16, borderRadius: 12, border: '1px solid var(--color-border)', backgroundColor: 'var(--color-bg-elevated)' }}>
-                  <label style={{ display: 'block', fontSize: 13, fontWeight: 600, marginBottom: 12, color: 'var(--color-text-primary)' }}>
-                    Extraction Engine
+                  <label style={{ display: 'block', fontSize: 13, fontWeight: 600, marginBottom: 4, color: 'var(--color-text-primary)' }}>
+                    ⚙️ Extraction Engine
                   </label>
+                  <p style={{ fontSize: 12, color: 'var(--color-text-muted)', marginBottom: 12, marginTop: 0 }}>
+                    Choose how voter data is extracted from the PDF.
+                  </p>
                   <div style={{ display: 'flex', gap: 12 }}>
                     <button
                       type="button"
                       onClick={() => setEngine('gemini')}
                       style={{
-                        flex: 1, padding: '12px', borderRadius: 8, border: '2px solid',
+                        flex: 1, padding: '14px 12px', borderRadius: 10, border: '2px solid',
                         borderColor: engine === 'gemini' ? 'var(--color-accent)' : 'var(--color-border)',
                         backgroundColor: engine === 'gemini' ? 'rgba(59, 130, 246, 0.1)' : 'transparent',
                         color: engine === 'gemini' ? 'var(--color-accent)' : 'var(--color-text-secondary)',
-                        fontWeight: 600, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4
+                        fontWeight: 600, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+                        transition: 'all 0.2s',
                       }}
                     >
-                      <span style={{ fontSize: 18 }}>🤖 AI (Gemini)</span>
-                      <span style={{ fontSize: 11, fontWeight: 400 }}>High Accuracy • ₹1.75 / page</span>
+                      <span style={{ fontSize: 20 }}>🤖 Gemini AI</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.05em',
+                        padding: '2px 8px', borderRadius: 4,
+                        background: engine === 'gemini' ? 'rgba(59,130,246,0.2)' : 'rgba(255,255,255,0.05)',
+                        color: engine === 'gemini' ? '#93c5fd' : 'var(--color-text-muted)'
+                      }}>~95% Accuracy</span>
+                      <span style={{ fontSize: 11, fontWeight: 400, opacity: 0.7 }}>₹1.75 / page • Paid API</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => setEngine('python')}
                       style={{
-                        flex: 1, padding: '12px', borderRadius: 8, border: '2px solid',
+                        flex: 1, padding: '14px 12px', borderRadius: 10, border: '2px solid',
                         borderColor: engine === 'python' ? '#22c55e' : 'var(--color-border)',
                         backgroundColor: engine === 'python' ? 'rgba(34, 197, 94, 0.1)' : 'transparent',
                         color: engine === 'python' ? '#22c55e' : 'var(--color-text-secondary)',
-                        fontWeight: 600, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4
+                        fontWeight: 600, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+                        transition: 'all 0.2s',
                       }}
                     >
-                      <span style={{ fontSize: 18 }}>🐍 Python Local</span>
-                      <span style={{ fontSize: 11, fontWeight: 400 }}>Medium Accuracy • Free</span>
+                      <span style={{ fontSize: 20 }}>⚡ Surya OCR</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.05em',
+                        padding: '2px 8px', borderRadius: 4,
+                        background: engine === 'python' ? 'rgba(34,197,94,0.2)' : 'rgba(255,255,255,0.05)',
+                        color: engine === 'python' ? '#86efac' : 'var(--color-text-muted)'
+                      }}>~80-85% Accuracy</span>
+                      <span style={{ fontSize: 11, fontWeight: 400, opacity: 0.7 }}>100% Free • No API Key</span>
                     </button>
                   </div>
+                  {engine === 'python' && (
+                    <div style={{
+                      marginTop: 10, padding: '10px 12px', borderRadius: 8,
+                      background: 'rgba(34, 197, 94, 0.08)', border: '1px solid rgba(34, 197, 94, 0.2)',
+                      fontSize: 12, color: '#86efac', lineHeight: 1.5,
+                    }}>
+                      <strong>⚡ Surya OCR Engine:</strong> Uses local AI vision model — completely free, no API cost.
+                      Requires the Python OCR server to be running (<code style={{ fontFamily: 'monospace', background: 'rgba(0,0,0,0.3)', padding: '1px 4px', borderRadius: 3 }}>PYTHON_ENGINE_URL</code> env var).
+                      Telugu names extracted + English transliterated automatically.
+                    </div>
+                  )}
+                  {engine === 'gemini' && (
+                    <div style={{
+                      marginTop: 10, padding: '10px 12px', borderRadius: 8,
+                      background: 'rgba(59, 130, 246, 0.08)', border: '1px solid rgba(59, 130, 246, 0.2)',
+                      fontSize: 12, color: '#93c5fd', lineHeight: 1.5,
+                    }}>
+                      <strong>🤖 Gemini AI Engine:</strong> Uses Google Gemini 2.5 Flash — highest accuracy for Telugu names.
+                      Requires <code style={{ fontFamily: 'monospace', background: 'rgba(0,0,0,0.3)', padding: '1px 4px', borderRadius: 3 }}>GEMINI_API_KEY</code> and billed per page.
+                    </div>
+                  )}
                 </div>
 
                 <div style={{ display: 'flex', gap: 12, marginTop: 12 }}>
@@ -760,7 +796,7 @@ export default function UploadPdfClient() {
                     style={{ flex: 1 }}
                     disabled={!meta.assembly_name || !meta.assembly_no || !meta.part_no || isSubmitting}
                   >
-                    {isSubmitting ? 'Checking...' : engine === 'python' ? '🐍 Start Free Extraction' : '🚀 Start AI Extraction'}
+                    {isSubmitting ? 'Checking...' : engine === 'python' ? '⚡ Start Surya OCR (Free)' : '🤖 Start Gemini AI Extraction'}
                   </button>
                 </div>
               </div>

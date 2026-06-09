@@ -59,7 +59,9 @@ export function ProgressTracker({ job }: ProgressTrackerProps) {
         <div>
           <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
             <span style={{ fontSize: 12, color: 'var(--color-text-muted)' }}>
-              {job.status === 'running' ? 'Processing pages with Gemini Vision AI...' : 'Complete'}
+              {job.status === 'running' 
+                ? (job.extraction_engine === 'gemini' ? 'Processing pages with Gemini Vision AI...' : 'Processing pages with local Python Engine...') 
+                : 'Complete'}
             </span>
             <span style={{ fontSize: 12, color: 'var(--color-accent-text)', fontWeight: 600 }}>{pct}%</span>
           </div>

@@ -3,12 +3,23 @@ import sys
 import json
 import argparse
 import subprocess
+import re
 from pathlib import Path
 from bs4 import BeautifulSoup
 from pdf2image import convert_from_path
 from rapidfuzz import fuzz
 from supabase import create_client, Client
 from dotenv import load_dotenv
+
+def clean_telugu_ocr_errors(text: str) -> str:
+    if not text:
+        return text
+    # 1. Replace pek / peka / pek? / peka? with Shaik (షేక్)
+    text = re.sub(r'పే[కక్]\??', 'షేక్', text)
+    # 2. Replace paran / paran? with Pathan (పఠాన్)
+    text = re.sub(r'పరాన్\??', 'పఠాన్', text)
+    return text
+
 
 # Load Supabase credentials
 load_dotenv('../.env.local')
@@ -24,9 +35,10 @@ supabase: Client = create_client(url, key)
 def get_pdf_for_part(assembly_no, part_no):
     """Finds the latest PDF for a given assembly and part in the Supabase bucket."""
     print(f"Searching for Assembly {assembly_no}, Part {part_no} in 'voter-pdfs' bucket...")
-    files = supabase.storage.from_('voter-pdfs').list()
-    
     prefix = f"{assembly_no}_{part_no}_"
+    # Search specifically for the prefix to bypass the default 100-file limit
+    files = supabase.storage.from_('voter-pdfs').list(path='', options={'search': prefix})
+    
     matches = [f['name'] for f in files if f['name'].startswith(prefix) and f['name'].endswith('.pdf')]
     
     if not matches:
@@ -113,8 +125,8 @@ def process_page(image_path, page_num, pdf_filename):
                     'serial_no': serial_no,
                     'epic_no': epic_no,
                     'house_no': house_no,
-                    'ocr_voter_name_telugu': voter_name,
-                    'ocr_relative_name_telugu': relative_name,
+                    'ocr_voter_name_telugu': clean_telugu_ocr_errors(voter_name),
+                    'ocr_relative_name_telugu': clean_telugu_ocr_errors(relative_name),
                     'source_pdf': pdf_filename,
                     'page_no': page_num
                 })

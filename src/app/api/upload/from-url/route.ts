@@ -1,11 +1,32 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/client'
+import { createClient } from '@/lib/supabase/server'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60
 
 export async function POST(req: NextRequest) {
   try {
+    // 1. Authenticate the request
+    const authSupabase = await createClient()
+    const { data: { session }, error: authError } = await authSupabase.auth.getSession()
+
+    if (authError || !session) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
+    }
+
+    // 2. Check Admin Role
+    const { data: roleData } = await authSupabase
+      .from('user_roles')
+      .select('role')
+      .eq('id', session.user.id)
+      .single()
+
+    const role = roleData?.role || 'user'
+    if (role !== 'admin' && role !== 'super-admin') {
+      return NextResponse.json({ error: 'Forbidden. Admin access required.' }, { status: 403 })
+    }
+
     const body = await req.json()
     const { pdf_url, assembly_name, polling_station_name, engine = 'gemini' } = body
     const assembly_no = parseInt(body.assembly_no, 10)
