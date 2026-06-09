@@ -75,7 +75,7 @@ def extract_voter_boxes(img):
         
         # A voter box is roughly 1/3 of the page width and 1/10 of the height
         # ECI PDFs have headers, so we relax the height constraint significantly.
-        if (w_img * 0.25 < w < w_img * 0.4) and (h_img * 0.05 < h < h_img * 0.15):
+        if (w_img * 0.20 < w < w_img * 0.45) and (h_img * 0.03 < h < h_img * 0.25):
             boxes.append((x, y, w, h))
             
     print(f"DEBUG: Filtered down to {len(boxes)} boxes.")
