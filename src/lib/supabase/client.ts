@@ -70,4 +70,5 @@ export type ExtractionJob = {
   error_message: string | null
   created_at: string
   updated_at: string
+  extraction_engine?: 'gemini' | 'python' | null
 }
