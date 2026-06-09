@@ -381,7 +381,14 @@ def extract_voters(req: ExtractRequest):
             return {"voters": [], "raw_text": "No grid found on page"}
 
         # Surya 0.20 batch processing. Treat each box as a full page.
-        page_results = rec_predictor(box_images, full_page=True)
+        # CRITICAL FIX: Chunk this into smaller batches to prevent OOM! 
+        # Sending 30 images in one batch to PyTorch requires >8GB RAM.
+        page_results = []
+        batch_size = 4
+        for i in range(0, len(box_images), batch_size):
+            chunk = box_images[i:i+batch_size]
+            chunk_results = rec_predictor(chunk, full_page=True)
+            page_results.extend(chunk_results)
 
         voters = []
         
