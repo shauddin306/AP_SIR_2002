@@ -474,6 +474,16 @@ def extract_voters(req: ExtractRequest):
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
 
+# --- Mount Search API routes ---
+try:
+    from search_api import advanced_indic_search, SearchRequest
+    @app.post("/v1/search")
+    async def v1_search(req: SearchRequest):
+        return await advanced_indic_search(req)
+    print("Successfully mounted /v1/search endpoint.")
+except Exception as e:
+    print(f"Warning: Could not mount search_api routes: {e}")
+
 if __name__ == "__main__":
     import uvicorn
     port = int(os.environ.get("PORT", 8000))
