@@ -5,6 +5,10 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from PIL import Image
 import re
+import os
+import subprocess
+import tempfile
+from bs4 import BeautifulSoup
 
 # New Surya 0.20 API
 from surya.inference import SuryaInferenceManager
@@ -110,6 +114,22 @@ def _is_valid_name_candidate(text: str, epic_no: str) -> bool:
     if not re.search(r'[a-zA-Z\u0C00-\u0C7F]', text):
         return False
     return True
+
+
+def clean_telugu_ocr_errors(text: str) -> str:
+    if not text:
+        return text
+    # Replace pek / peka / pek? / peka? / paka / pak? with Shaik (షేక్)
+    text = re.sub(r'[పపేపె][కక్]\??', 'షేక్', text)
+    # Replace paran / paran? / patan / pattan with Pathan (పఠాన్)
+    text = re.sub(r'పరాన్\??', 'పఠాన్', text)
+    text = re.sub(r'పటాన్\??', 'పఠాన్', text)
+    text = re.sub(r'పట్టాన్\??', 'పఠాన్', text)
+    # Remove stray question marks which often appear from OCR instead of spaces or ends of words
+    text = text.replace('?', ' ').strip()
+    # Collapse multiple spaces into one
+    text = re.sub(r'\s+', ' ', text)
+    return text
 
 
 def parse_surya_text(text: str):
@@ -222,11 +242,124 @@ def parse_surya_text(text: str):
                 voter_data["relative_name"] = candidate
                 break
 
+    # Apply spelling corrections
+    voter_data["voter_name"] = clean_telugu_ocr_errors(voter_data["voter_name"])
+    voter_data["relative_name"] = clean_telugu_ocr_errors(voter_data["relative_name"])
+
     return voter_data
 
 
+def extract_voters_row_table(img, page_no: int) -> list:
+    """
+    Handles row-table format PDFs (like Part 189 — spreadsheet with 8 columns, one voter per row).
+    
+    Layout columns:
+      (1) Serial No | (2) House No | (3) Voter Name | (4) Relation Type | 
+      (5) Relative Name | (6) Gender (Sri/Pu) | (7) Age | (8) EPIC ID
+    
+    Uses the already-loaded Surya rec_predictor (full-page OCR) → parse HTML table rows.
+    This is FAST since models are already in memory.
+    """
+    try:
+        # Convert OpenCV BGR image to PIL RGB for Surya
+        pil_img = Image.fromarray(cv2.cvtColor(img, cv2.COLOR_BGR2RGB))
+        
+        # Run full-page OCR with already-loaded models (fast, no model reload needed)
+        print(f"Row-table: running full-page Surya OCR on page {page_no}...")
+        page_results = rec_predictor([pil_img], full_page=True)
+        
+        if not page_results:
+            print("Row-table: no OCR results returned")
+            return []
+        
+        # Collect all HTML from blocks
+        html_content = ""
+        for block in page_results[0].blocks:
+            if hasattr(block, 'html') and block.html:
+                html_content += block.html
+            elif hasattr(block, 'text') and block.text:
+                # Wrap plain text in a table row for parsing if it contains a table
+                html_content += block.text + "\n"
+        
+        if not html_content:
+            print("Row-table fallback: no HTML content from surya_ocr")
+            return []
+            
+        print(f"Row-table: got {len(html_content)} chars of HTML from Surya")
+        
+        # Parse HTML table rows
+        soup = BeautifulSoup(html_content, 'html.parser')
+        voters = []
+        row_idx = 0
+        
+        for tr in soup.find_all('tr'):
+            cols = tr.find_all(['td', 'th'])
+            cols_text = [c.get_text(strip=True) for c in cols]
+            
+            # Skip header rows — first column must be a number
+            if not cols_text or not cols_text[0].isdigit():
+                continue
+            
+            serial_no = int(cols_text[0])
+            house_no = cols_text[1] if len(cols_text) > 1 else ""
+            voter_name = clean_telugu_ocr_errors(cols_text[2]) if len(cols_text) > 2 else ""
+            relation_type = cols_text[3] if len(cols_text) > 3 else ""
+            relative_name = clean_telugu_ocr_errors(cols_text[4]) if len(cols_text) > 4 else ""
+            gender_raw = cols_text[5] if len(cols_text) > 5 else ""
+            age_raw = cols_text[6] if len(cols_text) > 6 else "0"
+            epic_id = cols_text[7] if len(cols_text) > 7 else ""
+            
+            # Normalize gender: "స్త్రీ"/"స్"/"స" = Female, "పు"/"పురుషుడు" = Male
+            if any(g in gender_raw for g in ['స్త్రీ', 'స్', 'స్ర', 'మ']):
+                gender = 'Female'
+            elif any(g in gender_raw for g in ['పు', 'పురుషుడు', 'పు.']):
+                gender = 'Male'
+            else:
+                gender = gender_raw
+            
+            # Parse age
+            try:
+                age = int(re.search(r'\d+', age_raw).group()) if re.search(r'\d+', age_raw) else 0
+            except:
+                age = 0
+            
+            # Validate EPIC ID
+            epic_match = re.search(r'[A-Z]{2,3}\d{5,15}', epic_id)
+            epic_clean = epic_match.group(0) if epic_match else (f"NO_EPIC_{serial_no}" if not epic_id else epic_id)
+            
+            row_idx += 1
+            confidence = 'high' if (voter_name and epic_match) else ('medium' if voter_name else 'low')
+            
+            voters.append({
+                "serial_no": serial_no,
+                "voter_name_telugu": voter_name or None,
+                "voter_name_english": "",
+                "relative_name_telugu": relative_name or None,
+                "relative_name_english": "",
+                "relation_type": relation_type or "తం",
+                "house_no": house_no or None,
+                "age": age,
+                "gender": gender,
+                "epic_id": epic_clean,
+                "page_no": page_no,
+                "confidence": confidence,
+            })
+            
+            print(f"  Row {serial_no}: '{voter_name}' / '{relative_name}' | house={house_no} | epic={epic_clean}")
+        
+        print(f"Row-table extraction complete: {len(voters)} voters from page {page_no}")
+        return voters
+        
+    except Exception as e:
+        import traceback
+        traceback.print_exc()
+        print(f"Row-table fallback exception: {e}")
+        return []
+
+
 @app.post("/extract")
-async def extract_voters(req: ExtractRequest):
+
+def extract_voters(req: ExtractRequest):
     try:
         img_data = base64.b64decode(req.image_base64)
         np_arr = np.frombuffer(img_data, np.uint8)
@@ -238,6 +371,13 @@ async def extract_voters(req: ExtractRequest):
         box_images = extract_voter_boxes(img)
         
         if not box_images:
+            # ── FALLBACK: Row-table format (like Part 189) ─────────────────
+            # This PDF uses a spreadsheet-style table (8 cols, 1 row per voter)
+            # instead of individual voter boxes. Use surya_ocr CLI → parse HTML rows.
+            print(f"Box detection found 0 boxes. Attempting row-table fallback (surya_ocr CLI)...")
+            voters = extract_voters_row_table(img, req.page_no)
+            if voters:
+                return {"voters": voters, "raw_text": f"Row-table mode: extracted {len(voters)} voters."}
             return {"voters": [], "raw_text": "No grid found on page"}
 
         # Surya 0.20 batch processing. Treat each box as a full page.
