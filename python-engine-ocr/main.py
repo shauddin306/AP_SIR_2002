@@ -391,9 +391,10 @@ def extract_voters(req: ExtractRequest):
 
         # Surya 0.20 batch processing. Treat each box as a full page.
         # CRITICAL FIX: Chunk this into smaller batches to prevent OOM! 
-        # Sending 30 images in one batch to PyTorch requires >8GB RAM.
+        # Sending 30 images requires >8GB RAM (crashes). Sending 4 is too slow (>100s timeout).
+        # 15 is the sweet spot for an 8GB RAM server (completes in ~40s, well under the 100s timeout).
         page_results = []
-        batch_size = 4
+        batch_size = 15
         _, rec_predictor = get_models()
         for i in range(0, len(box_images), batch_size):
             chunk = box_images[i:i+batch_size]
