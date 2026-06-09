@@ -10,24 +10,33 @@ import subprocess
 import tempfile
 from bs4 import BeautifulSoup
 
-# New Surya 0.20 API
-from surya.inference import SuryaInferenceManager
-from surya.recognition import RecognitionPredictor
+# NOTE: Surya imports are DEFERRED inside get_models() below.
+# Do NOT import them at the top level — PyTorch initialization takes 15-30s,
+# which causes Railway to kill the container before Uvicorn can bind to the port.
 
-# Lazy load models to prevent Railway boot timeouts
+# Lazy-loaded model references
 manager = None
 rec_predictor = None
 
 def get_models():
     global manager, rec_predictor
     if manager is None:
-        print("Loading Surya OCR AI Models... (this takes a moment and ~2.5GB RAM)")
+        print("[startup] Importing Surya OCR library...")
+        # Defer heavy imports here so they don't block server startup
+        from surya.inference import SuryaInferenceManager
+        from surya.recognition import RecognitionPredictor
+        print("[startup] Loading Surya OCR AI Models into RAM (~2.5GB)...")
         manager = SuryaInferenceManager()
         rec_predictor = RecognitionPredictor(manager)
-        print("Surya AI Models Loaded!")
+        print("[startup] Surya AI Models Loaded and ready!")
     return manager, rec_predictor
 
 app = FastAPI(title="Voter OCR Python Engine")
+
+@app.get("/")
+def health_check():
+    """Instant health check — no model loading required."""
+    return {"status": "ok", "service": "Voter OCR Python Engine"}
 
 class ExtractRequest(BaseModel):
     image_base64: str
