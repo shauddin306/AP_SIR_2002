@@ -21,5 +21,5 @@ COPY . .
 # Railway provides the PORT environment variable
 EXPOSE 8000
 
-# Start Uvicorn
-CMD ["sh", "-c", "uvicorn main:app --host 0.0.0.0 --port ${PORT:-8000}"]
+# Start via Python so PORT env var is read properly (shell expansion is unreliable in Docker)
+CMD ["python", "main.py"]
