@@ -99,7 +99,10 @@ async function runExtractionJob(
             let result;
             if (meta.engine === 'python') {
               // Use env var so this works both locally and on Railway/Vercel
-              const pythonEngineUrl = process.env.PYTHON_ENGINE_URL ?? 'http://127.0.0.1:8001'
+              let pythonEngineUrl = process.env.PYTHON_ENGINE_URL ?? 'http://127.0.0.1:8001'
+              if (!pythonEngineUrl.startsWith('http://') && !pythonEngineUrl.startsWith('https://')) {
+                pythonEngineUrl = 'https://' + pythonEngineUrl
+              }
               const pyRes = await fetch(`${pythonEngineUrl}/extract`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
