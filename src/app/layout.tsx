@@ -1,10 +1,23 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import './globals.css'
+
+export const viewport: Viewport = {
+  themeColor: '#0f172a',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+}
 
 export const metadata: Metadata = {
   title: 'Voter Search SIR AP — Election Commission Voter List Engine',
   description: 'AI-powered voter list extraction, storage, and intelligent search engine for Election Commission of India Andhra Pradesh voter PDFs. Search by name, EPIC ID, house number in Telugu or English.',
   keywords: 'voter list, Andhra Pradesh, Election Commission, voter ID, EPIC, Telugu, voter search',
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'VoterSearch',
+  },
 }
 
 export default function RootLayout({
