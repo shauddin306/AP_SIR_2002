@@ -365,8 +365,8 @@ def process_part(assembly_no, part_no, progress):
 
 def main():
     assembly_no = 152
-    start_part = 189
-    end_part = 189
+    start_part = 76
+    end_part = 250
     
     print(f"Starting Fully Automated Pipeline for Assembly {assembly_no}, Parts {start_part} to {end_part}")
     progress = load_progress()

@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import HomeSearchClient from './HomeSearchClient'
+import LiveCoverage from './LiveCoverage'
 
 export const metadata: Metadata = {
   title: 'Voter Search India — Private AI Voter Engine',
@@ -60,25 +61,7 @@ export default function HomePage() {
         </div>
 
         {/* Coverage Flash Note */}
-        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 40, marginTop: 40 }}>
-          <div style={{
-            background: 'rgba(59, 130, 246, 0.1)',
-            border: '1px solid rgba(59, 130, 246, 0.3)',
-            padding: '8px 24px',
-            borderRadius: 30,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 12,
-            backdropFilter: 'blur(8px)',
-            boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-          }}>
-            <span className="live-dot" style={{ display: 'inline-block', width: 8, height: 8, background: '#10b981', borderRadius: '50%', boxShadow: '0 0 8px #10b981' }}></span>
-            <span style={{ color: '#93c5fd', fontSize: 14, fontWeight: 500 }}>
-              <strong style={{ color: '#fff' }}>Live Coverage:</strong> Rayachoty Assembly (2002 Electoral Roll) — Parts 68, 69, 70, 71, 72, 73...
-              <a href="/browse" style={{ color: '#fff', marginLeft: 8, textDecoration: 'underline', fontWeight: 600 }}>View Full Directory &rarr;</a>
-            </span>
-          </div>
-        </div>
+        <LiveCoverage />
 
         {/* Search Area */}
         <div style={{ marginBottom: 80 }}>
@@ -91,19 +74,19 @@ export default function HomePage() {
             iconLeft={<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>}
             iconRight={<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>}
             title="Lightning-Fast Search"
-            desc="Search millions of voter records instantly to speed up fast research."
+            desc="Search millions of voter records instantly. Built on a heavily optimized indexing engine."
           />
           <FeatureCard
             iconLeft={<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>}
             iconRight={<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2a10 10 0 0 0-10 10c0 5.52 4.48 10 10 10s10-4.48 10-10A10 10 0 0 0 12 2z"/><path d="M12 6v12M8 10v4M16 10v4"/></svg>}
-            title="Advanced AI Matching"
-            desc="Matched AI matching for registered voters in advanced and matching algorithms."
+            title="Advanced Fuzzy Matching"
+            desc="Our AI natively understands Telugu transliteration, finding matches even if names are misspelled."
           />
           <FeatureCard
             iconLeft={<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>}
             iconRight={<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="9 12 12 15 16 9"/></svg>}
-            title="Accurate Voter Data"
-            desc="Verify voter data center and accurately in real-time updates."
+            title="Data Extraction Accuracy"
+            desc="Historic 2002 voter lists extracted using cutting-edge OCR and AI parsing algorithms."
           />
           <FeatureCard
             iconLeft={<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="url(#icon-grad)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>}

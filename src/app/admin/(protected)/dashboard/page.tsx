@@ -5,6 +5,7 @@ import { createClient } from '@/lib/supabase/browser'
 import UploadPdfClient from '@/components/UploadPdfClient'
 import UserManagementClient from '@/components/UserManagementClient'
 import { ActiveJobsQueue } from '@/components/ActiveJobsQueue'
+import DashboardCharts from '@/components/DashboardCharts'
 
 export default function AdminDashboard() {
   const [role, setRole] = useState<string | null>(null)
@@ -80,6 +81,10 @@ export default function AdminDashboard() {
                   </span>
                 </div>
                 <ActiveJobsQueue />
+              </div>
+              <div style={{ marginTop: 32, paddingTop: 24, borderTop: '1px solid rgba(51, 65, 85, 0.5)' }}>
+                <h3 style={{ fontSize: 16, fontWeight: 600, color: '#e2e8f0', marginBottom: 16 }}>Voter Demographics</h3>
+                <DashboardCharts />
               </div>
             </div>
 

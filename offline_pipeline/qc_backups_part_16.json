@@ -1,0 +1,1370 @@
+[
+    {
+        "voter_id": "b23606f7-8729-466d-bf4e-60742757f8ba",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3e\u0c28\u0c3f\u0c38\u0c3e \u0c15\u0c41\u0c2e\u0c3e\u0c30\u0c3f",
+        "original_relative_name_telugu": "\u0c30\u0c3e\u0c2e\u0c3e\u0c24\u0c41\u0c32\u0c4d\u0c32\u0c3e",
+        "new_voter_name_telugu": "\u0c39\u0c1c\u0c3e\u0c15\u0c41\u0c28\u0c40\u0c38\u0c3e \u0c36\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c30\u0c39\u0c2e\u0c24\u0c41\u0c32\u0c4d\u0c32\u0c3e",
+        "page_no": 3,
+        "serial_no": 21
+    },
+    {
+        "voter_id": "553d6b3e-a468-41d1-b72c-fbb88cefc5fa",
+        "original_voter_name_telugu": "\u0c17\u0c4b\u0c2a\u0c3e\u0c32\u0c4d \u0c30\u0c3e\u0c1c\u0c41 \u0c2c\u0c41\u0c35\u0c28\u0c17\u0c3e\u0c30\u0c3f",
+        "original_relative_name_telugu": "\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c30\u0c3e\u0c1c\u0c41",
+        "new_voter_name_telugu": "\u0c17\u0c4b\u0c2a\u0c3e\u0c32\u0c4d \u0c30\u0c3e\u0c1c\u0c41 \u0c2c\u0c38\u0c35\u0c30\u0c3e\u0c1c\u0c41\u0c17\u0c3e\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c30\u0c3e\u0c1c\u0c41",
+        "page_no": 3,
+        "serial_no": 22
+    },
+    {
+        "voter_id": "b62bcfe2-6e88-4e53-a2aa-c6173c95b97b",
+        "original_voter_name_telugu": "\u0c2f\u0c2e\u0c41\u0c28\u0c3e \u0c26\u0c47\u0c35\u0c3f\u0c17\u0c21\u0c3f",
+        "original_relative_name_telugu": "\u0c15\u0c43\u0c37\u0c4d\u0c23\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c30\u0c18\u0c41\u0c28\u0c3e\u0c27 \u0c26\u0c47\u0c35\u0c17\u0c41\u0c21\u0c3f",
+        "new_relative_name_telugu": "\u0c15\u0c4d\u0c30\u0c3f\u0c37\u0c4d\u0c23\u0c2f\u0c4d\u0c2f",
+        "page_no": 3,
+        "serial_no": 23
+    },
+    {
+        "voter_id": "4ea15775-638b-4c5c-bf85-d63650bdc8a5",
+        "original_voter_name_telugu": "\u0c35\u0c40\u0c30\u0c3e\u0c02\u0c1c\u0c28\u0c47\u0c2f\u0c41\u0c32\u0c41 \u0c05\u0c2c\u0c21",
+        "original_relative_name_telugu": "\u0c15\u0c43\u0c37\u0c4d\u0c23\u0c2e\u0c42\u0c30\u0c4d\u0c24\u0c3f",
+        "new_voter_name_telugu": "\u0c35\u0c40\u0c30\u0c3e\u0c02\u0c1c\u0c28\u0c47\u0c2f\u0c41\u0c32\u0c41 \u0c05\u0c02\u0c2c\u0c21\u0c3f",
+        "new_relative_name_telugu": "\u0c15\u0c4d\u0c30\u0c3f\u0c37\u0c4d\u0c23\u0c2e\u0c42\u0c30\u0c4d\u0c24\u0c3f",
+        "page_no": 3,
+        "serial_no": 26
+    },
+    {
+        "voter_id": "5b3ad401-f38d-4596-8f21-33a6f7fdef9a",
+        "original_voter_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2e\u0c4d\u0c2e \u0c2a\u0c30\u0c3f\u0c15\u0c35\u0c47\u0c28",
+        "original_relative_name_telugu": "\u0c28\u0c3e\u0c17\u0c17\u0c4b\u0c2a\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c2e\u0c4d\u0c2e \u0c2a\u0c30\u0c3f\u0c15\u0c26\u0c4b\u0c28",
+        "new_relative_name_telugu": "\u0c28\u0c3e\u0c17\u0c47\u0c02\u0c26\u0c4d\u0c30\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 27
+    },
+    {
+        "voter_id": "0148a8b8-6d73-4ef0-9fcb-b3a5a1453fe0",
+        "original_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c2d\u0c42\u0c37\u0c23\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41 \u0c2a\u0c30\u0c3f\u0c15\u0c35\u0c47\u0c28",
+        "original_relative_name_telugu": "\u0c35\u0c3f\u0c36\u0c4d\u0c35\u0c30\u0c3e\u0c2e\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c2d\u0c41\u0c37\u0c23\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41 \u0c2a\u0c30\u0c3f\u0c15\u0c26\u0c4b\u0c28",
+        "new_relative_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c30\u0c3e\u0c2e\u0c2a\u0c4d\u0c2a\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 29
+    },
+    {
+        "voter_id": "5300ed73-67d6-411c-aeef-08b774d6246c",
+        "original_voter_name_telugu": "\u0c09\u0c37\u0c3e\u0c30\u0c3e\u0c23\u0c3f \u0c2a\u0c30\u0c3f\u0c15\u0c35\u0c47\u0c28",
+        "original_relative_name_telugu": "\u0c28\u0c3e\u0c17\u0c2d\u0c42\u0c37\u0c23\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c09\u0c2a\u0c3e\u0c30\u0c3e\u0c23\u0c3f \u0c2a\u0c30\u0c3f\u0c15\u0c26\u0c4b\u0c28",
+        "new_relative_name_telugu": "\u0c28\u0c3e\u0c17\u0c2d\u0c41\u0c37\u0c23\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 30
+    },
+    {
+        "voter_id": "5c0327ff-0f9e-4383-99b0-4561f3bfd601",
+        "original_voter_name_telugu": "\u0c1c\u0c2f\u0c2e\u0c4d\u0c2e \u0c2c\u0c4b\u0c21\u0c3f\u0c17\u0c41\u0c1f\u0c4d\u0c32",
+        "original_relative_name_telugu": "\u0c38\u0c41\u0c27\u0c3e\u0c15\u0c30\u0c4d \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c1c\u0c2f\u0c2e\u0c4d\u0c2e \u0c2c\u0c4b\u0c21\u0c3f\u0c17\u0c41\u0c1f\u0c4d\u0c1f",
+        "new_relative_name_telugu": "\u0c38\u0c41\u0c26\u0c3e\u0c15\u0c30 \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 31
+    },
+    {
+        "voter_id": "7a1e76c1-7677-41fa-a8e4-ae56233b77ac",
+        "original_voter_name_telugu": "\u0c15\u0c43\u0c37\u0c4d\u0c23\u0c15\u0c28\u0c15\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41 \u0c2c\u0c4b\u0c21\u0c3f\u0c17\u0c41\u0c1f\u0c4d\u0c32",
+        "original_relative_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2a\u0c4d\u0c2a\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c15\u0c30\u0c4d\u0c23\u0c15\u0c30\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41 \u0c2c\u0c4b\u0c21\u0c3f\u0c17\u0c41\u0c1f\u0c4d\u0c1f",
+        "new_relative_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c2a\u0c4d\u0c2a\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 32
+    },
+    {
+        "voter_id": "c9f88df1-3848-41e6-9e03-c7c203d48d5b",
+        "original_voter_name_telugu": "\u0c35\u0c30\u0c2e\u0c4d\u0c2e \u0c17\u0c4b\u0c30\u0c4d\u0c32",
+        "original_relative_name_telugu": "\u0c36\u0c3f\u0c35\u0c28\u0c4d\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c35\u0c30\u0c2e\u0c4d\u0c2e \u0c17\u0c4b\u0c30\u0c4d\u0c17",
+        "new_relative_name_telugu": "\u0c36\u0c3f\u0c35\u0c2a\u0c4d\u0c2a\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 33
+    },
+    {
+        "voter_id": "f6f26146-41c5-4dab-b74e-059220a0c6d8",
+        "original_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c28\u0c3e\u0c30",
+        "original_relative_name_telugu": "\u0c2e\u0c32\u0c4d\u0c32\u0c2a\u0c4d\u0c2a\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c15\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c28\u0c3e\u0c30\u0c47",
+        "new_relative_name_telugu": "\u0c2e\u0c32\u0c4d\u0c32\u0c2a\u0c4d\u0c2a\u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 35
+    },
+    {
+        "voter_id": "2d642af1-e79b-404f-be24-eac7cb52b339",
+        "original_voter_name_telugu": "\u0c30\u0c2e\u0c23\u0c2e\u0c4d\u0c2e \u0c28\u0c3e\u0c30\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c17\u0c02\u0c17\u0c3e\u0c26\u0c4d\u0c30\u0c3f",
+        "new_voter_name_telugu": "\u0c30\u0c2e\u0c23\u0c2e\u0c4d\u0c2e \u0c28\u0c30\u0c4d\u0c30\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c17\u0c02\u0c17\u0c3e\u0c26\u0c4d\u0c30\u0c3f",
+        "page_no": 3,
+        "serial_no": 36
+    },
+    {
+        "voter_id": "9143a2d3-a28b-44c7-92a2-15ee807bcf89",
+        "original_voter_name_telugu": "\u0c1a\u0c02\u0c26\u0c4d\u0c30\u0c15\u0c33 \u0c28\u0c3e\u0c30\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c47\u0c38\u0c41",
+        "new_voter_name_telugu": "\u0c1a\u0c02\u0c26\u0c4d\u0c30\u0c15\u0c33 \u0c28\u0c30\u0c4d\u0c30\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c47\u0c38\u0c41",
+        "page_no": 3,
+        "serial_no": 37
+    },
+    {
+        "voter_id": "3feb5b44-eb51-406a-a7d5-8c6b6843d1cb",
+        "original_voter_name_telugu": "\u0c06\u0c02\u0c1c\u0c28\u0c2e\u0c4d\u0c2e \u0c2a\u0c30\u0c3f\u0c15\u0c35\u0c47\u0c28",
+        "original_relative_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c2a\u0c24\u0c3f \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c05\u0c02\u0c1c\u0c28\u0c2e\u0c4d\u0c2e \u0c2a\u0c30\u0c3f\u0c15\u0c26\u0c4b\u0c28",
+        "new_relative_name_telugu": "\u0c32\u0c15\u0c4d\u0c15\u0c3f\u0c2a\u0c24\u0c3f \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 38
+    },
+    {
+        "voter_id": "9b09d231-e196-4301-9904-e5b6dce8ebb4",
+        "original_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c2a\u0c30\u0c3f\u0c15\u0c35\u0c47\u0c28",
+        "original_relative_name_telugu": "\u0c28\u0c3e\u0c30\u0c38\u0c3f\u0c02\u0c39 \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c15\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c2a\u0c30\u0c3f\u0c15\u0c26\u0c4b\u0c28",
+        "new_relative_name_telugu": "\u0c28\u0c3e\u0c30\u0c38\u0c3f\u0c02\u0c39 \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 39
+    },
+    {
+        "voter_id": "7f44a13d-991e-4db4-b7e8-000bcfd52f7b",
+        "original_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c47\u0c36\u0c4d\u0c35\u0c30 \u0c2a\u0c30\u0c3f\u0c15\u0c35\u0c47\u0c28",
+        "original_relative_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c2e \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c47\u0c36\u0c4d\u0c35\u0c30 \u0c2a\u0c30\u0c3f\u0c15\u0c26\u0c4b\u0c28",
+        "new_relative_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c2e \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 3,
+        "serial_no": 40
+    },
+    {
+        "voter_id": "8b70e143-d9b7-4ba7-bb04-551185b03d90",
+        "original_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c40\u0c26\u0c47\u0c35\u0c3f \u0c2a\u0c32\u0c3f\u0c15\u0c35\u0c28",
+        "original_relative_name_telugu": "\u0c2e\u0c32\u0c4d\u0c32\u0c3f\u0c16\u0c3e\u0c30\u0c4d\u0c1c\u0c41\u0c28 \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c2a\u0c30\u0c3f\u0c15\u0c26\u0c4b\u0c2a\u0c4d",
+        "new_relative_name_telugu": "\u0c2e\u0c32\u0c4d\u0c32\u0c3f\u0c16\u0c3e\u0c30\u0c4d\u0c1c\u0c41\u0c28 \u0c28\u0c3e\u0c2f\u0c41\u0c21\u0c41",
+        "page_no": 4,
+        "serial_no": 41
+    },
+    {
+        "voter_id": "ecc098d2-0369-433a-a642-b7ad6ff9f6da",
+        "original_voter_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23 \u0c05\u0c02\u0c15",
+        "original_relative_name_telugu": "\u0c17\u0c02\u0c17\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c28\u0c3e\u0c30\u0c2f\u0c4d\u0c2f \u0c05\u0c02\u0c15\u0c47",
+        "new_relative_name_telugu": "\u0c17\u0c02\u0c17\u0c2f\u0c4d\u0c2f",
+        "page_no": 4,
+        "serial_no": 44
+    },
+    {
+        "voter_id": "e23ce72f-5c13-40f4-b081-b1c25be5bb8c",
+        "original_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c40\u0c26\u0c47\u0c35\u0c3f \u0c05\u0c02\u0c15",
+        "original_relative_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23",
+        "new_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c05\u0c02\u0c15\u0c47",
+        "new_relative_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c28\u0c3e\u0c17\u0c2f\u0c4d\u0c2f",
+        "page_no": 4,
+        "serial_no": 45
+    },
+    {
+        "voter_id": "fb24dc07-f387-4514-a9ab-051b19a10609",
+        "original_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c3e\u0c2e\u0c41 \u0c28\u0c40\u0c32\u0c3e",
+        "original_relative_name_telugu": "\u0c1a\u0c46\u0c02\u0c17\u0c28\u0c4d\u0c28",
+        "new_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c2e\u0c23 \u0c28\u0c40\u0c32\u0c3e",
+        "new_relative_name_telugu": "\u0c1a\u0c46\u0c02\u0c17\u0c28\u0c4d\u0c28",
+        "page_no": 4,
+        "serial_no": 46
+    },
+    {
+        "voter_id": "61f5f913-ba58-4fa8-9fc3-2dd40a584ded",
+        "original_voter_name_telugu": "\u0c30\u0c3e\u0c2e\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2e\u0c4d\u0c2e \u0c28\u0c40\u0c32\u0c3e",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c3e\u0c2e\u0c41",
+        "new_voter_name_telugu": "\u0c30\u0c3e\u0c2e\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2e\u0c4d\u0c2e \u0c28\u0c40\u0c32\u0c3e",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c2e\u0c23",
+        "page_no": 4,
+        "serial_no": 47
+    },
+    {
+        "voter_id": "68cd6865-9825-4d14-bcfd-b961ea9fb976",
+        "original_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c47\u0c36\u0c4d\u0c35\u0c30\u0c2e\u0c4d\u0c2e \u0c28\u0c40\u0c32\u0c3e",
+        "original_relative_name_telugu": "\u0c1a\u0c02\u0c26\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c47\u0c36\u0c4d\u0c35\u0c30\u0c2e\u0c4d\u0c2e \u0c28\u0c40\u0c32\u0c3e",
+        "new_relative_name_telugu": "\u0c1a\u0c02\u0c26\u0c4d\u0c30\u0c2f\u0c4d\u0c2f",
+        "page_no": 4,
+        "serial_no": 49
+    },
+    {
+        "voter_id": "39b40ed8-ec48-4b3f-a888-aefb57e0b415",
+        "original_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c2e\u0c4d\u0c2e \u0c28\u0c40\u0c32\u0c3e",
+        "original_relative_name_telugu": "\u0c30\u0c3e\u0c2e\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c28\u0c40\u0c32\u0c3e",
+        "new_relative_name_telugu": "\u0c30\u0c3e\u0c2e\u0c2f\u0c4d\u0c2f",
+        "page_no": 4,
+        "serial_no": 51
+    },
+    {
+        "voter_id": "19bd73ac-d63c-4ce5-9e9e-c6a8d4a6d4de",
+        "original_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c2e\u0c4d\u0c2e \u0c28\u0c40\u0c32\u0c3e",
+        "original_relative_name_telugu": "\u0c1a\u0c46\u0c02\u0c17\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c28\u0c40\u0c32\u0c3e",
+        "new_relative_name_telugu": "\u0c1a\u0c46\u0c02\u0c17\u0c2f\u0c4d\u0c2f",
+        "page_no": 4,
+        "serial_no": 52
+    },
+    {
+        "voter_id": "36e24f7a-c43f-4290-8794-2d89ab3a10b4",
+        "original_voter_name_telugu": "\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c2e\u0c4d\u0c2e \u0c28\u0c40\u0c32\u0c3e",
+        "original_relative_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c28\u0c40\u0c32\u0c3e",
+        "new_relative_name_telugu": "\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f\u0c26\u0c47\u0c35\u0c3f \u0c28\u0c40\u0c32\u0c3e",
+        "page_no": 4,
+        "serial_no": 53
+    },
+    {
+        "voter_id": "8f21233a-dfb3-470c-9028-52b00db2bb97",
+        "original_voter_name_telugu": "\u0c05\u0c2e\u0c4d\u0c2e\u0c21\u0c3f \u0c28\u0c40\u0c32\u0c3e",
+        "original_relative_name_telugu": "\u0c36\u0c3f\u0c35\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c05\u0c2e\u0c4d\u0c2e\u0c23\u0c4d\u0c23\u0c3f \u0c28\u0c40\u0c32\u0c3e",
+        "new_relative_name_telugu": "\u0c36\u0c3f\u0c35\u0c2f\u0c4d\u0c2f",
+        "page_no": 4,
+        "serial_no": 55
+    },
+    {
+        "voter_id": "e982772e-99f6-4f79-b0f7-0b804d3aa47a",
+        "original_voter_name_telugu": "\u0c30\u0c47\u0c39? \u0c2c\u0c3e\u0c28\u0c41?",
+        "original_relative_name_telugu": "\u0c1c\u0c3e\u0c36\u0c40\u0c2c\u0c3e\u0c28\u0c41?",
+        "new_voter_name_telugu": "\u0c30\u0c4b\u0c2b? \u0c16\u0c3e\u0c28? \u0c2a\u0c20\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02\u0c16\u0c3e\u0c28?",
+        "page_no": 4,
+        "serial_no": 57
+    },
+    {
+        "voter_id": "30ca8b3f-3b5f-411a-86a5-fe01ea70f57d",
+        "original_voter_name_telugu": "\u0c24\u0c39\u0c30\u0c3e\u0c28\u0c3e? \u0c2c\u0c3e\u0c28\u0c41?",
+        "original_relative_name_telugu": "\u0c30\u0c47\u0c39? \u0c2c\u0c3e\u0c28\u0c41?",
+        "new_voter_name_telugu": "\u0c24\u0c39\u0c30\u0c3e\u0c28? \u0c2a\u0c20\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c30\u0c4b\u0c2b?\u0c16\u0c3e\u0c28?",
+        "page_no": 4,
+        "serial_no": 58
+    },
+    {
+        "voter_id": "d97c8020-4fe7-44a5-8c4b-877fdcb7ce8f",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c28\u0c3f \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c2a\u0c3e\u0c24\u0c3f\u0c2e\u0c3e\u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c2c?",
+        "page_no": 4,
+        "serial_no": 59
+    },
+    {
+        "voter_id": "cccab9c8-fefb-4021-900c-955777fc31c2",
+        "original_voter_name_telugu": "\u0c05\u0c15\u0c4d\u0c2c\u0c30\u0c4d \u0c2c\u0c3e\u0c37\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c37\u0c3e",
+        "new_voter_name_telugu": "\u0c05\u0c15\u0c4d\u0c2c\u0c30\u0c4d \u0c2c\u0c3e\u0c37 \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c4d\u0c32\u0c3f\u0c38\u0c3e\u0c2c\u0c4d",
+        "page_no": 4,
+        "serial_no": 60
+    },
+    {
+        "voter_id": "0d415a14-aad7-4518-bcf3-7fd81c9ea577",
+        "original_voter_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c3e\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c15\u0c30\u0c3e\u0c02\u0c1c\u0c3e\u0c28\u0c4d",
+        "new_voter_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c4d \u0c2c\u0c3f \u0c2a\u0c30\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c15\u0c30\u0c3e\u0c02\u0c16\u0c3e\u0c28?",
+        "page_no": 5,
+        "serial_no": 61
+    },
+    {
+        "voter_id": "28008cfa-4c63-4b94-a540-76149f7a9cc3",
+        "original_voter_name_telugu": "\u0c17\u0c4b\u0c2a\u0c2e\u0c4d\u0c2e",
+        "original_relative_name_telugu": "\u0c2e\u0c3e\u0c32",
+        "new_voter_name_telugu": "\u0c17\u0c4c\u0c38\u0c3f\u0c2f\u0c3e \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c2e\u0c4c\u0c32\u0c3e",
+        "page_no": 5,
+        "serial_no": 63
+    },
+    {
+        "voter_id": "ac42b895-8731-46b9-ad7c-31f94e24ac64",
+        "original_voter_name_telugu": "\u0c06\u0c30\u0c3f\u0c2b\u0c4d \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c2c\u0c3e\u0c37",
+        "new_voter_name_telugu": "\u0c05\u0c30\u0c40\u0c2b\u0c4d \u0c35\u0c41\u0c32\u0c4d\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c2c\u0c3e\u0c37",
+        "page_no": 5,
+        "serial_no": 64
+    },
+    {
+        "voter_id": "909ef70b-cb4a-4ca0-bb49-5ae3eef22be2",
+        "original_voter_name_telugu": "\u0c38\u0c32\u0c40\u0c2e\u0c3e\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c2c\u0c3e\u0c37",
+        "new_voter_name_telugu": "\u0c38\u0c32\u0c40\u0c2e\u0c3e\u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30? \u0c2c\u0c3e\u0c37\u0c3e",
+        "page_no": 5,
+        "serial_no": 65
+    },
+    {
+        "voter_id": "6f9cc6e2-3c3f-4888-8636-f6ad94e5bf94",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c2c\u0c41\u0c32\u0c4d\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c2c\u0c3e\u0c37",
+        "new_voter_name_telugu": "\u0c39\u0c2c\u0c40\u0c2c\u0c41\u0c32\u0c4d\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c2c\u0c3e\u0c37",
+        "page_no": 5,
+        "serial_no": 66
+    },
+    {
+        "voter_id": "35da36ac-20b2-4379-9a7f-0228ef37975b",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c2c\u0c3e\u0c37 \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c2c\u0c21\u0c3f\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30? \u0c2c\u0c3e\u0c37\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2c\u0c21\u0c3f\u0c38\u0c3e\u0c39\u0c46\u0c2c?",
+        "page_no": 5,
+        "serial_no": 67
+    },
+    {
+        "voter_id": "1500325a-d192-436e-8ed0-ae97910a2aa8",
+        "original_voter_name_telugu": "\u0c30\u0c3e\u0c1c\u0c4b\u0c26\u0c4d\u0c26\u0c40\u0c28\u0c4d \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c1a\u0c02\u0c26\u0c3e\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d",
+        "new_voter_name_telugu": "\u0c24\u0c3e\u0c1c\u0c3e\u0c35\u0c41\u0c26\u0c4d\u0c26\u0c40\u0c28? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c1a\u0c02\u0c26\u0c3e\u0c38\u0c3e\u0c39\u0c46\u0c2c?",
+        "page_no": 5,
+        "serial_no": 68
+    },
+    {
+        "voter_id": "1e1c312c-4e18-43e0-9285-052f9eede752",
+        "original_voter_name_telugu": "\u0c37\u0c47\u0c1c\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c30\u0c3e\u0c1c\u0c4b\u0c26\u0c4d\u0c26\u0c40\u0c28\u0c4d",
+        "new_voter_name_telugu": "\u0c2a\u0c3e\u0c39\u0c3f\u0c26\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c24\u0c3e\u0c1c\u0c3e\u0c35\u0c41\u0c26\u0c4d\u0c26\u0c40\u0c28?",
+        "page_no": 5,
+        "serial_no": 69
+    },
+    {
+        "voter_id": "80785b36-5bc4-4605-9077-01734ce63132",
+        "original_voter_name_telugu": "\u0c37\u0c47\u0c1c\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c2e\u0c41\u0c28\u0c3e\u0c2b\u0c4d",
+        "new_voter_name_telugu": "\u0c2a\u0c3e\u0c2a\u0c3e\u0c2c\u0c42 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32? \u0c2e\u0c41\u0c28\u0c3e\u0c2a?",
+        "page_no": 5,
+        "serial_no": 71
+    },
+    {
+        "voter_id": "486560f5-1f05-4b53-8058-1ec5dc883e94",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c2c\u0c41\u0c32\u0c4d\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c2e\u0c41\u0c28\u0c3e\u0c2b\u0c4d",
+        "new_voter_name_telugu": "\u0c39\u0c2c\u0c40\u0c2c\u0c41\u0c32\u0c4d\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32? \u0c2e\u0c41\u0c28\u0c3e\u0c2a?",
+        "page_no": 5,
+        "serial_no": 72
+    },
+    {
+        "voter_id": "e930dd7e-f2bc-42fa-9134-d44b4e4aec7f",
+        "original_voter_name_telugu": "\u0c30\u0c39\u0c2e\u0c24\u0c41\u0c32\u0c4d\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c2e\u0c41\u0c28\u0c3e\u0c2b\u0c4d",
+        "new_voter_name_telugu": "\u0c30\u0c39\u0c2e\u0c24? \u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32? \u0c2e\u0c41\u0c28\u0c3e\u0c2a?",
+        "page_no": 5,
+        "serial_no": 73
+    },
+    {
+        "voter_id": "eea2524e-9591-461e-9a73-7be3ace1dc57",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c2c\u0c41\u0c32\u0c4d\u0c32\u0c3e",
+        "new_voter_name_telugu": "\u0c39\u0c28\u0c40\u0c2b\u0c3e\u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c39\u0c2c\u0c40\u0c2c\u0c41\u0c32\u0c4d\u0c32\u0c3e",
+        "page_no": 5,
+        "serial_no": 74
+    },
+    {
+        "voter_id": "823b5e71-2418-4df8-b330-ff4ae8223fb6",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c38\u0c3f\u0c02 \u0c2a\u0c40\u0c30\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c2e\u0c41\u0c28\u0c3e\u0c2b\u0c4d",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02 \u0c2a\u0c40\u0c30\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32? \u0c2e\u0c41\u0c28\u0c3e\u0c2a?",
+        "page_no": 5,
+        "serial_no": 75
+    },
+    {
+        "voter_id": "bd785063-39d4-4908-b91c-4ac606107fd4",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c30\u0c3e\u0c28\u0c4d \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c38\u0c3f\u0c02 \u0c2a\u0c40\u0c30\u0c3e",
+        "new_voter_name_telugu": "\u0c2a\u0c4d\u0c2f\u0c3e\u0c30\u0c40\u0c1c\u0c3e\u0c28? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02\u0c2a\u0c40\u0c30\u0c3e",
+        "page_no": 5,
+        "serial_no": 76
+    },
+    {
+        "voter_id": "22fa3627-19a8-4e48-9e82-11cc8ecaee6c",
+        "original_voter_name_telugu": "\u0c2c\u0c3e\u0c37\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c15\u0c3e\u0c38\u0c3f\u0c02\u0c2a\u0c47\u0c30\u0c4d",
+        "new_voter_name_telugu": "\u0c2c\u0c3e\u0c2c\u0c4b\u0c1c\u0c3f \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c15\u0c3e\u0c38\u0c3f\u0c02\u0c2a\u0c40\u0c30\u0c4d",
+        "page_no": 5,
+        "serial_no": 77
+    },
+    {
+        "voter_id": "b26564d7-5240-422a-af5c-0ac57b0803bc",
+        "original_voter_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c3e\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c2e\u0c41\u0c28\u0c3e\u0c2b\u0c4d",
+        "new_voter_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c4d \u0c2c\u0c3e\u0c37\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32? \u0c2e\u0c41\u0c28\u0c3e\u0c2a?",
+        "page_no": 5,
+        "serial_no": 78
+    },
+    {
+        "voter_id": "56a1cd0e-c499-40e4-8242-85a83f550fbc",
+        "original_voter_name_telugu": "\u0c28\u0c42\u0c30\u0c4d\u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c3e\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "new_voter_name_telugu": "\u0c2e\u0c3e\u0c2c\u0c40\u0c28\u0c4d\u0c28\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c4d \u0c2c\u0c3e\u0c37\u0c3e",
+        "page_no": 5,
+        "serial_no": 79
+    },
+    {
+        "voter_id": "d0fc37ef-2e9a-4e31-9747-80b2836efd9b",
+        "original_voter_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c3e\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c2c\u0c21\u0c3f\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d",
+        "new_voter_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c4d \u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2c\u0c21\u0c3f\u0c38\u0c3e\u0c2c?",
+        "page_no": 5,
+        "serial_no": 80
+    },
+    {
+        "voter_id": "84c89cb3-1a31-4fb7-92fa-63e1e0cbf57e",
+        "original_voter_name_telugu": "\u0c38\u0c3e\u0c2f\u0c3f\u0c2e\u0c4d\u0c2e\u0c3e? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c2c\u0c21\u0c3f\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c38\u0c3e\u0c2f\u0c28\u0c4d\u0c28\u0c40\u0c30? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2c\u0c21\u0c47\u0c38\u0c3e\u0c32?",
+        "page_no": 6,
+        "serial_no": 81
+    },
+    {
+        "voter_id": "ba78d049-5b2a-4dfc-9009-f96d759c9702",
+        "original_voter_name_telugu": "\u0c30\u0c39\u0c2e\u0c41\u0c28\u0c4d\u0c28\u0c40\u0c38\u0c3e \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c2c\u0c21\u0c3f\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c30\u0c39\u0c3f\u0c2e\u0c41\u0c28\u0c4d\u0c28\u0c40\u0c38\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2c\u0c21\u0c47\u0c38\u0c3e\u0c32?",
+        "page_no": 6,
+        "serial_no": 82
+    },
+    {
+        "voter_id": "a7dcd82a-c7f3-4591-b091-096d9e643fb5",
+        "original_voter_name_telugu": "\u0c28\u0c2c\u0c40\u0c1c\u0c3e\u0c28\u0c3e? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c05\u0c32\u0c4d\u0c32\u0c3e\u0c15\u0c3e\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c28\u0c38\u0c40\u0c2c?\u0c1c\u0c3e\u0c28? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c32\u0c4d\u0c32\u0c3e\u0c2c\u0c15\u0c3e\u0c37?",
+        "page_no": 6,
+        "serial_no": 83
+    },
+    {
+        "voter_id": "782f9b74-13e9-415c-86a6-fd0a4d20f298",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02\u0c2c\u0c40? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c26\u0c38\u0c4d\u0c24\u0c17\u0c3f\u0c30\u0c3f \u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c2f\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c26\u0c38\u0c4d\u0c24\u0c17\u0c3f\u0c30\u0c3f \u0c38\u0c3e\u0c2c?",
+        "page_no": 6,
+        "serial_no": 85
+    },
+    {
+        "voter_id": "21678815-56bf-4412-9e98-9a60cd6eafd4",
+        "original_voter_name_telugu": "\u0c2a\u0c40\u0c30\u0c3e \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c26\u0c38\u0c4d\u0c24\u0c17\u0c3f\u0c30\u0c3f \u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c2a\u0c40\u0c30\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c26\u0c38\u0c4d\u0c24\u0c17\u0c3f\u0c30\u0c3f \u0c38\u0c3e\u0c2c?",
+        "page_no": 6,
+        "serial_no": 86
+    },
+    {
+        "voter_id": "6a2b8215-2b32-4c8c-88ec-1bbf1f3c3a17",
+        "original_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d?\u0c2c\u0c3e\u0c37\u0c3e? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d?\u0c35\u0c32\u0c3f?",
+        "new_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32?\u0c2c\u0c3e\u0c37\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32?\u0c35\u0c32\u0c40",
+        "page_no": 6,
+        "serial_no": 87
+    },
+    {
+        "voter_id": "9f1dda58-74c4-4dd6-ab41-361c467a2098",
+        "original_voter_name_telugu": "\u0c06\u0c30\u0c40\u0c2b\u0c3e\u0c2c\u0c47\u0c17\u0c02? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d?\u0c2c\u0c3e\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c05\u0c30\u0c40\u0c2b\u0c3e\u0c32\u0c02\u0c1c\u0c02 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32?\u0c2c\u0c3e\u0c37\u0c3e",
+        "page_no": 6,
+        "serial_no": 88
+    },
+    {
+        "voter_id": "c6c7f630-ff89-45bf-b089-4c947c84935d",
+        "original_voter_name_telugu": "\u0c37\u0c30\u0c40\u0c2b\u0c3e? \u0c2c\u0c40? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c2a\u0c40\u0c30\u0c3e?\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c37\u0c30\u0c40\u0c2a? \u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c38\u0c3f\u0c32\u0c3e\u0c30?\u0c38\u0c3e\u0c39\u0c46\u0c2c?",
+        "page_no": 6,
+        "serial_no": 89
+    },
+    {
+        "voter_id": "664b06e4-5325-45d5-b26d-301362577aba",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c38\u0c40\u0c02 \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c2a\u0c40\u0c30\u0c3e?\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c38\u0c3f\u0c32\u0c3e\u0c30?\u0c38\u0c3e\u0c39\u0c46\u0c2c?",
+        "page_no": 6,
+        "serial_no": 90
+    },
+    {
+        "voter_id": "a5c8486d-152c-41a3-b60a-3c0a9d0a77ad",
+        "original_voter_name_telugu": "\u0c2e\u0c41\u0c28\u0c4d\u0c28\u0c40\u0c38\u0c3e? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02\u0c35\u0c32\u0c3f?",
+        "new_voter_name_telugu": "\u0c2e\u0c41\u0c28\u0c4d\u0c28\u0c40\u0c30\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02\u0c35\u0c32\u0c40",
+        "page_no": 6,
+        "serial_no": 91
+    },
+    {
+        "voter_id": "75222ec1-990f-4da1-b23f-17c0aafb5da9",
+        "original_voter_name_telugu": "\u0c2a\u0c40\u0c30\u0c3e?\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c38\u0c3f\u0c32\u0c3e\u0c30?\u0c38\u0c3e\u0c39\u0c46\u0c2c? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c38\u0c3e\u0c39\u0c46\u0c2c?",
+        "page_no": 6,
+        "serial_no": 92
+    },
+    {
+        "voter_id": "0b9b9998-1cb2-42fb-81aa-cd54cf4d0f48",
+        "original_voter_name_telugu": "\u0c17\u0c28\u0c3f?\u0c2c\u0c3e\u0c37\u0c3e? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d?\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c17\u0c4a\u0c38?\u0c32\u0c3e\u0c1c\u0c02 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32?\u0c38\u0c3e\u0c2c?",
+        "page_no": 6,
+        "serial_no": 94
+    },
+    {
+        "voter_id": "b45a08cf-f5ff-4c35-a887-07473ef7d38b",
+        "original_voter_name_telugu": "\u0c30\u0c1c\u0c3f\u0c28\u0c3f? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c17\u0c28\u0c3f?\u0c2c\u0c3e\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c30\u0c1c\u0c3e\u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c17\u0c4a\u0c38?\u0c32\u0c3e\u0c1c\u0c02",
+        "page_no": 6,
+        "serial_no": 95
+    },
+    {
+        "voter_id": "2a3204d8-beb3-4890-b30f-6192883a872e",
+        "original_voter_name_telugu": "\u0c30\u0c3e\u0c1c\u0c3e?\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d? \u0c1a\u0c40\u0c32\u0c15\u0c41\u0c32",
+        "original_relative_name_telugu": "\u0c17\u0c28\u0c3f?\u0c2c\u0c3e\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c30\u0c3e\u0c1c\u0c3e\u0c38\u0c3e\u0c2c? \u0c1a\u0c3f\u0c32\u0c15\u0c32",
+        "new_relative_name_telugu": "\u0c17\u0c4a\u0c38?\u0c32\u0c3e\u0c1c\u0c02",
+        "page_no": 6,
+        "serial_no": 96
+    },
+    {
+        "voter_id": "f6ac5e4d-2157-4701-bd78-b4024570e43a",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02\u0c2c\u0c40? \u0c1a\u0c40\u0c32\u0c15\u0c41\u0c32",
+        "original_relative_name_telugu": "\u0c30\u0c3e\u0c1c\u0c3e?\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02\u0c2c\u0c40 \u0c1a\u0c3f\u0c32\u0c15\u0c32",
+        "new_relative_name_telugu": "\u0c30\u0c3e\u0c1c\u0c3e\u0c38\u0c3e\u0c2c?",
+        "page_no": 6,
+        "serial_no": 97
+    },
+    {
+        "voter_id": "475183ca-9cde-456b-8bc7-cedc103d9c2b",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d?\u0c35\u0c32\u0c3f? \u0c2e\u0c3e\u0c2e\u0c3f\u0c33\u0c4d\u0c33\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c40\u0c02?",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30?\u0c35\u0c32\u0c40 \u0c2e\u0c4b\u0c2e\u0c3f\u0c28\u0c4b\u0c33\u0c4d\u0c33",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c1c\u0c3e\u0c2a\u0c40\u0c30?",
+        "page_no": 6,
+        "serial_no": 98
+    },
+    {
+        "voter_id": "972a069d-4fbd-4489-92a0-ee64060430b4",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c40\u0c28\u0c3e? \u0c2e\u0c3e\u0c2e\u0c3f\u0c33\u0c4d\u0c33\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d?\u0c35\u0c32\u0c3f?",
+        "new_voter_name_telugu": "\u0c2b\u0c2f\u0c3e\u0c1c\u0c3f\u0c28? \u0c2e\u0c3e\u0c2e\u0c3f\u0c28\u0c4b\u0c33\u0c4d\u0c33",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30?\u0c35\u0c32\u0c40",
+        "page_no": 6,
+        "serial_no": 99
+    },
+    {
+        "voter_id": "7c21f7c8-3a35-40f7-b192-e94d990fd08b",
+        "original_voter_name_telugu": "\u0c2e\u0c3e\u0c2e\u0c3f\u0c33\u0c4d\u0c33? \u0c16\u0c3e\u0c36\u0c40\u0c02\u0c2c\u0c40?",
+        "original_relative_name_telugu": "\u0c2c\u0c21\u0c3f\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c2e\u0c4b\u0c2e\u0c3f\u0c28? \u0c16\u0c1c\u0c3e\u0c2a\u0c40\u0c30?",
+        "new_relative_name_telugu": "\u0c2c\u0c30\u0c46\u0c38\u0c3e\u0c2c?",
+        "page_no": 6,
+        "serial_no": 100
+    },
+    {
+        "voter_id": "6892c849-231a-47a5-8c7e-3f2780503a08",
+        "original_voter_name_telugu": "\u0c2e\u0c3e\u0c39\u0c46\u0c28\u0c4d\u0c28\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c28\u0c42\u0c30\u0c3e\u0c37\u0c3e\u0c2e\u0c4d\u0c2e\u0c3e",
+        "new_voter_name_telugu": "\u0c2e\u0c3e\u0c2c\u0c3f\u0c28\u0c4d\u0c38\u0c4d \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c28\u0c42\u0c30?\u0c39\u0c2e\u0c4d\u0c2e\u0c26?",
+        "page_no": 7,
+        "serial_no": 101
+    },
+    {
+        "voter_id": "20907f1d-c4de-4a71-a333-b53a93db92e9",
+        "original_voter_name_telugu": "\u0c28\u0c42\u0c30\u0c3e\u0c37\u0c3e\u0c2e\u0c4d\u0c2e\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c47\u0c30\u0c3e",
+        "new_voter_name_telugu": "\u0c28\u0c42\u0c30?\u0c39\u0c2e\u0c4d\u0c2e\u0c26? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c2a\u0c40\u0c30?",
+        "page_no": 7,
+        "serial_no": 102
+    },
+    {
+        "voter_id": "1b3188d2-aec2-461a-a4b1-00dc4180c97e",
+        "original_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c41\u0c32\u0c4d \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c26\u0c3e\u0c26\u0c3e\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d",
+        "new_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32?\u0c38\u0c24\u0c4d\u0c24\u0c3e\u0c30? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c26\u0c3e\u0c26\u0c3e\u0c38\u0c3e\u0c39\u0c46\u0c2c?",
+        "page_no": 7,
+        "serial_no": 103
+    },
+    {
+        "voter_id": "6eb710c1-5136-4440-a307-2c6f87feee13",
+        "original_voter_name_telugu": "\u0c35\u0c3f\u0c28\u0c3e\u0c2f\u0c15\u0c2e\u0c4d\u0c2e \u0c2e\u0c26\u0c4d\u0c26\u0c3f\u0c30\u0c35\u0c41\u0c32",
+        "original_relative_name_telugu": "\u0c30\u0c3e\u0c2e\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c35\u0c3f\u0c28\u0c3e\u0c2f\u0c15\u0c30\u0c3e\u0c35\u0c41 \u0c2e\u0c26\u0c4d\u0c26\u0c3f\u0c30\u0c47\u0c35\u0c41\u0c32",
+        "new_relative_name_telugu": "\u0c30\u0c3e\u0c1a\u0c2f\u0c4d\u0c2f",
+        "page_no": 7,
+        "serial_no": 104
+    },
+    {
+        "voter_id": "356c1271-c7ca-4520-ba43-b965c48d572c",
+        "original_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2f\u0c4d\u0c2f \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c17\u0c3e",
+        "original_relative_name_telugu": "\u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2f\u0c4d\u0c2f \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c28\u0c4d\u0c28\u0c17\u0c3e\u0c30",
+        "new_relative_name_telugu": "\u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2f\u0c4d\u0c2f",
+        "page_no": 7,
+        "serial_no": 106
+    },
+    {
+        "voter_id": "c247a295-7375-4ebb-b261-e97c4753c8cf",
+        "original_voter_name_telugu": "\u0c15\u0c3f\u0c37\u0c4d\u0c1f\u0c2f\u0c4d\u0c2f \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c17\u0c3e\u0c30\u0c3f",
+        "original_relative_name_telugu": "\u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c15\u0c4d\u0c30\u0c40\u0c37\u0c4d\u0c23\u0c2f\u0c4d\u0c2f \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c28\u0c4d\u0c28\u0c17\u0c3e\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2f\u0c4d\u0c2f",
+        "page_no": 7,
+        "serial_no": 107
+    },
+    {
+        "voter_id": "fae7704a-e695-42d8-bb50-671fa474a3f6",
+        "original_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2e\u0c4d\u0c2e \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c17\u0c3e",
+        "original_relative_name_telugu": "\u0c15\u0c3f\u0c37\u0c4d\u0c1f\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2e\u0c4d\u0c2e \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c28\u0c4d\u0c28\u0c17\u0c3e",
+        "new_relative_name_telugu": "\u0c15\u0c4d\u0c30\u0c40\u0c37\u0c4d\u0c23\u0c2f\u0c4d\u0c2f",
+        "page_no": 7,
+        "serial_no": 108
+    },
+    {
+        "voter_id": "0ac8c9c2-0438-4a84-a4dd-a74cde6e330c",
+        "original_voter_name_telugu": "\u0c15\u0c3f\u0c37\u0c4d\u0c1f\u0c2f\u0c4d\u0c2f \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c17\u0c3e\u0c30\u0c3f",
+        "original_relative_name_telugu": "\u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c36\u0c47\u0c37\u0c2f\u0c4d\u0c2f \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c28\u0c4d\u0c28\u0c17\u0c3e\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c2a\u0c46\u0c26\u0c4d\u0c26\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c2f\u0c4d\u0c2f",
+        "page_no": 7,
+        "serial_no": 109
+    },
+    {
+        "voter_id": "941695ba-71e1-4653-b5a4-1d8ab63590d3",
+        "original_voter_name_telugu": "\u0c17\u0c41\u0c30\u0c2e\u0c4d\u0c2e \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c3f\u0c02\u0c39\u0c17\u0c3e\u0c30\u0c3f",
+        "original_relative_name_telugu": "\u0c15\u0c3f\u0c37\u0c4d\u0c1f\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c17\u0c41\u0c30\u0c4d\u0c30\u0c2e\u0c4d\u0c2e \u0c15\u0c41\u0c2a\u0c4d\u0c2a\u0c02\u0c28\u0c30\u0c38\u0c28\u0c4d\u0c28\u0c17\u0c3e\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c36\u0c47\u0c37\u0c2f\u0c4d\u0c2f",
+        "page_no": 7,
+        "serial_no": 110
+    },
+    {
+        "voter_id": "cb5ab4fe-e59c-4bce-af8e-0173253e90e2",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c2c\u0c3e\u0c37 \u0c38\u0c41\u0c02\u0c15\u0c41\u0c38\u0c41\u0c32",
+        "original_relative_name_telugu": "\u0c17\u0c02\u0c17\u0c3e\u0c30\u0c3e\u0c35\u0c41",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30?\u0c2c\u0c3e\u0c37 \u0c38\u0c41\u0c02\u0c15\u0c47\u0c38\u0c41\u0c32",
+        "new_relative_name_telugu": "\u0c17\u0c02\u0c17\u0c30\u0c4c\u0c24\u0c41",
+        "page_no": 7,
+        "serial_no": 111
+    },
+    {
+        "voter_id": "3a9e2f42-70d2-489c-b20c-17f2cd737998",
+        "original_voter_name_telugu": "\u0c2e\u0c38\u0c4d\u0c24\u0c3e\u0c28\u0c4d \u0c2c\u0c40 \u0c38\u0c41\u0c02\u0c15\u0c41\u0c38\u0c41\u0c32",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c2c\u0c3e\u0c37",
+        "new_voter_name_telugu": "\u0c2e\u0c38\u0c4d\u0c24\u0c3e\u0c28?\u0c2c\u0c40 \u0c38\u0c41\u0c02\u0c15\u0c47\u0c38\u0c41\u0c32",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30?\u0c2c\u0c3e\u0c37\u0c3e",
+        "page_no": 7,
+        "serial_no": 112
+    },
+    {
+        "voter_id": "23ed3a08-786d-4157-8846-f332cc0564e1",
+        "original_voter_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c3e\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f \u0c24\u0c2e\u0c41\u0c1f\u0c02",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f",
+        "new_voter_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c2a\u0c41\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f \u0c24\u0c2e\u0c1f\u0c02",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f",
+        "page_no": 7,
+        "serial_no": 116
+    },
+    {
+        "voter_id": "6c17d397-2bf8-4781-a896-9a4894c0dcc7",
+        "original_voter_name_telugu": "\u0c35\u0c32\u0c3f\u0c37\u0c3e\u0c39\u0c46\u0c2c\u0c4d \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c30\u0c38\u0c42\u0c32\u0c4d \u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d",
+        "new_voter_name_telugu": "\u0c35\u0c32\u0c40\u0c38\u0c3e\u0c39\u0c46\u0c2c? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c30\u0c38\u0c42\u0c32?\u0c38\u0c3e\u0c2c?",
+        "page_no": 7,
+        "serial_no": 119
+    },
+    {
+        "voter_id": "a4270b1c-b132-4d16-a407-c50c3f40fd49",
+        "original_voter_name_telugu": "\u0c1c\u0c41\u0c2e\u0c3e\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c37\u0c3e\u0c39\u0c46\u0c2c\u0c4d",
+        "new_voter_name_telugu": "\u0c1c\u0c2e\u0c3e\u0c32?\u0c2c\u0c42 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c40\u0c38\u0c3e\u0c39\u0c46\u0c2c?",
+        "page_no": 7,
+        "serial_no": 120
+    },
+    {
+        "voter_id": "8ffc1e4d-9a02-46d7-aaff-2c18c900f784",
+        "original_voter_name_telugu": "\u0c05\u0c15\u0c4d\u0c2c\u0c30\u0c4d\u200c\u0c1c\u0c3e\u0c28\u0c3f\u0c37\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c41",
+        "new_voter_name_telugu": "\u0c05\u0c15\u0c4d\u0c2c\u0c30? \u0c09\u0c28\u0c4d\u0c28\u0c40 \u0c38\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c39\u0c46\u0c2c?",
+        "page_no": 8,
+        "serial_no": 121
+    },
+    {
+        "voter_id": "6c21e935-7d1e-4e51-98b4-cfb6304c5913",
+        "original_voter_name_telugu": "\u0c05\u0c15\u0c4d\u0c2c\u0c30\u0c4d\u200c \u0c2c\u0c3e\u0c37 \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c41",
+        "new_voter_name_telugu": "\u0c05\u0c15\u0c4d\u0c2c\u0c30\u0c4d \u0c2c\u0c3e\u0c37 \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c3f \u0c38\u0c3e\u0c2c\u0c4d",
+        "page_no": 8,
+        "serial_no": 122
+    },
+    {
+        "voter_id": "8a32e7e4-7663-40a0-a838-7fa5c3093998",
+        "original_voter_name_telugu": "\u0c30\u0c38\u0c42\u0c32\u0c4d \u0c2c\u0c3e\u0c37 \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c41",
+        "new_voter_name_telugu": "\u0c30\u0c38\u0c42\u0c32\u0c4d \u0c38\u0c3e\u0c2c\u0c4d \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c2c\u0c4d",
+        "page_no": 8,
+        "serial_no": 123
+    },
+    {
+        "voter_id": "32b36790-667b-410d-8650-6439e24a8eaf",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c26\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c41\u0c32\u0c4d \u0c05\u0c39\u0c2e\u0c4d\u0c2e\u0c26\u0c4d",
+        "new_voter_name_telugu": "\u0c07\u0c2a\u0c3e\u0c15\u0c4d \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32\u0c4d \u0c05\u0c2e\u0c40\u0c26\u0c4d",
+        "page_no": 8,
+        "serial_no": 124
+    },
+    {
+        "voter_id": "c1725be5-a360-4e8a-8a3b-3f3cc1d4ca26",
+        "original_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c41\u0c32\u0c4d?\u0c39\u0c2e\u0c40\u0c26\u0c4d? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c2e\u0c3e\u0c38\u0c42\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c41?",
+        "new_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32? \u0c39\u0c2e\u0c40\u0c26? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2e\u0c3e\u0c38\u0c42\u0c38\u0c3e\u0c2c?",
+        "page_no": 8,
+        "serial_no": 126
+    },
+    {
+        "voter_id": "4aed2240-c09b-4600-8b5e-dc032b09200f",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c26\u0c3e? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c41\u0c32\u0c4d?\u0c39\u0c2e\u0c40\u0c26\u0c4d?",
+        "new_voter_name_telugu": "\u0c2a\u0c4d\u0c2f\u0c3e\u0c30\u0c3f\u0c1c\u0c3e\u0c28? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32? \u0c39\u0c2e\u0c40\u0c26?",
+        "page_no": 8,
+        "serial_no": 127
+    },
+    {
+        "voter_id": "71ff7f29-7123-41ef-81a5-d5ba7fe8bcfd",
+        "original_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c41\u0c32\u0c4d?\u0c2e\u0c24\u0c30\u0c4d? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c39\u0c2e\u0c40\u0c26\u0c4d?\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c41?",
+        "new_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32? \u0c2e\u0c1c\u0c40\u0c26? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c39\u0c2e\u0c40\u0c26? \u0c38\u0c3e\u0c2c?",
+        "page_no": 8,
+        "serial_no": 128
+    },
+    {
+        "voter_id": "d881c448-e2c8-438e-b14a-b480a20115f8",
+        "original_voter_name_telugu": "\u0c39\u0c38\u0c40\u0c28\u0c3e \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c41\u0c32\u0c4d?\u0c2e\u0c24\u0c30\u0c4d?",
+        "new_voter_name_telugu": "\u0c39\u0c2e\u0c40\u0c26\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c2c\u0c4d\u0c2c\u0c32? \u0c2e\u0c1c\u0c40\u0c30?",
+        "page_no": 8,
+        "serial_no": 129
+    },
+    {
+        "voter_id": "b7bcd1a7-9345-4607-9d4d-3f3ef03fbe6a",
+        "original_voter_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c2a\u0c4d\u0c2a \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c05\u0c2a\u0c4d\u0c2a\u0c28\u0c4d\u0c28",
+        "new_voter_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c2a\u0c4d\u0c2a \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c05\u0c1a\u0c4d\u0c1a\u0c28\u0c4d\u0c28",
+        "page_no": 8,
+        "serial_no": 130
+    },
+    {
+        "voter_id": "d0e26466-4366-4941-bb17-8d32474f3dbc",
+        "original_voter_name_telugu": "\u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23 \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c05\u0c2a\u0c4d\u0c2a\u0c28\u0c4d\u0c28",
+        "new_voter_name_telugu": "\u0c28\u0c3e\u0c30\u0c2f\u0c23 \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c05\u0c1a\u0c4d\u0c1a\u0c28\u0c4d\u0c28",
+        "page_no": 8,
+        "serial_no": 132
+    },
+    {
+        "voter_id": "7d26dcad-d219-4346-88c3-f2e45717dc5a",
+        "original_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c30\u0c3e\u0c1c\u0c41 \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23",
+        "new_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c30\u0c3e\u0c1c\u0c3e \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23",
+        "page_no": 8,
+        "serial_no": 133
+    },
+    {
+        "voter_id": "8ccf7f1d-e85a-44f7-bf4b-98340c3e4350",
+        "original_voter_name_telugu": "\u0c30\u0c3e\u0c2e\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c28\u0c4d\u0c28 \u0c2e\u0c02\u0c21\u0c4d\u0c32",
+        "original_relative_name_telugu": "\u0c30\u0c3e\u0c2e\u0c28\u0c4d\u0c28",
+        "new_voter_name_telugu": "\u0c30\u0c3e\u0c2e\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c28\u0c4d\u0c28 \u0c2e\u0c02\u0c21\u0c4d\u0c32",
+        "new_relative_name_telugu": "\u0c30\u0c3e\u0c2e\u0c2f\u0c4d\u0c2f",
+        "page_no": 8,
+        "serial_no": 138
+    },
+    {
+        "voter_id": "eda7610a-908c-4a67-9c7b-1f47f4020c44",
+        "original_voter_name_telugu": "\u0c2c\u0c3e\u0c2c\u0c41 \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c3f\u0c32?",
+        "new_voter_name_telugu": "\u0c2c\u0c3e\u0c37\u0c41 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c2a\u0c40\u0c30?",
+        "page_no": 9,
+        "serial_no": 142
+    },
+    {
+        "voter_id": "d8fb9d90-7a85-416d-804d-c35d6607bfbb",
+        "original_voter_name_telugu": "\u0c2e\u0c3e\u0c2c\u0c41\u0c28\u0c4d\u0c28\u0c40\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c2c\u0c3e\u0c2c\u0c41",
+        "new_voter_name_telugu": "\u0c2e\u0c3e\u0c2c\u0c41\u0c28\u0c4d\u0c28\u0c40\u0c1f\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2c\u0c3e\u0c37\u0c41",
+        "page_no": 9,
+        "serial_no": 143
+    },
+    {
+        "voter_id": "f7d764f4-cdf8-4db6-904e-8c2a13e5e7d5",
+        "original_voter_name_telugu": "\u0c38\u0c3e\u0c2f\u0c3f\u0c32? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c39\u0c38\u0c28? \u0c38\u0c3e\u0c2f\u0c3f\u0c32?",
+        "new_voter_name_telugu": "\u0c38\u0c3e\u0c2f\u0c2a\u0c40\u0c30? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c39\u0c38\u0c28?\u0c38\u0c3e\u0c2c?",
+        "page_no": 9,
+        "serial_no": 144
+    },
+    {
+        "voter_id": "0a961891-8d37-478c-98a9-201beff39f52",
+        "original_voter_name_telugu": "\u0c05\u0c2e\u0c41\u0c28\u0c3e\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c3f\u0c32?",
+        "new_voter_name_telugu": "\u0c05\u0c2e\u0c41\u0c28\u0c3e\u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c2a\u0c40\u0c30?",
+        "page_no": 9,
+        "serial_no": 145
+    },
+    {
+        "voter_id": "b06bb35b-43bd-4431-a6be-04d104f040a4",
+        "original_voter_name_telugu": "\u0c28\u0c38\u0c40\u0c2e\u0c3e? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c1c\u0c3e\u0c39\u0c3f\u0c26?",
+        "new_voter_name_telugu": "\u0c28\u0c38\u0c40\u0c2c?\u0c1c\u0c3e\u0c28? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c33\u0c40\u0c02\u0c2a\u0c40\u0c30?",
+        "page_no": 9,
+        "serial_no": 146
+    },
+    {
+        "voter_id": "87724416-6e50-45be-bddf-8ea067b72aae",
+        "original_voter_name_telugu": "\u0c1c\u0c3e\u0c39\u0c3f\u0c26 \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c3f\u0c32 \u0c37\u0c47\u0c15\u0c4d",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c33\u0c40\u0c02 \u0c2b\u0c40\u0c30\u0c3e \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c3f\u0c1f\u0c4d \u0c2b\u0c40\u0c30\u0c4d",
+        "page_no": 9,
+        "serial_no": 147
+    },
+    {
+        "voter_id": "9a216f33-b3a7-492d-b915-46644a8b1239",
+        "original_voter_name_telugu": "\u0c1c\u0c2c\u0c4d\u0c2c\u0c3e\u0c30\u0c4d? \u0c2c\u0c3e\u0c37\u0c3e?",
+        "original_relative_name_telugu": "\u0c2e\u0c39\u0c2e\u0c4d\u0c2e\u0c26? \u0c2c\u0c3e\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c1c\u0c2c\u0c4d\u0c2c\u0c30?\u0c16\u0c3e\u0c28? \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c2e\u0c39\u0c2e\u0c4d\u0c2e\u0c26?\u0c16\u0c3e\u0c28?",
+        "page_no": 9,
+        "serial_no": 150
+    },
+    {
+        "voter_id": "6b7477dc-4b7c-4fd6-b1fa-1e53dc942d4a",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c26? \u0c2c\u0c3e\u0c37\u0c3e?",
+        "original_relative_name_telugu": "\u0c1c\u0c2c\u0c4d\u0c2c\u0c3e\u0c30\u0c4d? \u0c2c\u0c3e\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c39\u0c2c\u0c40\u0c2c?\u0c16\u0c3e\u0c28? \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c1c\u0c2c\u0c4d\u0c2c\u0c3e\u0c30?\u0c16\u0c3e\u0c28?",
+        "page_no": 9,
+        "serial_no": 151
+    },
+    {
+        "voter_id": "1efb97cf-2bd9-4b93-b782-2c74780f970e",
+        "original_voter_name_telugu": "\u0c1c\u0c35\u0c3e\u0c30\u0c3e\u0c2c\u0c3f \u0c2c\u0c3e\u0c37\u0c3e?",
+        "original_relative_name_telugu": "\u0c1c\u0c2c\u0c4d\u0c2c\u0c3e\u0c30\u0c4d? \u0c2c\u0c3e\u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c1c\u0c39\u0c30\u0c3e\u0c2c\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c1c\u0c2c\u0c4d\u0c2c\u0c3e\u0c30?\u0c16\u0c3e\u0c28?",
+        "page_no": 9,
+        "serial_no": 152
+    },
+    {
+        "voter_id": "47c4a765-f698-422a-86ce-ab9dc7a6ed45",
+        "original_voter_name_telugu": "\u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23\u0c2e\u0c4d\u0c2e \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c1c\u0c17\u0c28\u0c4d\u0c28\u0c3e\u0c27\u0c02",
+        "new_voter_name_telugu": "\u0c28\u0c3e\u0c30\u0c2f\u0c23\u0c2e\u0c4d\u0c2e \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c1c\u0c17\u0c28\u0c4d\u0c28\u0c3e\u0c26\u0c02",
+        "page_no": 9,
+        "serial_no": 155
+    },
+    {
+        "voter_id": "aaf2adb3-315d-4e12-a2e2-d70ef8320bdd",
+        "original_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c30\u0c3e\u0c1c\u0c41 \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c1c\u0c17\u0c28\u0c4d\u0c28\u0c3e\u0c27\u0c02",
+        "new_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c30\u0c3e\u0c1c\u0c41 \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c1c\u0c17\u0c28\u0c4d\u0c28\u0c3e\u0c26\u0c02",
+        "page_no": 9,
+        "serial_no": 156
+    },
+    {
+        "voter_id": "5137e348-e141-4fa7-8da3-b7e2c4db76ba",
+        "original_voter_name_telugu": "\u0c36\u0c3f\u0c35\u0c36\u0c02\u0c15\u0c30\u0c4d \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c1c\u0c17\u0c28\u0c4d\u0c28\u0c3e\u0c27\u0c02",
+        "new_voter_name_telugu": "\u0c36\u0c3f\u0c35\u0c36\u0c02\u0c15\u0c30\u0c4d \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c1c\u0c17\u0c28\u0c4d\u0c28\u0c3e\u0c26\u0c02",
+        "page_no": 9,
+        "serial_no": 157
+    },
+    {
+        "voter_id": "f2287c80-3a55-4be4-9dff-1a09f611a373",
+        "original_voter_name_telugu": "\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c30\u0c3e\u0c2e\u0c2e\u0c4d\u0c2e \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c1c\u0c17\u0c28\u0c4d\u0c28\u0c3e\u0c27\u0c02",
+        "new_voter_name_telugu": "\u0c38\u0c41\u0c2c\u0c4d\u0c2c\u0c30\u0c3e\u0c2e\u0c2f\u0c4d\u0c2f \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c1c\u0c17\u0c28\u0c4d\u0c28\u0c3e\u0c26\u0c02",
+        "page_no": 9,
+        "serial_no": 158
+    },
+    {
+        "voter_id": "94124b3c-a36e-4846-b924-1dafcac20f4d",
+        "original_voter_name_telugu": "\u0c2d\u0c42\u0c26\u0c47\u0c35\u0c3f \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c2f\u0c4b\u0c17\u0c30\u0c3e\u0c1c\u0c41",
+        "new_voter_name_telugu": "\u0c2d\u0c42\u0c26\u0c47\u0c35\u0c3f \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c2f\u0c4b\u0c17\u0c3e\u0c02\u0c1c\u0c41\u0c32\u0c41",
+        "page_no": 9,
+        "serial_no": 159
+    },
+    {
+        "voter_id": "7fea53d6-b9b4-4a9c-ae4e-0d9bfe2f40cc",
+        "original_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c2e\u0c23\u0c3f \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c1a\u0c32\u0c2a\u0c24\u0c3f",
+        "new_voter_name_telugu": "\u0c28\u0c3e\u0c17\u0c2e\u0c41\u0c28\u0c3f \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c1a\u0c32\u0c2a\u0c24\u0c3f",
+        "page_no": 10,
+        "serial_no": 162
+    },
+    {
+        "voter_id": "86aad16d-08e8-4636-a406-19dd75c43a8c",
+        "original_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c2e\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c41\u0c2c\u0c4d\u0c2c \u0c2e\u0c4d\u0c2e \u0c05\u0c02\u0c17\u0c1c\u0c3e\u0c32",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c2e\u0c23",
+        "page_no": 10,
+        "serial_no": 163
+    },
+    {
+        "voter_id": "23ab36e6-e1bc-44de-98e5-4192c07d846e",
+        "original_voter_name_telugu": "\u0c26\u0c3e\u0c26\u0c3e?\u0c2d\u0c3e \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30\u0c4d?\u0c38\u0c3e\u0c39\u0c46\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c26\u0c3e\u0c28?\u0c2d\u0c3e\u0c37\u0c24 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30?\u0c38\u0c3e\u0c2c?",
+        "page_no": 10,
+        "serial_no": 164
+    },
+    {
+        "voter_id": "6734a13e-ab8d-439e-ae42-f53e7d426efd",
+        "original_voter_name_telugu": "\u0c1c\u0c2e\u0c40\u0c28?\u0c2c\u0c3f \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c26\u0c3e\u0c26\u0c3e?\u0c2d\u0c3e",
+        "new_voter_name_telugu": "\u0c37\u0c2e\u0c40\u0c28?\u0c2d\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c26\u0c3e\u0c28?\u0c2d\u0c3e",
+        "page_no": 10,
+        "serial_no": 165
+    },
+    {
+        "voter_id": "9a5f615d-5e89-4336-8a34-57ee7d2d09fc",
+        "original_voter_name_telugu": "\u0c2c\u0c40?\u0c2c\u0c3f \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30\u0c4d?\u0c2d\u0c3e?",
+        "new_voter_name_telugu": "\u0c2c\u0c38\u0c4d\u0c38\u0c4b\u0c2c\u0c40 \u0c2a\u0c30\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30? \u0c16\u0c3e\u0c28?",
+        "page_no": 10,
+        "serial_no": 166
+    },
+    {
+        "voter_id": "0c6ccfba-2566-484f-91e9-d59f63b4c8fc",
+        "original_voter_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c2c\u0c3e? \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30\u0c4d?\u0c2d\u0c3e?",
+        "new_voter_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c16\u0c3e\u0c28? \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30?\u0c16\u0c3e\u0c28?",
+        "page_no": 10,
+        "serial_no": 167
+    },
+    {
+        "voter_id": "c847bb5f-163c-44e5-9a85-4767d8188f5b",
+        "original_voter_name_telugu": "\u0c2e\u0c3e\u0c32\u0c42\u0c2c\u0c4d\u0c2c\u0c3f \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c2c\u0c3e?",
+        "new_voter_name_telugu": "\u0c2e\u0c3e\u0c2c\u0c41\u0c28\u0c4d\u0c28\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c16\u0c3e\u0c28?",
+        "page_no": 10,
+        "serial_no": 168
+    },
+    {
+        "voter_id": "b9899acd-5f93-47e5-8868-469c74cf45a9",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d?\u0c2d\u0c3e \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c2e\u0c41\u0c32\u0c41\u0c30\u0c4d?\u0c2d\u0c3e?",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30?\u0c16\u0c3e\u0c28? \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c2e\u0c32\u0c41\u0c30?\u0c16\u0c3e\u0c28?",
+        "page_no": 10,
+        "serial_no": 169
+    },
+    {
+        "voter_id": "d818749a-21f5-418c-99aa-190b33a55661",
+        "original_voter_name_telugu": "\u0c2c\u0c41\u0c24\u0c4d\u0c24\u0c41\u0c32? \u0c2c\u0c3f \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d?\u0c2d\u0c3e?",
+        "new_voter_name_telugu": "\u0c2c\u0c24\u0c4d\u0c24\u0c41\u0c32? \u0c2d\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30?\u0c16\u0c3e\u0c28?",
+        "page_no": 10,
+        "serial_no": 170
+    },
+    {
+        "voter_id": "829023d5-010a-49d1-bbf5-fd3c7cf577f1",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c26\u0c30\u0c4d?\u0c2d\u0c3e \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d?\u0c2d\u0c3e?",
+        "new_voter_name_telugu": "\u0c39\u0c48\u0c26\u0c30?\u0c35\u0c32\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30?\u0c16\u0c3e\u0c28?",
+        "page_no": 10,
+        "serial_no": 171
+    },
+    {
+        "voter_id": "6c87d6f4-47fe-4f93-86c4-d4a80cacc20f",
+        "original_voter_name_telugu": "\u0c37\u0c3e\u0c39\u0c3f\u0c28\u0c3f \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c37\u0c3e\u0c26\u0c30\u0c4d?\u0c35\u0c32\u0c3f",
+        "new_voter_name_telugu": "\u0c2a\u0c3e\u0c24\u0c40\u0c2e\u0c3e\u0c2c\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c39\u0c48\u0c26\u0c30?\u0c35\u0c32\u0c40",
+        "page_no": 10,
+        "serial_no": 172
+    },
+    {
+        "voter_id": "88486e08-1730-4d7e-8f2e-4c5e0ed724ca",
+        "original_voter_name_telugu": "\u0c30\u0c39\u0c2e\u0c24\u0c41\u0c32\u0c4d\u0c32\u0c3e \u0c2a\u0c20\u0c3e\u0c28\u0c4d",
+        "original_relative_name_telugu": "\u0c37\u0c3e\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c4d\u0c32\u0c3f",
+        "new_voter_name_telugu": "\u0c30\u0c39\u0c02\u0c24\u0c41\u0c32\u0c4d\u0c32\u0c3e \u0c2a\u0c20\u0c3e\u0c28\u0c4d",
+        "new_relative_name_telugu": "\u0c39\u0c48\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c4d\u0c32\u0c40",
+        "page_no": 10,
+        "serial_no": 173
+    },
+    {
+        "voter_id": "cb80e8d2-b9e0-47f2-b3d2-51843e58b6da",
+        "original_voter_name_telugu": "\u0c1c\u0c48\u0c28\u0c2c\u0c3f \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c3f\u0c02\u0c2c\u0c3e?",
+        "new_voter_name_telugu": "\u0c1c\u0c48\u0c28\u0c41\u0c2c\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c3f\u0c02\u0c16\u0c3e\u0c28?",
+        "page_no": 10,
+        "serial_no": 174
+    },
+    {
+        "voter_id": "318fcfb6-d0f6-4998-9334-9091fb413702",
+        "original_voter_name_telugu": "\u0c2e\u0c3e\u0c30\u0c41\u0c2c\u0c3e? \u0c2a\u0c20\u0c3e\u0c28\u0c4d?",
+        "original_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c3f\u0c02\u0c2c\u0c3e?",
+        "new_voter_name_telugu": "\u0c2e\u0c3e\u0c2c\u0c42\u0c16\u0c3e\u0c28? \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c36\u0c3f\u0c02\u0c16\u0c3e\u0c28?",
+        "page_no": 10,
+        "serial_no": 175
+    },
+    {
+        "voter_id": "67ea8020-9d91-4ae6-acda-2020a22a3e64",
+        "original_voter_name_telugu": "\u0c05\u0c2e\u0c40\u0c30\u0c41\u0c28 \u0c2a\u0c20\u0c3e\u0c28\u0c4d",
+        "original_relative_name_telugu": "\u0c2e\u0c3e\u0c30\u0c41\u0c2c\u0c3e?",
+        "new_voter_name_telugu": "\u0c05\u0c2e\u0c40\u0c30\u0c41\u0c28\u0c4d \u0c2a\u0c20\u0c3e\u0c28\u0c4d",
+        "new_relative_name_telugu": "\u0c2e\u0c3e\u0c2c\u0c42\u0c16\u0c3e\u0c28\u0c4d",
+        "page_no": 10,
+        "serial_no": 176
+    },
+    {
+        "voter_id": "37468fa1-2799-4d96-8e37-0fae4d273144",
+        "original_voter_name_telugu": "\u0c17\u0c02\u0c17\u0c2f\u0c4d\u0c2f \u0c15\u0c47\u0c36\u0c35\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c41",
+        "new_voter_name_telugu": "\u0c17\u0c02\u0c17\u0c2f\u0c4d\u0c2f \u0c15\u0c4a\u0c24\u0c4d\u0c24\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c47\u0c38\u0c41",
+        "page_no": 10,
+        "serial_no": 177
+    },
+    {
+        "voter_id": "746025fa-bcdf-4117-88d0-116b19d98667",
+        "original_voter_name_telugu": "\u0c30\u0c24\u0c4d\u0c28\u0c2e\u0c4d\u0c2e \u0c15\u0c47\u0c36\u0c35\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c17\u0c02\u0c17\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c30\u0c24\u0c4d\u0c28\u0c2e\u0c4d\u0c2e \u0c15\u0c4a\u0c24\u0c4d\u0c24\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c17\u0c02\u0c17\u0c2f\u0c4d\u0c2f",
+        "page_no": 10,
+        "serial_no": 178
+    },
+    {
+        "voter_id": "70064e11-0e61-4722-a62e-b2412ca89153",
+        "original_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c28\u0c28\u0c4d\u0c28\u0c2f\u0c4d\u0c2f\u0c3e",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30? \u0c35\u0c32\u0c40 \u0c38\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c28\u0c28\u0c4d\u0c28\u0c46\u0c2f\u0c3e",
+        "page_no": 10,
+        "serial_no": 180
+    },
+    {
+        "voter_id": "f769514f-86a5-44d6-bd65-0d2a55625707",
+        "original_voter_name_telugu": "\u0c2e\u0c3e\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c2c\u0c3e\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c4d\u0c32\u0c3f",
+        "new_voter_name_telugu": "\u0c2e\u0c4c\u0c32\u0c3e \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c4d\u0c32\u0c3f",
+        "page_no": 11,
+        "serial_no": 181
+    },
+    {
+        "voter_id": "fdad32df-c52e-4218-ac0a-37b5b8a72c48",
+        "original_voter_name_telugu": "\u0c05\u0c2a\u0c4d\u0c2a\u0c28\u0c4d\u0c28 \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c30\u0c3e\u0c2e\u0c28\u0c4d\u0c28",
+        "new_voter_name_telugu": "\u0c05\u0c1a\u0c4d\u0c1a\u0c28\u0c4d\u0c28 \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28 \u0c30\u0c3e\u0c2e\u0c28\u0c4d\u0c28",
+        "page_no": 11,
+        "serial_no": 182
+    },
+    {
+        "voter_id": "031fcbae-c011-4ab9-af6c-d384b2d39f90",
+        "original_voter_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c15\u0c4d\u0c15 \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c05\u0c2a\u0c4d\u0c2a\u0c28\u0c4d\u0c28",
+        "new_voter_name_telugu": "\u0c1a\u0c3f\u0c28\u0c4d\u0c28\u0c15\u0c4d\u0c15 \u0c1a\u0c40\u0c15\u0c1f\u0c3f\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c05\u0c1a\u0c4d\u0c1a\u0c28\u0c4d\u0c28",
+        "page_no": 11,
+        "serial_no": 183
+    },
+    {
+        "voter_id": "850319be-7e60-4103-bf26-33121c8986cc",
+        "original_voter_name_telugu": "\u0c05\u0c15\u0c4d\u0c2c\u0c30\u0c4d \u0c37\u0c3e \u0c37\u0c3f\u0c2e\u0c3e\u0c30\u0c3f",
+        "original_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30\u0c4d \u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c05\u0c15\u0c4d\u0c2c\u0c30? \u0c35\u0c32\u0c3f \u0c38\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30? \u0c38\u0c3e\u0c2c?",
+        "page_no": 11,
+        "serial_no": 184
+    },
+    {
+        "voter_id": "9d1637d7-764e-44ed-a123-8ce771549f2d",
+        "original_voter_name_telugu": "\u0c2c\u0c3e\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c3f \u0c37\u0c3f\u0c2e\u0c3e\u0c30\u0c3f",
+        "original_relative_name_telugu": "\u0c2e\u0c26\u0c3e\u0c30\u0c4d \u0c37\u0c3e",
+        "new_voter_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c3f \u0c36\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c2e\u0c3e\u0c26\u0c3e\u0c30\u0c4d \u0c38\u0c3e\u0c2c\u0c4d",
+        "page_no": 11,
+        "serial_no": 185
+    },
+    {
+        "voter_id": "0636f787-baa4-4a4b-b961-0c0ba2324f9d",
+        "original_voter_name_telugu": "\u0c28\u0c42\u0c30\u0c4d\u0c1c\u0c39\u0c3e\u0c28\u0c4d \u0c37\u0c3f\u0c2e\u0c3e\u0c30\u0c3f",
+        "original_relative_name_telugu": "\u0c2c\u0c3e\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c3f",
+        "new_voter_name_telugu": "\u0c28\u0c42\u0c30\u0c4d\u0c1c\u0c39\u0c28\u0c4d \u0c36\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c16\u0c3e\u0c26\u0c30\u0c4d \u0c35\u0c32\u0c3f",
+        "page_no": 11,
+        "serial_no": 186
+    },
+    {
+        "voter_id": "e4a25913-7a34-4fc0-8f00-0a95f4ec33df",
+        "original_voter_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c3e? \u0c2c\u0c3e\u0c37? \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c3f\u0c2c\u0c4d?",
+        "new_voter_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c4d? \u0c2d\u0c3e\u0c37 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c38\u0c3e\u0c2f\u0c2a\u0c4d\u0c2a\u0c40\u0c30?",
+        "page_no": 11,
+        "serial_no": 187
+    },
+    {
+        "voter_id": "fdb1efdb-46b4-4c34-88d3-4f9b3cd3911e",
+        "original_voter_name_telugu": "\u0c2c\u0c40\u0c2c\u0c40\u0c1c\u0c3e\u0c28\u0c4d \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c3e? \u0c2c\u0c3e\u0c37",
+        "new_voter_name_telugu": "\u0c2c\u0c40\u0c2c\u0c40\u0c1c\u0c3e\u0c28? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2e\u0c39\u0c2c\u0c42\u0c2c\u0c4d? \u0c2d\u0c3e\u0c37",
+        "page_no": 11,
+        "serial_no": 188
+    },
+    {
+        "voter_id": "1edab78f-0da9-4fc5-b457-dfa964ea7047",
+        "original_voter_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2a? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c38\u0c3e?",
+        "new_voter_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2a\u0c40\u0c30? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c38\u0c3e\u0c2c?",
+        "page_no": 11,
+        "serial_no": 191
+    },
+    {
+        "voter_id": "2a425e25-379f-4696-8cfb-5ac5b67078dc",
+        "original_voter_name_telugu": "\u0c15\u0c2e\u0c4d\u0c30\u0c41\u0c28\u0c4d\u0c28\u0c3f\u0c38\u0c3e \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2a?",
+        "new_voter_name_telugu": "\u0c15\u0c2e\u0c41\u0c30\u0c41\u0c28\u0c4d\u0c28\u0c3f\u0c38\u0c3e \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2a\u0c40\u0c30?",
+        "page_no": 11,
+        "serial_no": 192
+    },
+    {
+        "voter_id": "92069b0a-1794-448d-a702-54cc4e6e067d",
+        "original_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c38\u0c32\u0c3e\u0c02 \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2a?",
+        "new_voter_name_telugu": "\u0c05\u0c2c\u0c4d\u0c26\u0c41\u0c32\u0c4d \u0c38\u0c32\u0c3e\u0c02 \u0c37\u0c47\u0c15\u0c4d\u0c4d",
+        "new_relative_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2a\u0c40\u0c30\u0c3e",
+        "page_no": 11,
+        "serial_no": 193
+    },
+    {
+        "voter_id": "8132ac2a-3e55-4e27-8453-8c6d4cc8c5d4",
+        "original_voter_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02 \u0c37\u0c47\u0c16\u0c4d?",
+        "original_relative_name_telugu": "\u0c30\u0c37\u0c40\u0c26\u0c4d? \u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c2c\u0c3f \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c30\u0c2a\u0c40\u0c26? \u0c16\u0c3e\u0c28?",
+        "page_no": 11,
+        "serial_no": 194
+    },
+    {
+        "voter_id": "1427a82d-329a-45b0-bfde-2cc6856af65d",
+        "original_voter_name_telugu": "\u0c38\u0c2b\u0c30\u0c3e \u0c2c\u0c3f \u0c37\u0c47\u0c16\u0c4d?",
+        "original_relative_name_telugu": "\u0c30\u0c37\u0c40\u0c26\u0c4d? \u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c38\u0c2b\u0c30\u0c3e \u0c2d\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c30\u0c2a\u0c40\u0c26? \u0c16\u0c3e\u0c28?",
+        "page_no": 11,
+        "serial_no": 195
+    },
+    {
+        "voter_id": "8e9021d3-85a7-4ed2-b277-379663796335",
+        "original_voter_name_telugu": "\u0c05\u0c1c\u0c2e\u0c3e \u0c2c\u0c3f \u0c37\u0c47\u0c16\u0c4d?",
+        "original_relative_name_telugu": "\u0c30\u0c37\u0c40\u0c26\u0c4d? \u0c37\u0c3e?",
+        "new_voter_name_telugu": "\u0c05\u0c1c\u0c3f\u0c2e\u0c3e \u0c2d\u0c40 \u0c2a\u0c1f\u0c3e\u0c28?",
+        "new_relative_name_telugu": "\u0c30\u0c2a\u0c40\u0c26? \u0c16\u0c3e\u0c28?",
+        "page_no": 11,
+        "serial_no": 196
+    },
+    {
+        "voter_id": "9b0c0483-6b35-4b7d-9715-72c701f6f6c0",
+        "original_voter_name_telugu": "\u0c17\u0c41\u0c30\u0c41\u0c2e\u0c42\u0c30\u0c4d\u0c24\u0c3f \u0c15\u0c4a\u0c02\u0c21\u0c3e",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c2f\u0c4d\u0c2f",
+        "new_voter_name_telugu": "\u0c17\u0c41\u0c30\u0c41\u0c2e\u0c42\u0c30\u0c4d\u0c24\u0c3f \u0c15\u0c4a\u0c02\u0c21\u0c3e",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c17\u0c2f\u0c4d\u0c2f",
+        "page_no": 11,
+        "serial_no": 197
+    },
+    {
+        "voter_id": "803e83d7-0f57-485e-b32e-50cefbc23f14",
+        "original_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f \u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23\u0c2e\u0c4d\u0c2e \u0c26\u0c3e\u0c30\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f \u0c30\u0c3e\u0c2e\u0c15\u0c43\u0c37\u0c4d\u0c23",
+        "new_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f \u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23\u0c36\u0c30\u0c4d\u0c2e \u0c26\u0c3e\u0c30\u0c46\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f \u0c30\u0c3e\u0c2e\u0c36\u0c30\u0c4d\u0c2e",
+        "page_no": 12,
+        "serial_no": 205
+    },
+    {
+        "voter_id": "90123908-f66a-49bd-9eef-e12cc25e47be",
+        "original_voter_name_telugu": "\u0c35\u0c38\u0c02\u0c24 \u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f \u0c26\u0c3e\u0c30\u0c2a\u0c32\u0c4d\u0c32\u0c3f",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f \u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23\u0c15\u0c43\u0c37\u0c4d\u0c23",
+        "new_voter_name_telugu": "\u0c35\u0c38\u0c02\u0c24 \u0c32\u0c15\u0c4d\u0c37\u0c4d\u0c2e\u0c3f \u0c26\u0c3e\u0c30\u0c46\u0c2a\u0c32\u0c4d\u0c32\u0c46",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f \u0c28\u0c3e\u0c30\u0c3e\u0c2f\u0c23\u0c36\u0c30\u0c4d\u0c2e",
+        "page_no": 12,
+        "serial_no": 206
+    },
+    {
+        "voter_id": "1b08868e-0b73-4231-aaf6-63ecad703c76",
+        "original_voter_name_telugu": "\u0c30\u0c39\u0c2e\u0c24\u0c4d? \u0c2d\u0c3e\u0c37 \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c37\u0c3e\u0c35?",
+        "new_voter_name_telugu": "\u0c30\u0c39\u0c2e\u0c24? \u0c2d\u0c3e\u0c37 \u0c38\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c2c?",
+        "page_no": 12,
+        "serial_no": 207
+    },
+    {
+        "voter_id": "ffd20d9b-10eb-4e49-992c-fa674574c556",
+        "original_voter_name_telugu": "\u0c17\u0c41\u0c32\u0c4d\u0c1c\u0c3e\u0c30\u0c4d? \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c30\u0c39\u0c2e\u0c24\u0c4d? \u0c2d\u0c3e\u0c37",
+        "new_voter_name_telugu": "\u0c17\u0c41\u0c32?\u0c1c\u0c3e\u0c30? \u0c38\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c30\u0c39\u0c2e\u0c24? \u0c2d\u0c3e\u0c37",
+        "page_no": 12,
+        "serial_no": 208
+    },
+    {
+        "voter_id": "7157fc0f-7a29-482b-b40e-465fa09840c8",
+        "original_voter_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c2c\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c37\u0c3e\u0c35?",
+        "new_voter_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02\u0c2c\u0c3f \u0c38\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c2c?",
+        "page_no": 12,
+        "serial_no": 209
+    },
+    {
+        "voter_id": "92180b23-9d3a-4079-8ee0-c8a962b71c72",
+        "original_voter_name_telugu": "\u0c2c\u0c40\u0c2c\u0c40 \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c05\u0c32\u0c3f\u0c37\u0c3e\u0c35?",
+        "new_voter_name_telugu": "\u0c2d\u0c40\u0c2d\u0c40 \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c05\u0c32\u0c3f\u0c38\u0c3e\u0c2c?",
+        "page_no": 12,
+        "serial_no": 210
+    },
+    {
+        "voter_id": "e1da8ccd-20fd-4cc3-aad8-30c8d191ebdc",
+        "original_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c2f\u0c2e\u0c41\u0c32",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c3e\u0c2e\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f \u0c2f\u0c2e\u0c32",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c2e\u0c23",
+        "page_no": 12,
+        "serial_no": 211
+    },
+    {
+        "voter_id": "5b49af3e-8a7e-4817-b654-46d46e0d22bb",
+        "original_voter_name_telugu": "\u0c38\u0c40\u0c24\u0c3e\u0c30\u0c2e\u0c4d\u0c2e \u0c2f\u0c2e\u0c41\u0c32",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f",
+        "new_voter_name_telugu": "\u0c28\u0c40\u0c32\u0c3e\u0c35\u0c24\u0c2e\u0c4d\u0c2e \u0c2f\u0c2e\u0c32",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c38\u0c4d\u0c35\u0c3e\u0c2e\u0c3f",
+        "page_no": 12,
+        "serial_no": 212
+    },
+    {
+        "voter_id": "87a3ad08-43bf-4041-9873-bfbfa09a6141",
+        "original_voter_name_telugu": "\u0c36\u0c4d\u0c30\u0c40\u0c30\u0c3e\u0c2e\u0c41\u0c32\u0c41 \u0c2f\u0c2e\u0c41\u0c32",
+        "original_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c3e\u0c2e\u0c41\u0c21\u0c41",
+        "new_voter_name_telugu": "\u0c36\u0c4d\u0c30\u0c40\u0c30\u0c3e\u0c2e\u0c41\u0c32\u0c41 \u0c2f\u0c2e\u0c32",
+        "new_relative_name_telugu": "\u0c35\u0c46\u0c02\u0c15\u0c1f\u0c4d\u0c30\u0c2e\u0c23",
+        "page_no": 12,
+        "serial_no": 213
+    },
+    {
+        "voter_id": "93afdb8b-1348-4bb4-bea6-9c1ebab1136b",
+        "original_voter_name_telugu": "\u0c09\u0c38\u0c4d\u0c2e\u0c3e\u0c28\u0c4d? \u0c2d\u0c3e\u0c37 \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c37\u0c3e\u0c35?",
+        "new_voter_name_telugu": "\u0c09\u0c38\u0c4d\u0c38\u0c46\u0c28? \u0c2d\u0c3e\u0c37 \u0c38\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c35\u0c32\u0c3f\u0c38\u0c3e\u0c2c?",
+        "page_no": 12,
+        "serial_no": 215
+    },
+    {
+        "voter_id": "3e86a224-9a79-4d5b-bc48-e892141d40b4",
+        "original_voter_name_telugu": "\u0c05\u0c2e\u0c40\u0c30\u0c41\u0c28? \u0c37\u0c47\u0c15\u0c4d",
+        "original_relative_name_telugu": "\u0c09\u0c38\u0c4d\u0c2e\u0c3e\u0c28\u0c4d? \u0c2d\u0c3e\u0c37",
+        "new_voter_name_telugu": "\u0c05\u0c2e\u0c3f\u0c30\u0c41\u0c28? \u0c38\u0c40\u0c28\u0c42\u0c30\u0c3f",
+        "new_relative_name_telugu": "\u0c09\u0c38\u0c4d\u0c38\u0c46\u0c28? \u0c2d\u0c3e\u0c37",
+        "page_no": 12,
+        "serial_no": 216
+    },
+    {
+        "voter_id": "0456d802-d826-41b7-abe8-8e4124e05a34",
+        "original_voter_name_telugu": "\u0c09\u0c38\u0c4d\u0c2e\u0c3e\u0c28\u0c4d? \u0c2c\u0c40\u0c2c\u0c40?",
+        "original_relative_name_telugu": "\u0c2e\u0c4b\u0c26\u0c40\u0c28\u0c4d? \u0c37\u0c47\u0c15\u0c4d?",
+        "new_voter_name_telugu": "\u0c09\u0c38\u0c4d\u0c38\u0c46\u0c28? \u0c2d\u0c3f \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c2e\u0c4b\u0c26\u0c40\u0c28? \u0c38\u0c3e\u0c2c?",
+        "page_no": 12,
+        "serial_no": 217
+    },
+    {
+        "voter_id": "538a3a4d-4c94-41c1-b0af-b3f85530b4db",
+        "original_voter_name_telugu": "\u0c30\u0c2b\u0c40\u0c16\u0c4d? \u0c37\u0c47\u0c15\u0c4d?",
+        "original_relative_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02 \u0c37\u0c47\u0c15\u0c4d?",
+        "new_voter_name_telugu": "\u0c30\u0c46\u0c21\u0c4d\u0c21\u0c3f\u0c2a\u0c40\u0c30? \u0c38\u0c3e\u0c2c? \u0c37\u0c47\u0c15\u0c4d",
+        "new_relative_name_telugu": "\u0c07\u0c2e\u0c3e\u0c02 \u0c38\u0c3e\u0c2c?",
+        "page_no": 12,
+        "serial_no": 218
+    }
+]
