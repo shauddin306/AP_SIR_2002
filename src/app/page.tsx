@@ -18,25 +18,71 @@ export default function HomePage() {
         {/* Hero */}
         <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <div style={{
-            display: 'inline-block',
-            padding: '8px 24px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 12,
+            padding: '8px 24px 8px 12px',
             borderRadius: '100px',
-            background: 'linear-gradient(90deg, rgba(59,130,246,0.1) 0%, rgba(16,185,129,0.1) 100%)',
-            border: '1px solid rgba(255,255,255,0.1)',
-            boxShadow: '0 0 20px rgba(59,130,246,0.15)',
-            marginBottom: 24
+            background: 'rgba(15, 23, 42, 0.4)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255,255,255,0.08)',
+            boxShadow: '0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
+            marginBottom: 32,
+            position: 'relative',
+            overflow: 'hidden'
           }}>
+            {/* Animated shimmer border effect */}
+            <div style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent)',
+              backgroundSize: '200% 100%',
+              animation: 'shimmer 3s infinite linear',
+              zIndex: 0,
+              pointerEvents: 'none'
+            }} />
+            
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 32,
+              height: 32,
+              borderRadius: '50%',
+              background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
+              boxShadow: '0 2px 10px rgba(139, 92, 246, 0.4)',
+              position: 'relative',
+              zIndex: 1
+            }}>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            
             <p style={{
               fontSize: 13,
-              fontWeight: 800,
+              fontWeight: 700,
               textTransform: 'uppercase',
-              letterSpacing: '3px',
-              background: 'linear-gradient(90deg, #60a5fa, #34d399)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              margin: 0
+              letterSpacing: '2px',
+              color: '#e2e8f0',
+              margin: 0,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 6,
+              position: 'relative',
+              zIndex: 1
             }}>
-              Powered by MindT Private Limited
+              <span style={{ color: '#94a3b8', fontWeight: 500, letterSpacing: '1px' }}>POWERED BY</span> 
+              <span style={{
+                background: 'linear-gradient(90deg, #60a5fa, #c084fc)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                fontWeight: 900,
+                letterSpacing: '1.5px'
+              }}>
+                MINDT PVT LTD
+              </span>
             </p>
           </div>
           <h1 style={{
