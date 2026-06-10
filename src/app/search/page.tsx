@@ -11,7 +11,10 @@ function SearchPageInner() {
   const [query, setQuery] = useState(searchParams.get('q') || '')
   const [results, setResults] = useState<SearchResult[]>([])
   const [isLoading, setIsLoading] = useState(false)
+  const [isLoadingMore, setIsLoadingMore] = useState(false)
   const [hasSearched, setHasSearched] = useState(false)
+  const [currentLimit, setCurrentLimit] = useState(20)
+  const [totalAvailable, setTotalAvailable] = useState(0)
   const [filterAssemblyNo, setFilterAssemblyNo] = useState(searchParams.get('assembly_no') || '')
   const [filterPartNo, setFilterPartNo] = useState(searchParams.get('part_no') || '')
   const [filterRelativeName, setFilterRelativeName] = useState(searchParams.get('relative_name') || '')
@@ -61,19 +64,23 @@ function SearchPageInner() {
     partNo?: string,
     relName?: string,
     famHouseNormalized?: number,
-    famPart?: number
+    famPart?: number,
+    limit = 20,
+    append = false
   ) => {
     if (!famHouseNormalized && !q.trim()) {
       setResults([])
       setHasSearched(false)
+      setTotalAvailable(0)
       return
     }
-    setIsLoading(true)
+    if (append) setIsLoadingMore(true)
+    else setIsLoading(true)
     setHasSearched(true)
     try {
       const params = new URLSearchParams()
       if (q) params.set('q', q)
-      params.set('limit', '20')
+      params.set('limit', String(limit))
       if (assemblyNo) params.set('assembly_no', assemblyNo)
       if (partNo) params.set('part_no', partNo)
       if (relName) params.set('relative_name', relName)
@@ -86,7 +93,6 @@ function SearchPageInner() {
       
       if (res.status === 403 && data.error === 'LOGIN_REQUIRED') {
         setShowLoginRequired(true)
-        setIsLoading(false)
         return
       }
 
@@ -97,12 +103,28 @@ function SearchPageInner() {
         if (aVal !== bVal) return aVal - bVal
         return (b.match_score || 0) - (a.match_score || 0)
       })
-      setResults(sortedResults)
+
+      // Track how many the API returned vs the limit we asked for
+      // If returned == limit, there are likely more results
+      setTotalAvailable(data.total || sortedResults.length)
+
+      if (append) {
+        // Merge new results, avoiding duplicates by id
+        setResults(prev => {
+          const existingIds = new Set(prev.map((r: any) => r.id))
+          const newOnes = sortedResults.filter((r: any) => !existingIds.has(r.id))
+          return [...prev, ...newOnes]
+        })
+      } else {
+        setResults(sortedResults)
+        setCurrentLimit(limit)
+      }
       setMatchFilter('ALL')
     } catch (err) {
       console.error(err)
     } finally {
       setIsLoading(false)
+      setIsLoadingMore(false)
     }
   }, [])
 
@@ -121,8 +143,15 @@ function SearchPageInner() {
 
   const handleSearchSubmit = useCallback(() => {
     if (familyView) return
-    doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName)
+    setCurrentLimit(20)
+    doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName, undefined, undefined, 20, false)
   }, [query, filterAssemblyNo, filterPartNo, filterRelativeName, familyView, doSearch])
+
+  const handleLoadMore = useCallback(() => {
+    const newLimit = currentLimit + 20
+    setCurrentLimit(newLimit)
+    doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName, undefined, undefined, newLimit, false)
+  }, [query, filterAssemblyNo, filterPartNo, filterRelativeName, currentLimit, doSearch])
 
   // Count by match type
   const exactCount = results.filter(r => r.match_type === 'EXACT').length
@@ -342,7 +371,7 @@ function SearchPageInner() {
             marginLeft: 'auto', display: 'flex', alignItems: 'center',
             fontSize: 13, color: 'var(--color-text-muted)',
           }}>
-            Showing {matchFilter === 'ALL' ? `top ${results.length}` : `${filteredResults.length}`} results
+            Showing {matchFilter === 'ALL' ? results.length : filteredResults.length} of {totalAvailable} results
             {' — '}
             <span style={{ color: 'var(--color-accent-text)', fontWeight: 600, marginLeft: 4 }}>
               sorted by exact match
@@ -374,6 +403,40 @@ function SearchPageInner() {
           onViewFamily={(house_no_normalized, part_no, house_no_raw) => setFamilyView({ house_no_normalized, part_no, house_no_raw })}
           userRole={userRole}
         />
+
+        {/* Load More Button */}
+        {hasSearched && !isLoading && !familyView && results.length > 0 && results.length >= currentLimit && (
+          <div style={{ padding: '24px', textAlign: 'center', borderTop: '1px solid var(--color-border)' }}>
+            <button
+              id="load-more-results"
+              onClick={handleLoadMore}
+              disabled={isLoadingMore}
+              style={{
+                padding: '12px 40px',
+                background: isLoadingMore ? 'rgba(59,130,246,0.3)' : 'rgba(59,130,246,0.15)',
+                border: '1px solid rgba(59,130,246,0.5)',
+                borderRadius: 10,
+                color: '#60a5fa',
+                fontWeight: 700,
+                fontSize: 14,
+                cursor: isLoadingMore ? 'not-allowed' : 'pointer',
+                transition: 'all 0.2s',
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: 8,
+              }}
+            >
+              {isLoadingMore ? (
+                <><span style={{ display: 'inline-block', width: 14, height: 14, border: '2px solid #60a5fa', borderTopColor: 'transparent', borderRadius: '50%', animation: 'spin 0.7s linear infinite' }}></span> Loading...</>
+              ) : (
+                <>📋 Show More Results (showing {results.length})</>
+              )}
+            </button>
+            <p style={{ marginTop: 8, fontSize: 12, color: 'var(--color-text-muted)' }}>
+              Displaying {results.length} of {totalAvailable} matches found
+            </p>
+          </div>
+        )}
 
         {/* Empty state with query */}
         {hasSearched && !isLoading && results.length === 0 && query && (
