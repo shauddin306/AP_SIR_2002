@@ -106,9 +106,9 @@ export async function GET(req: NextRequest) {
     // ----------------------------------------------------------------------
     
     // FAST-PATH: If it's a House Number or EPIC ID
-    // EPIC IDs can be: APB1234567, AP221520000, ZLN0123456 etc.
-    // Pattern: starts with 2-3 letters optionally followed by alphanumeric chars, total 8-12 chars
-    const isEpicId = /^[A-Za-z]{2,4}[0-9]{4,12}$/i.test(q.trim());
+    // EPIC IDs can be: APB1234567, AP22152000030568, ZLN0123456 etc.
+    // Pattern: starts with 2-4 letters optionally followed by alphanumeric chars, total up to 24 chars
+    const isEpicId = /^[A-Za-z]{2,4}[0-9]{4,20}$/i.test(q.trim());
     const isHouseNumber = !isEpicId && /^[0-9]+[0-9\-/\s]*$/.test(q.trim());
     const isHouseOrEpic = isHouseNumber || isEpicId;
     
