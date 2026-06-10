@@ -106,22 +106,26 @@ export async function GET(req: NextRequest) {
     // ----------------------------------------------------------------------
     
     // FAST-PATH: If it's a House Number or EPIC ID
-    const isHouseNumber = /^[0-9]+[0-9-/\sA-Za-z]*$/.test(q);
-    const isEpicId = /^[A-Za-z]{3}[0-9]{5,10}$/.test(q);
+    // EPIC IDs can be: APB1234567, AP221520000, ZLN0123456 etc.
+    // Pattern: starts with 2-3 letters optionally followed by alphanumeric chars, total 8-12 chars
+    const isEpicId = /^[A-Za-z]{2,4}[0-9]{4,12}$/i.test(q.trim());
+    const isHouseNumber = !isEpicId && /^[0-9]+[0-9\-/\s]*$/.test(q.trim());
     const isHouseOrEpic = isHouseNumber || isEpicId;
     
     if (isHouseOrEpic) {
-      let queryBuilder = supabase
-        .from('voters')
-        .select('*')
-        .or(`house_no.ilike.${q}%,epic_id.ilike.${q}%`)
-        .limit(limit);
+      let queryBuilder = supabase.from('voters').select('*');
         
+      if (isEpicId) {
+        // For EPIC ID: try exact match first (case-insensitive), then prefix match
+        queryBuilder = queryBuilder.ilike('epic_id', q.trim());
+      } else {
+        // For house number: prefix match
+        queryBuilder = queryBuilder.ilike('house_no', `${q}%`);
+      }
+      
+      queryBuilder = queryBuilder.limit(limit);
       if (assembly_no) queryBuilder = queryBuilder.eq('assembly_no', assembly_no);
       if (part_no) queryBuilder = queryBuilder.eq('part_no', part_no);
-      if (relative_name) {
-        queryBuilder = queryBuilder.or(`relative_name_english.ilike.%${relative_name}%,relative_name_telugu.ilike.%${relative_name}%`);
-      }
       
       const { data: fastResults, error: fastError } = await queryBuilder;
       
@@ -132,6 +136,27 @@ export async function GET(req: NextRequest) {
           total: fastResults.length,
           mode: 'house_or_epic_fast_path'
         })
+      }
+
+      // If no exact EPIC match, fall through to normal name search
+      // so the user still gets results if they mistyped slightly
+      if (isEpicId) {
+        // Try prefix match as fallback for partial EPIC IDs
+        const { data: prefixResults } = await supabase
+          .from('voters')
+          .select('*')
+          .ilike('epic_id', `${q.trim()}%`)
+          .limit(limit);
+        
+        if (prefixResults && prefixResults.length > 0) {
+          return NextResponse.json({
+            results: prefixResults.map((r: any) => ({ ...r, match_type: 'EXACT', match_score: 1.0 })),
+            query: q,
+            total: prefixResults.length,
+            mode: 'epic_prefix_fast_path'
+          })
+        }
+        return NextResponse.json({ results: [], query: q, total: 0, mode: 'epic_not_found' })
       }
       return NextResponse.json({ results: [], query: q, total: 0, mode: 'house_or_epic_fast_path' })
     }
