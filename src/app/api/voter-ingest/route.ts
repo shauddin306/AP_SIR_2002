@@ -32,10 +32,18 @@ export async function POST(req: Request) {
       154: 'Kadapa',
     };
 
-    const enrichedData = volunteers_data.map(v => ({
-      ...v,
-      assembly_name: assemblyNameMap[v.assembly_no] || 'Unknown'
-    }));
+    const enrichedData = volunteers_data.map(v => {
+      let safeAge = parseInt(v.age, 10);
+      if (isNaN(safeAge)) safeAge = 0;
+      if (safeAge > 150) safeAge = 0;
+      if (safeAge < 0) safeAge = 0;
+
+      return {
+        ...v,
+        age: safeAge,
+        assembly_name: assemblyNameMap[v.assembly_no] || 'Unknown'
+      };
+    });
 
     // Deduplicate the array by (assembly_no, part_no, serial_no)
     // Postgres UPSERT will throw 'cannot affect row a second time' if there are exact duplicates in the payload.
