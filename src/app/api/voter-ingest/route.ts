@@ -26,8 +26,10 @@ export async function POST(req: Request) {
     }
 
     const assemblyNameMap: Record<number, string> = {
+      151: 'Tadipatri',
       152: 'Rayachoty',
-      153: 'Railway Kodur',
+      153: 'Lakkireddypalli',
+      154: 'Kadapa',
     };
 
     const enrichedData = volunteers_data.map(v => ({
@@ -35,11 +37,22 @@ export async function POST(req: Request) {
       assembly_name: assemblyNameMap[v.assembly_no] || 'Unknown'
     }));
 
+    // Deduplicate the array by (assembly_no, part_no, serial_no)
+    // Postgres UPSERT will throw 'cannot affect row a second time' if there are exact duplicates in the payload.
+    const uniqueMap = new Map();
+    for (const row of enrichedData) {
+      const key = `${row.assembly_no}_${row.part_no}_${row.serial_no}`;
+      if (!uniqueMap.has(key)) {
+        uniqueMap.set(key, row);
+      }
+    }
+    const deduplicatedData = Array.from(uniqueMap.values());
+
     // Prepare data for batch UPSERT
     // The ON CONFLICT relies on the composite unique constraint: assembly_no, part_no, serial_no
     const { data, error } = await supabase
       .from('voters')
-      .upsert(enrichedData, { onConflict: 'assembly_no,part_no,serial_no', ignoreDuplicates: false });
+      .upsert(deduplicatedData, { onConflict: 'assembly_no,part_no,serial_no', ignoreDuplicates: false });
 
     if (error) {
       console.error('Supabase Upsert Error:', error);
