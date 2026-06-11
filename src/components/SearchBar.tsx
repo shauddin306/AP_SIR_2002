@@ -16,7 +16,7 @@ export function SearchBar({
   value,
   onChange,
   onSubmit,
-  placeholder = 'Search by name, EPIC ID, house no... Telugu or English',
+  placeholder = 'Type Name, EPIC ID, Door No, or any combination...',
   autoFocus,
   isLoading,
   resultCount,

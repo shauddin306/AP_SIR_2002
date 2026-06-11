@@ -35,12 +35,22 @@ export default function HomeSearchClient() {
           value={assemblyNo}
           onChange={e => setAssemblyNo(e.target.value)}
           className="search-input-mockup"
-          style={{ width: 280, appearance: 'auto', paddingRight: 32, cursor: 'pointer' }}
+          style={{ width: 280, appearance: 'auto', paddingRight: 32, cursor: 'pointer', fontWeight: 600 }}
         >
-          <option value="">🌎 All of Andhra Pradesh</option>
+          <option value="">🌎 All Assemblies</option>
           {assemblies.map(a => (
             <option key={a.no} value={a.no}>{a.no} - {a.name}</option>
           ))}
+        </select>
+        
+        <select
+          value="" // For now just a placeholder on home screen, or we can add partNo state
+          onChange={() => {}} 
+          className="search-input-mockup"
+          style={{ width: 140, appearance: 'auto', paddingRight: 32, cursor: 'pointer', opacity: assemblyNo ? 1 : 0.5 }}
+          disabled={!assemblyNo}
+        >
+          <option value="">All Parts</option>
         </select>
         
         <div style={{ position: 'relative', flex: 1 }}>
@@ -48,8 +58,9 @@ export default function HomeSearchClient() {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search Name, EPIC No., or Address..."
+            placeholder="Type any combination: Door No, Name, or EPIC ID..."
             className="search-input-mockup"
+            style={{ fontWeight: 600 }}
           />
           <div style={{ position: 'absolute', right: 20, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}>
             🔍

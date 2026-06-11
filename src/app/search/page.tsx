@@ -226,15 +226,15 @@ function SearchPageInner() {
         <>
           <div className="filter-bar" style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <label style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Relative Name:</label>
+              <label style={{ fontSize: 13, color: 'var(--color-text-primary)', fontWeight: 700 }}>Relative Name:</label>
               <input
                 id="filter-relative-name"
                 className="input filter-input"
                 type="text"
                 value={filterRelativeName}
                 onChange={e => setFilterRelativeName(e.target.value)}
-                placeholder="Father / Husband..."
-                style={{ width: 160, padding: '6px 10px' }}
+                placeholder="Father/Husband (optional)..."
+                style={{ width: 180, padding: '6px 10px', fontWeight: 600 }}
               />
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
