@@ -13,6 +13,8 @@ function BrowsePageInner() {
   
   // Local instantaneous filter
   const [localFilter, setLocalFilter] = useState('')
+  const [pdfUrl, setPdfUrl] = useState<string | null>(null)
+  const [showPdf, setShowPdf] = useState(true)
 
   const [metadata, setMetadata] = useState<VoterPart[]>([])
   const [userRole, setUserRole] = useState<string | null>(null)
@@ -54,9 +56,32 @@ function BrowsePageInner() {
     setIsLoading(true)
     setHasLoaded(true)
     try {
+      // 1. Fetch voters data
       const res = await fetch(`/api/browse?assembly_no=${assemblyNo}&part_no=${partNo}`)
       const data = await res.json()
       setVoters(data.results || [])
+
+      // 2. Fetch the source PDF for this part to display side-by-side
+      const { data: jobData } = await supabase
+        .from('extraction_jobs')
+        .select('source_pdf')
+        .eq('assembly_no', assemblyNo)
+        .eq('part_no', partNo)
+        .order('created_at', { ascending: false })
+        .limit(1)
+        .single()
+
+      if (jobData?.source_pdf) {
+        if (jobData.source_pdf.startsWith('http')) {
+          setPdfUrl(jobData.source_pdf)
+        } else {
+          const { data: publicUrlData } = supabase.storage.from('voter-pdfs').getPublicUrl(jobData.source_pdf)
+          setPdfUrl(publicUrlData.publicUrl)
+        }
+      } else {
+        setPdfUrl(null)
+      }
+      
     } catch (err) {
       console.error(err)
     } finally {
@@ -137,42 +162,65 @@ function BrowsePageInner() {
 
       {/* Raw Data View */}
       {hasLoaded && (
-        <div className="card" style={{ overflow: 'hidden' }}>
+        <div style={{ display: 'flex', gap: 24, alignItems: 'flex-start', flexWrap: 'wrap' }}>
           
-          {/* Instant Filter Bar */}
-          <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--color-border)', background: 'var(--color-bg-elevated)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
-            <div style={{ flex: 1, minWidth: 280 }}>
-              <input
-                type="text"
-                className="input"
-                placeholder="⚡ Instant Filter: Type House No, Name, or EPIC ID..."
-                value={localFilter}
-                onChange={e => setLocalFilter(e.target.value)}
-                style={{ width: '100%', maxWidth: 400, background: 'var(--color-bg)' }}
+          {/* PDF Viewer Side */}
+          {showPdf && pdfUrl && (
+            <div className="card" style={{ flex: '1 1 400px', height: '80vh', position: 'sticky', top: 24 }}>
+              <div style={{ padding: '12px 16px', borderBottom: '1px solid var(--color-border)', background: 'var(--color-bg-elevated)', display: 'flex', justifyContent: 'space-between' }}>
+                <h3 style={{ fontSize: 14, margin: 0, color: 'var(--color-text-primary)' }}>Original Source PDF</h3>
+                <button onClick={() => setShowPdf(false)} style={{ background: 'none', border: 'none', color: 'var(--color-text-muted)', cursor: 'pointer', fontSize: 13 }}>Hide</button>
+              </div>
+              <iframe 
+                src={pdfUrl} 
+                style={{ width: '100%', height: 'calc(100% - 45px)', border: 'none', background: '#e2e8f0' }}
+                title="Voter PDF"
               />
             </div>
-            <div style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>
-              Showing <strong style={{ color: 'var(--color-text-primary)' }}>{filteredVoters.length}</strong> of {voters.length} voters
-            </div>
-          </div>
-
-          <VoterTable
-            voters={filteredVoters}
-            isLoading={isLoading}
-            userRole={userRole}
-            showMatchType={false} // Hide AI match badges for raw data
-            onViewFamily={(house_no_normalized, part_no, house_no_raw) => {
-              // In directory view, clicking "View Family" just instantly filters the screen to that house number
-              setLocalFilter(house_no_raw)
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
-          />
-          
-          {!isLoading && filteredVoters.length === 0 && voters.length > 0 && (
-             <div style={{ padding: 48, textAlign: 'center' }}>
-               <h3 style={{ fontSize: 16, color: 'var(--color-text-secondary)' }}>No matches for "{localFilter}" in this Part.</h3>
-             </div>
           )}
+
+          {/* Table Side */}
+          <div className="card" style={{ flex: '2 1 600px', overflow: 'hidden' }}>
+            
+            {/* Instant Filter Bar */}
+            <div style={{ padding: '16px 24px', borderBottom: '1px solid var(--color-border)', background: 'var(--color-bg-elevated)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
+              <div style={{ flex: 1, minWidth: 280, display: 'flex', gap: 12 }}>
+                {!showPdf && pdfUrl && (
+                  <button onClick={() => setShowPdf(true)} className="btn-secondary" style={{ padding: '8px 12px' }}>
+                    📄 Show PDF
+                  </button>
+                )}
+                <input
+                  type="text"
+                  className="input"
+                  placeholder="⚡ Instant Filter: Type House No, Name, or EPIC ID..."
+                  value={localFilter}
+                  onChange={e => setLocalFilter(e.target.value)}
+                  style={{ width: '100%', maxWidth: 400, background: 'var(--color-bg)' }}
+                />
+              </div>
+              <div style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>
+                Showing <strong style={{ color: 'var(--color-text-primary)' }}>{filteredVoters.length}</strong> of {voters.length} voters
+              </div>
+            </div>
+
+            <VoterTable
+              voters={filteredVoters}
+              isLoading={isLoading}
+              userRole={userRole}
+              showMatchType={false} 
+              onViewFamily={(house_no_normalized, part_no, house_no_raw) => {
+                setLocalFilter(house_no_raw)
+                window.scrollTo({ top: 0, behavior: 'smooth' })
+              }}
+            />
+            
+            {!isLoading && filteredVoters.length === 0 && voters.length > 0 && (
+               <div style={{ padding: 48, textAlign: 'center' }}>
+                 <h3 style={{ fontSize: 16, color: 'var(--color-text-secondary)' }}>No matches for "{localFilter}" in this Part.</h3>
+               </div>
+            )}
+          </div>
         </div>
       )}
     </div>
