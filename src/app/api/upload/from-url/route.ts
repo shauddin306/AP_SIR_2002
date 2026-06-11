@@ -40,21 +40,39 @@ export async function POST(req: NextRequest) {
       )
     }
 
-    // Fetch the PDF from the URL
-    console.log(`[from-url] Downloading PDF from ${pdf_url}...`)
-    const res = await fetch(pdf_url)
-    if (!res.ok) {
-      throw new Error(`Failed to download PDF: HTTP ${res.status}`)
-    }
-    const contentType = res.headers.get('content-type')
-    if (!contentType?.includes('application/pdf')) {
-      throw new Error(`URL did not return a PDF (Content-Type: ${contentType})`)
-    }
-    const arrayBuffer = await res.arrayBuffer()
-    const pdfBuffer = Buffer.from(arrayBuffer)
-    console.log(`[from-url] Downloaded ${(pdfBuffer.length / 1024 / 1024).toFixed(2)} MB`)
-
     const supabase = createServiceClient()
+
+    let fileName = ''
+
+    if (engine === 'aws_daemon') {
+      // Skip downloading on Vercel (bypasses ECI firewall). AWS Daemon will download it directly.
+      console.log(`[from-url] AWS Daemon mode: Skipping Next.js download for ${pdf_url}`)
+      fileName = pdf_url
+    } else {
+      // Fetch the PDF from the URL
+      console.log(`[from-url] Downloading PDF from ${pdf_url}...`)
+      const res = await fetch(pdf_url)
+      if (!res.ok) {
+        throw new Error(`Failed to download PDF: HTTP ${res.status}`)
+      }
+      const contentType = res.headers.get('content-type')
+      if (!contentType?.includes('application/pdf')) {
+        throw new Error(`URL did not return a PDF (Content-Type: ${contentType})`)
+      }
+      const arrayBuffer = await res.arrayBuffer()
+      const pdfBuffer = Buffer.from(arrayBuffer)
+      console.log(`[from-url] Downloaded ${(pdfBuffer.length / 1024 / 1024).toFixed(2)} MB`)
+
+      fileName = `${assembly_no}_${part_no}_${Date.now()}.pdf`
+
+      const { error: storageError } = await supabase.storage
+        .from('voter-pdfs')
+        .upload(fileName, pdfBuffer, { contentType: 'application/pdf' })
+
+      if (storageError && storageError.message !== 'The resource already exists') {
+        console.warn('[upload] Storage warning:', storageError.message)
+      }
+    }
 
     // Check if this part already exists
     const { data: existing } = await supabase
@@ -63,17 +81,6 @@ export async function POST(req: NextRequest) {
       .eq('assembly_no', assembly_no)
       .eq('part_no', part_no)
       .maybeSingle()
-
-    // Store PDF in Supabase Storage
-    const fileName = `${assembly_no}_${part_no}_${Date.now()}.pdf`
-
-    const { error: storageError } = await supabase.storage
-      .from('voter-pdfs')
-      .upload(fileName, pdfBuffer, { contentType: 'application/pdf' })
-
-    if (storageError && storageError.message !== 'The resource already exists') {
-      console.warn('[upload] Storage warning:', storageError.message)
-    }
 
     // Create extraction job
     const { data: job, error: jobError } = await supabase
