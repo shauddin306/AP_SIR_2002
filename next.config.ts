@@ -9,7 +9,7 @@ const withPWA = withPWAInit({
 
 const nextConfig: NextConfig = {
   // External packages that have native Node.js bindings (PDF/image processing)
-  serverExternalPackages: ['pdf2pic', 'sharp', 'gm'],
+  serverExternalPackages: ['pdf2pic', 'sharp', 'gm', 'ssh2'],
 
   // Turbopack config (Next.js 16 default bundler)
   turbopack: {},
