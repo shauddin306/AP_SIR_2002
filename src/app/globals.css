@@ -479,26 +479,6 @@ body {
     font-size: 16px !important;
   }
 
-  /* Navigation */
-  .nav-grid {
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 16px !important;
-    align-items: stretch !important;
-  }
-  .nav-links {
-    order: 3;
-    width: 100%;
-    overflow-x: auto;
-    padding-bottom: 4px;
-    justify-content: flex-start !important;
-  }
-  .nav-right {
-    position: absolute;
-    top: 16px;
-    right: 24px;
-  }
-
   /* Search Page Container */
   .search-page-container {
     padding: 16px 12px !important;
@@ -515,20 +495,6 @@ body {
   }
   .search-icon-left {
     left: 14px !important;
-  }
-
-  /* Filters */
-  .filter-bar {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    gap: 12px !important;
-  }
-  .filter-bar > div {
-    justify-content: space-between;
-  }
-  .filter-input {
-    flex: 1;
-    width: auto !important;
   }
 
   /* Match Summary */

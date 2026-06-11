@@ -129,10 +129,10 @@ async function TopNav() {
       zIndex: 100,
     }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '16px 24px' }}>
-        <div className="nav-grid" style={{ display: 'grid', gridTemplateColumns: '1fr auto 1fr', alignItems: 'center' }}>
+        <div className="flex justify-between items-center md:grid" style={{ gridTemplateColumns: '1fr auto 1fr' }}>
           
           {/* Logo */}
-          <a href="/" style={{ display: 'flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}>
+          <a href="/" className="flex items-center gap-3" style={{ textDecoration: 'none' }}>
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               {/* Ballot Box Outline */}
               <rect x="3" y="10" width="18" height="12" rx="2" stroke="var(--color-accent)" strokeWidth="2" />
