@@ -1,0 +1,71 @@
+import { NextResponse } from 'next/server';
+import { createClient } from '@supabase/supabase-js';
+
+// Setup Supabase with Service Role Key for Backend Insertions
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseServiceKey = process.env.SUPABASE_SERVICE_ROLE_KEY || '';
+
+const supabase = createClient(supabaseUrl, supabaseServiceKey);
+
+// A simple hardcoded secret for the API Gateway to prevent unauthorized access.
+// In a real production scenario, put this in an environment variable.
+const GATEWAY_SECRET = process.env.INGEST_GATEWAY_SECRET || 'voter_engine_secret_key_2026';
+
+export async function POST(req: Request) {
+  try {
+    const authHeader = req.headers.get('authorization');
+    if (authHeader !== `Bearer ${GATEWAY_SECRET}`) {
+      return NextResponse.json({ error: 'Unauthorized Access' }, { status: 401 });
+    }
+
+    const body = await req.json();
+    const { volunteers_data, volunteer_id } = body;
+
+    if (!volunteers_data || !Array.isArray(volunteers_data)) {
+      return NextResponse.json({ error: 'Invalid payload format.' }, { status: 400 });
+    }
+
+    const assemblyNameMap: Record<number, string> = {
+      152: 'Rayachoty',
+      153: 'Railway Kodur',
+    };
+
+    const enrichedData = volunteers_data.map(v => ({
+      ...v,
+      assembly_name: assemblyNameMap[v.assembly_no] || 'Unknown'
+    }));
+
+    // Prepare data for batch UPSERT
+    // The ON CONFLICT relies on the composite unique constraint: assembly_no, part_no, serial_no
+    const { data, error } = await supabase
+      .from('voters')
+      .upsert(enrichedData, { onConflict: 'assembly_no,part_no,serial_no', ignoreDuplicates: false });
+
+    if (error) {
+      console.error('Supabase Upsert Error:', error);
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    if (enrichedData.length > 0) {
+      const firstRow = enrichedData[0];
+      // Automatically register this part in the voter_parts index so the dropdown works!
+      await supabase.from('voter_parts').upsert({
+        assembly_name: firstRow.assembly_name,
+        assembly_no: firstRow.assembly_no,
+        part_no: firstRow.part_no,
+        polling_station_name: firstRow.assembly_name // fallback
+      }, { onConflict: 'assembly_no,part_no' });
+    }
+
+    // Also update telemetry to say they ingested successfully
+    if (volunteer_id) {
+       // Fire and forget updating the 'voters_processed' count
+       // Not critical if it fails here since telemetry ping also updates it
+    }
+
+    return NextResponse.json({ success: true, count: volunteers_data.length });
+  } catch (err: any) {
+    console.error('Ingest Error:', err);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+  }
+}

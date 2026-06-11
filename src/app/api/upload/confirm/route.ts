@@ -300,17 +300,17 @@ export async function POST(req: NextRequest) {
 
     if (action === 'START' || action === 'OVERWRITE') {
       // Start extraction in background (fire and forget)
-      // In production on Vercel, use a queue (Inngest/QStash)
-      // Here we trigger and respond immediately
-      setImmediate(() => {
-        runExtractionJob(job_id, file_name, {
-          assembly_name,
-          assembly_no,
-          part_no,
-          polling_station_name: polling_station_name || assembly_name,
-          engine,
+      if (engine !== 'aws_daemon') {
+        setImmediate(() => {
+          runExtractionJob(job_id, file_name, {
+            assembly_name,
+            assembly_no,
+            part_no,
+            polling_station_name: polling_station_name || assembly_name,
+            engine,
+          })
         })
-      })
+      }
 
       return NextResponse.json({ started: true, job_id })
     }

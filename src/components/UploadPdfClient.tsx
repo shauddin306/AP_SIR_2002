@@ -8,7 +8,7 @@ import { ExtractionJob } from '@/lib/supabase/client'
 
 type Step = 'upload' | 'metadata' | 'conflict' | 'processing' | 'done' | 'batch'
 type UploadMode = 'file' | 'url' | 'eci_auto'
-type ExtractionEngine = 'gemini' | 'python'
+type ExtractionEngine = 'gemini' | 'python' | 'aws_daemon'
 
 interface ConflictInfo {
   assembly_name: string
@@ -175,38 +175,42 @@ export default function UploadPdfClient() {
           // In batch mode, if it already exists, we skip it to be safe
           setBatchLogs(prev => [{ part: current, status: 'skipped', message: 'Already exists in database', url, time: new Date().toLocaleTimeString() }, ...prev])
         } else {
-          // 2. Start extraction job
-          const confirmRes = await fetch('/api/upload/confirm', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              action: 'START',
-              job_id: data.job_id,
-              file_name: data.file_name,
-              assembly_name: ASSEMBLY_DICT[assmNo] || 'Unknown',
-              assembly_no: parseInt(assmNo),
-              part_no: current,
-              polling_station_name: `Auto-Fetched Part ${current}`,
-              engine: engine,
-            }),
-          })
-          const confirmData = await confirmRes.json()
-          if (confirmData.error) throw new Error(confirmData.error)
-          
-          // 3. Poll for completion
-          let isDone = false
-          while (!isDone) {
-            if (isCancelledRef.current) break
-            const pollRes = await fetch(`/api/jobs/${data.job_id}`)
-            const jobData = await pollRes.json()
-            if (jobData.status === 'done') {
-              isDone = true
-              setBatchLogs(prev => [{ part: current, status: 'success', url, time: new Date().toLocaleTimeString() }, ...prev])
-            } else if (jobData.status === 'error') {
-              isDone = true
-              setBatchLogs(prev => [{ part: current, status: 'error', message: jobData.error_message, url, time: new Date().toLocaleTimeString() }, ...prev])
-            } else {
-              await new Promise(r => setTimeout(r, 3000))
+          if (engine === 'aws_daemon') {
+            setBatchLogs(prev => [{ part: current, status: 'success', message: 'Queued for AWS Daemon', url, time: new Date().toLocaleTimeString() }, ...prev])
+          } else {
+            // 2. Start extraction job synchronously
+            const confirmRes = await fetch('/api/upload/confirm', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                action: 'START',
+                job_id: data.job_id,
+                file_name: data.file_name,
+                assembly_name: ASSEMBLY_DICT[assmNo] || 'Unknown',
+                assembly_no: parseInt(assmNo),
+                part_no: current,
+                polling_station_name: `Auto-Fetched Part ${current}`,
+                engine: engine,
+              }),
+            })
+            const confirmData = await confirmRes.json()
+            if (confirmData.error) throw new Error(confirmData.error)
+            
+            // 3. Poll for completion
+            let isDone = false
+            while (!isDone) {
+              if (isCancelledRef.current) break
+              const pollRes = await fetch(`/api/jobs/${data.job_id}`)
+              const jobData = await pollRes.json()
+              if (jobData.status === 'done') {
+                isDone = true
+                setBatchLogs(prev => [{ part: current, status: 'success', url, time: new Date().toLocaleTimeString() }, ...prev])
+              } else if (jobData.status === 'error') {
+                isDone = true
+                setBatchLogs(prev => [{ part: current, status: 'error', message: jobData.error_message, url, time: new Date().toLocaleTimeString() }, ...prev])
+              } else {
+                await new Promise(r => setTimeout(r, 3000))
+              }
             }
           }
         }
@@ -283,7 +287,11 @@ export default function UploadPdfClient() {
         setConflict(data.existing)
         setStep('conflict')
       } else {
-        await startExtraction(data.job_id, data.file_name, 'START')
+        if (engine === 'aws_daemon') {
+          setStep('done') // Instant complete, no polling needed
+        } else {
+          await startExtraction(data.job_id, data.file_name, 'START')
+        }
       }
     } catch (err) {
       setError(String(err))
@@ -720,6 +728,27 @@ export default function UploadPdfClient() {
                   <div style={{ display: 'flex', gap: 12 }}>
                     <button
                       type="button"
+                      onClick={() => setEngine('aws_daemon')}
+                      style={{
+                        flex: 1, padding: '14px 12px', borderRadius: 10, border: '2px solid',
+                        borderColor: engine === 'aws_daemon' ? '#a855f7' : 'var(--color-border)',
+                        backgroundColor: engine === 'aws_daemon' ? 'rgba(168, 85, 247, 0.1)' : 'transparent',
+                        color: engine === 'aws_daemon' ? '#d8b4fe' : 'var(--color-text-secondary)',
+                        fontWeight: 600, cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+                        transition: 'all 0.2s',
+                      }}
+                    >
+                      <span style={{ fontSize: 20 }}>🚀 AWS GPU Daemon</span>
+                      <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '0.05em',
+                        padding: '2px 8px', borderRadius: 4,
+                        background: engine === 'aws_daemon' ? 'rgba(168, 85, 247, 0.2)' : 'rgba(255,255,255,0.05)',
+                        color: engine === 'aws_daemon' ? '#e9d5ff' : 'var(--color-text-muted)'
+                      }}>Offline Queueing</span>
+                      <span style={{ fontSize: 11, fontWeight: 400, opacity: 0.7 }}>Close tab anytime</span>
+                    </button>
+
+                    <button
+                      type="button"
                       onClick={() => setEngine('gemini')}
                       style={{
                         flex: 1, padding: '14px 12px', borderRadius: 10, border: '2px solid',
@@ -780,6 +809,15 @@ export default function UploadPdfClient() {
                       Requires <code style={{ fontFamily: 'monospace', background: 'rgba(0,0,0,0.3)', padding: '1px 4px', borderRadius: 3 }}>GEMINI_API_KEY</code> and billed per page.
                     </div>
                   )}
+                  {engine === 'aws_daemon' && (
+                    <div style={{
+                      marginTop: 10, padding: '10px 12px', borderRadius: 8,
+                      background: 'rgba(168, 85, 247, 0.08)', border: '1px solid rgba(168, 85, 247, 0.2)',
+                      fontSize: 12, color: '#d8b4fe', lineHeight: 1.5,
+                    }}>
+                      <strong>🚀 AWS GPU Daemon:</strong> Queues the jobs in the database. The AWS server will silently process them in the background. You can close your browser tab immediately.
+                    </div>
+                  )}
                 </div>
 
                 <div style={{ display: 'flex', gap: 12, marginTop: 12 }}>
@@ -796,7 +834,7 @@ export default function UploadPdfClient() {
                     style={{ flex: 1 }}
                     disabled={!meta.assembly_name || !meta.assembly_no || !meta.part_no || isSubmitting}
                   >
-                    {isSubmitting ? 'Checking...' : engine === 'python' ? '⚡ Start Surya OCR (Free)' : '🤖 Start Gemini AI Extraction'}
+                    {isSubmitting ? 'Checking...' : engine === 'aws_daemon' ? '🚀 Send to AWS GPU' : engine === 'python' ? '⚡ Start Surya OCR (Free)' : '🤖 Start Gemini AI Extraction'}
                   </button>
                 </div>
               </div>

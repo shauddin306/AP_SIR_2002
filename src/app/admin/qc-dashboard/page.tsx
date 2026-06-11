@@ -34,15 +34,32 @@ export default function QCDashboard() {
     // Check if it already exists
     const { data: existing } = await supabase
       .from('qc_jobs')
-      .select('id')
+      .select('id, status')
       .eq('assembly_no', parseInt(assembly))
       .eq('part_no', parseInt(part))
       .single();
       
     if (existing) {
-      alert("Job already exists in the queue!");
-      setLoading(false);
-      return;
+      if (existing.status === 'completed') {
+        alert("Job is already completed!");
+        setLoading(false);
+        return;
+      } else {
+        // Reset FAILED or IN_PROGRESS jobs back to PENDING so the worker can resume them
+        const { error } = await supabase
+          .from('qc_jobs')
+          .update({ status: 'pending', error_message: null })
+          .eq('id', existing.id);
+          
+        if (error) {
+          alert("Error restarting job: " + error.message);
+        } else {
+          setPart('');
+          fetchJobs();
+        }
+        setLoading(false);
+        return;
+      }
     }
 
     const { error } = await supabase
