@@ -4,6 +4,7 @@ import { useState, useEffect, useCallback, useRef, Suspense, useMemo } from 'rea
 import { useSearchParams } from 'next/navigation'
 import { SearchBar } from '@/components/SearchBar'
 import { VoterTable } from '@/components/VoterTable'
+import { VoterCardList } from '@/components/VoterCardList'
 import { SearchResult, VoterPart, supabase } from '@/lib/supabase/client'
 
 function SearchPageInner() {
@@ -24,6 +25,7 @@ function SearchPageInner() {
   const [metadata, setMetadata] = useState<VoterPart[]>([])
   const [userRole, setUserRole] = useState<string | null>(null)
   const [showLoginRequired, setShowLoginRequired] = useState(false)
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
 
   useEffect(() => {
     supabase.from('voter_parts').select('*').then(({ data }) => {
@@ -205,7 +207,7 @@ function SearchPageInner() {
       )}
 
       {!familyView && (
-        <div style={{
+        <div className="sticky md:relative top-0 z-[90] md:z-auto bg-[#0f172a] md:bg-transparent pt-4 pb-2 md:pt-0 md:pb-0 -mx-6 px-6 md:mx-0 md:px-0" style={{
           display: 'flex', gap: 16, marginBottom: 24,
           flexDirection: 'column',
         }}>
@@ -224,7 +226,8 @@ function SearchPageInner() {
       {/* Filters (also hidden in family view usually, but let's keep the existing logic) */}
       {!familyView && (
         <>
-          <div className="filter-bar" style={{ display: 'flex', gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
+          {/* Desktop Filters */}
+          <div className="filter-bar hidden md:flex" style={{ gap: 12, marginBottom: 20, flexWrap: 'wrap' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <label style={{ fontSize: 13, color: 'var(--color-text-primary)', fontWeight: 700 }}>Relative Name:</label>
               <input
@@ -278,6 +281,94 @@ function SearchPageInner() {
               </button>
             )}
           </div>
+
+          {/* Mobile Filters Button */}
+          <div className="md:hidden flex justify-between items-center mb-6 px-1">
+             <span className="text-sm font-semibold text-slate-400">
+               {hasSearched ? `${results.length} results` : 'Filters'}
+             </span>
+             <button onClick={() => setIsMobileFiltersOpen(true)} className="btn-secondary" style={{ padding: '8px 16px', fontSize: 14 }}>
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline', marginRight: 8 }}>
+                  <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
+                </svg>
+                Filter Options
+             </button>
+          </div>
+
+          {/* Mobile Bottom Sheet Filters */}
+          {isMobileFiltersOpen && (
+            <div className="md:hidden fixed inset-0 z-[100] flex flex-col justify-end">
+              <div className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity" onClick={() => setIsMobileFiltersOpen(false)} />
+              <div className="relative bg-[#0f172a] rounded-t-3xl p-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)] border-t border-slate-700/50 animate-slide-up" style={{ paddingBottom: 'calc(env(safe-area-inset-bottom) + 80px)' }}>
+                 <div className="flex justify-between items-center mb-6">
+                    <h3 className="text-xl font-bold text-white">Refine Search</h3>
+                    <button onClick={() => setIsMobileFiltersOpen(false)} style={{ padding: 8, background: 'rgba(255,255,255,0.1)', borderRadius: '50%' }}>✕</button>
+                 </div>
+                 
+                 <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <label style={{ fontSize: 14, color: 'var(--color-text-primary)', fontWeight: 700 }}>Relative Name</label>
+                      <input
+                        className="input filter-input"
+                        type="text"
+                        value={filterRelativeName}
+                        onChange={e => setFilterRelativeName(e.target.value)}
+                        placeholder="Father/Husband (optional)..."
+                        style={{ width: '100%', padding: '12px 16px', fontWeight: 600, fontSize: 16 }}
+                      />
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <label style={{ fontSize: 14, color: 'var(--color-text-muted)' }}>Assembly No</label>
+                      <select
+                        className="input"
+                        value={filterAssemblyNo}
+                        onChange={e => setFilterAssemblyNo(e.target.value)}
+                        style={{ width: '100%', padding: '12px 16px', appearance: 'auto', fontSize: 16 }}
+                      >
+                        <option value="">All Assemblies</option>
+                        {uniqueAssemblies.map(a => (
+                          <option key={a.no} value={a.no}>{a.no} - {a.name}</option>
+                        ))}
+                      </select>
+                    </div>
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                      <label style={{ fontSize: 14, color: 'var(--color-text-muted)' }}>Part No</label>
+                      <select
+                        className="input"
+                        value={filterPartNo}
+                        onChange={e => setFilterPartNo(e.target.value)}
+                        style={{ width: '100%', padding: '12px 16px', appearance: 'auto', fontSize: 16 }}
+                        disabled={!filterAssemblyNo}
+                      >
+                        <option value="">All Parts</option>
+                        {availableParts.map(p => (
+                          <option key={p} value={p}>Part {p}</option>
+                        ))}
+                      </select>
+                    </div>
+                 </div>
+
+                 <div style={{ marginTop: 32, display: 'flex', gap: 12 }}>
+                   {(filterAssemblyNo || filterPartNo || filterRelativeName) && (
+                     <button
+                       className="btn-ghost"
+                       onClick={() => { setFilterAssemblyNo(''); setFilterPartNo(''); setFilterRelativeName(''); setIsMobileFiltersOpen(false); }}
+                       style={{ padding: '14px', flex: 1, fontSize: 16, fontWeight: 700, borderRadius: 12, background: 'rgba(255,255,255,0.05)' }}
+                     >
+                       Clear
+                     </button>
+                   )}
+                   <button
+                     className="btn-primary"
+                     onClick={() => setIsMobileFiltersOpen(false)}
+                     style={{ padding: '14px', flex: 2, fontSize: 16, fontWeight: 700, borderRadius: 12 }}
+                   >
+                     Apply Filters
+                   </button>
+                 </div>
+              </div>
+            </div>
+          )}
         </>
       )}
 
@@ -396,13 +487,21 @@ function SearchPageInner() {
           </div>
         )}
 
-        <VoterTable
-          voters={filteredResults}
-          isLoading={isLoading}
-          showMatchType={hasSearched && !familyView}
-          onViewFamily={(house_no_normalized, part_no, house_no_raw) => setFamilyView({ house_no_normalized, part_no, house_no_raw })}
-          userRole={userRole}
-        />
+        <div className="hidden md:block">
+          <VoterTable
+            voters={filteredResults}
+            isLoading={isLoading}
+            showMatchType={hasSearched && !familyView}
+            onViewFamily={(house_no_normalized, part_no, house_no_raw) => setFamilyView({ house_no_normalized, part_no, house_no_raw })}
+            userRole={userRole}
+          />
+        </div>
+        <div className="md:hidden">
+          <VoterCardList
+            voters={filteredResults}
+            onViewFamily={(voter) => setFamilyView({ house_no_normalized: voter.house_no_normalized as number, part_no: voter.part_no as number, house_no_raw: voter.house_no_raw as string })}
+          />
+        </div>
 
         {/* Load More Button */}
         {hasSearched && !isLoading && !familyView && results.length > 0 && results.length >= currentLimit && (

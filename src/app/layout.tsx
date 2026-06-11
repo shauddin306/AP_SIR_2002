@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import { MobileBottomNav } from '@/components/MobileBottomNav'
 
 export const viewport: Viewport = {
   themeColor: '#0f172a',
@@ -32,12 +33,13 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </head>
       <body>
-        <div id="app-root" className="min-h-screen flex flex-col">
+        <div id="app-root" className="min-h-screen flex flex-col pb-[60px] md:pb-0">
           <TopNav />
           <main className="flex-1">
             {children}
           </main>
           <GlobalFooter />
+          <MobileBottomNav />
         </div>
       </body>
     </html>
@@ -46,7 +48,7 @@ export default function RootLayout({
 
 function GlobalFooter() {
   return (
-    <footer style={{
+    <footer className="hidden md:block" style={{
       marginTop: 'auto',
       background: 'rgba(8,12,20,0.95)',
       borderTop: '1px solid var(--color-border)',
@@ -112,6 +114,8 @@ function GlobalFooter() {
 import { createClient } from '@/lib/supabase/server'
 import { LogoutButton } from '@/components/LogoutButton'
 
+import { MobileMenu } from '@/components/MobileMenu'
+
 async function TopNav() {
   const supabase = await createClient()
   const { data: { user } } = await supabase.auth.getUser()
@@ -143,15 +147,15 @@ async function TopNav() {
             </div>
           </a>
 
-          {/* Centered Nav */}
-          <nav className="nav-links" style={{ display: 'flex', gap: 24, justifyContent: 'center' }}>
+          {/* Centered Nav (Desktop only) */}
+          <nav className="nav-links hidden md:flex" style={{ gap: 24, justifyContent: 'center' }}>
             <NavLink href="/" label="Home" />
             <NavLink href="/search" label="Search" />
             <NavLink href="/browse" label="Directory" />
           </nav>
 
-          {/* Right Action */}
-          <div className="nav-right" style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
+          {/* Right Action (Desktop only) */}
+          <div className="nav-right hidden md:flex" style={{ justifyContent: 'flex-end', alignItems: 'center', gap: 12 }}>
             {user ? (
               <>
                 <a href="/admin/dashboard" style={{
@@ -184,6 +188,11 @@ async function TopNav() {
                 Admin Login
               </a>
             )}
+          </div>
+
+          {/* Mobile Menu Icon (Mobile only) */}
+          <div className="md:hidden flex justify-end">
+            <MobileMenu user={user ? { email: user.email } : null} />
           </div>
 
         </div>
