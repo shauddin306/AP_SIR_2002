@@ -594,15 +594,25 @@ export default function UploadPdfClient() {
       {step === 'batch' && (
         <div className="animate-fade-in card" style={{ padding: 40 }}>
           <h2 style={{ fontSize: 24, fontWeight: 800, marginBottom: 12 }}>
-            {batchStatus === 'done' ? '✅ Batch Completed' : '🔄 Batch Extraction Running...'}
+            {engine === 'aws_daemon' 
+              ? '✅ Jobs Queued Successfully!' 
+              : batchStatus === 'done' ? '✅ Batch Completed' : '🔄 Batch Extraction Running...'}
           </h2>
           <p style={{ color: 'var(--color-text-secondary)', marginBottom: 24 }}>
             Assembly: <strong>{ASSEMBLY_DICT[meta.assembly_no] || meta.assembly_no} ({meta.assembly_no})</strong> <br/>
             Parts: <strong>{batchStart} to {batchEnd}</strong>
           </p>
 
+          {engine === 'aws_daemon' && batchStatus === 'done' && (
+            <div style={{ padding: '16px 24px', background: 'rgba(59, 130, 246, 0.1)', border: '1px solid rgba(59, 130, 246, 0.3)', borderRadius: 12, marginBottom: 24 }}>
+              <p style={{ margin: 0, color: '#93c5fd', fontSize: 15, lineHeight: 1.5 }}>
+                🚀 <strong>AWS GPU Processing Started!</strong> All parts have been securely queued to your database. You can safely close this page, or <strong>scroll down to the System Status panel</strong> to watch the live extraction progress.
+              </p>
+            </div>
+          )}
+
           {batchStatus !== 'done' && (
-            <div style={{ padding: 24, background: 'var(--color-bg-elevated)', borderRadius: 12, border: '1px solid var(--color-border)', marginBottom: 24 }}>
+            <div style={{ padding: 24, background: 'var(--color-bg-elevated)', borderRadius: 12, overflow: 'hidden', border: '1px solid var(--color-border)', marginBottom: 24 }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                 <span style={{ fontSize: 16, fontWeight: 600 }}>
                   {batchStatus === 'paused' ? '⏸️ Paused' : `⏳ Extracting Part ${batchCurrent}...`}
