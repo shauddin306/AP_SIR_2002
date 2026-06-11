@@ -132,11 +132,11 @@ export default function UploadPdfClient() {
     isPausedRef.current = false
     isCancelledRef.current = false
     
-    let current = startNum
-    setBatchCurrent(current)
+    let currentLoopVar = startNum
+    setBatchCurrent(currentLoopVar)
     const startTimeMs = Date.now()
 
-    while (current <= endNum) {
+    while (currentLoopVar <= endNum) {
       if (isCancelledRef.current) {
         setBatchStatus('idle')
         break
@@ -149,6 +149,7 @@ export default function UploadPdfClient() {
       
       if (isCancelledRef.current) break
 
+      const current = currentLoopVar
       setBatchCurrent(current)
       
       const url = `https://www.eci.gov.in/sir/f1/S01/data/OLDSIRROLL/S01/${assmNo}/S01_${assmNo}_${current}.pdf`
@@ -218,7 +219,7 @@ export default function UploadPdfClient() {
         setBatchLogs(prev => [{ part: current, status: 'error', message: err.message, url, time: new Date().toLocaleTimeString() }, ...prev])
       }
 
-      current++
+      currentLoopVar++
     }
 
     if (!isCancelledRef.current) {
@@ -228,7 +229,7 @@ export default function UploadPdfClient() {
     }
   }
 
-  const handleEciAutoSubmit = useCallback(async () => {
+  const handleEciAutoSubmit = async () => {
     if (!meta.assembly_no || !batchStart || !batchEnd) return
     const startNum = parseInt(batchStart)
     const endNum = parseInt(batchEnd)
@@ -239,7 +240,7 @@ export default function UploadPdfClient() {
     
     setBatchLogs([])
     runBatchLoop(startNum, endNum, meta.assembly_no)
-  }, [meta.assembly_no, batchStart, batchEnd])
+  }
 
   const handleMetadataSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault()
