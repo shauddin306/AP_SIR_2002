@@ -73,7 +73,7 @@ function BrowsePageInner() {
 
       if (jobData?.source_pdf) {
         if (jobData.source_pdf.startsWith('http')) {
-          setPdfUrl(jobData.source_pdf)
+          setPdfUrl(`/api/pdf?file=${encodeURIComponent(jobData.source_pdf)}`)
         } else {
           const { data: publicUrlData } = supabase.storage.from('voter-pdfs').getPublicUrl(jobData.source_pdf)
           setPdfUrl(publicUrlData.publicUrl)
