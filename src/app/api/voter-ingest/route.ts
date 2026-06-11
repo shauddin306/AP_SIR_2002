@@ -67,14 +67,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    if (enrichedData.length > 0) {
-      const firstRow = enrichedData[0];
-      // Automatically register this part in the voter_parts index so the dropdown works!
+    if (deduplicatedData.length > 0) {
+      const firstRow = deduplicatedData[0];
+
+      // Get the exact number of voters in the database right now for this part
+      const { count } = await supabase
+        .from('voters')
+        .select('*', { count: 'exact', head: true })
+        .eq('assembly_no', firstRow.assembly_no)
+        .eq('part_no', firstRow.part_no);
+
+      // Automatically register this part in the voter_parts index with the accurate count!
       await supabase.from('voter_parts').upsert({
         assembly_name: firstRow.assembly_name,
         assembly_no: firstRow.assembly_no,
         part_no: firstRow.part_no,
-        polling_station_name: firstRow.assembly_name // fallback
+        polling_station_name: firstRow.assembly_name, // fallback
+        voter_count: count || 0
       }, { onConflict: 'assembly_no,part_no' });
     }
 
