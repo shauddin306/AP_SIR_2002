@@ -41,16 +41,35 @@ export default function AdminDashboard() {
           <p style={{ color: '#94a3b8', margin: 0 }}>Manage voter records and process new PDFs.</p>
         </div>
         
-        <div style={{ 
-          background: 'rgba(30, 41, 59, 0.8)', 
-          border: '1px solid rgba(51, 65, 85, 1)', 
-          padding: '8px 16px', 
-          borderRadius: 8, 
-          display: 'flex', 
-          alignItems: 'center', 
-          gap: 12 
-        }}>
-          <span style={{ color: '#cbd5e1', fontSize: 14 }}>Role:</span>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          {(role === 'super-admin' || role === 'admin') && (
+            <a href="/admin/gpu-cluster" style={{
+              background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)',
+              color: 'white',
+              padding: '8px 16px',
+              borderRadius: 8,
+              textDecoration: 'none',
+              fontWeight: 600,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 8,
+              boxShadow: '0 4px 14px 0 rgba(59, 130, 246, 0.39)',
+              transition: 'transform 0.2s',
+            }}>
+              🖥️ AWS GPU Cluster
+            </a>
+          )}
+          
+          <div style={{ 
+            background: 'rgba(30, 41, 59, 0.8)', 
+            border: '1px solid rgba(51, 65, 85, 1)', 
+            padding: '8px 16px', 
+            borderRadius: 8, 
+            display: 'flex', 
+            alignItems: 'center', 
+            gap: 12 
+          }}>
+            <span style={{ color: '#cbd5e1', fontSize: 14 }}>Role:</span>
           {role === 'super-admin' ? (
             <span style={{ background: 'rgba(168, 85, 247, 0.2)', color: '#d8b4fe', border: '1px solid rgba(168, 85, 247, 0.3)', padding: '4px 8px', borderRadius: 4, fontSize: 12, fontWeight: 700, letterSpacing: '0.05em' }}>SUPER ADMIN</span>
           ) : role === 'admin' ? (
@@ -58,6 +77,7 @@ export default function AdminDashboard() {
           ) : (
             <span style={{ background: 'rgba(249, 115, 22, 0.2)', color: '#fdba74', border: '1px solid rgba(249, 115, 22, 0.3)', padding: '4px 8px', borderRadius: 4, fontSize: 12, fontWeight: 700, letterSpacing: '0.05em' }}>PENDING APPROVAL</span>
           )}
+          </div>
         </div>
       </div>
 

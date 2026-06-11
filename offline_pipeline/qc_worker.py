@@ -54,13 +54,21 @@ def process_job(job):
 
         pdf_info = pdfinfo_from_path(pdf_filename)
         total_pages = pdf_info["Pages"]
-        print(f"Total pages in PDF: {total_pages}")
-        update_job_status(job_id, 'in_progress', total_pages=total_pages, processed_pages=0)
+        
+        start_page = 1
+        processed_pages = job.get('processed_pages')
+        if processed_pages and processed_pages > 0:
+            start_page = processed_pages + 1
+            print(f"Total pages in PDF: {total_pages} (Resuming from page {start_page})")
+            update_job_status(job_id, 'in_progress', total_pages=total_pages)
+        else:
+            print(f"Total pages in PDF: {total_pages}")
+            update_job_status(job_id, 'in_progress', total_pages=total_pages, processed_pages=0)
 
         output_folder = os.path.join("temp_pages", f"{assembly_no}_{part_no}")
         os.makedirs(output_folder, exist_ok=True)
 
-        for page_num in range(1, total_pages + 1):
+        for page_num in range(start_page, total_pages + 1):
             image_path = os.path.join(output_folder, f"page_{page_num}.jpg")
             if not os.path.exists(image_path):
                 print(f"Converting page {page_num}...")
