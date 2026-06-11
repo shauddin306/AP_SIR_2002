@@ -87,8 +87,36 @@ export function ActiveJobsQueue() {
               )}
 
               {job.status === 'error' && (
-                <div style={{ fontSize: 11, color: '#f87171', marginTop: 4, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                  ⚠️ {job.error_message}
+                <div style={{ marginTop: 8 }}>
+                  <div style={{ fontSize: 11, color: '#f87171', whiteSpace: 'normal', wordBreak: 'break-word', lineHeight: 1.4, marginBottom: 8, background: 'rgba(239, 68, 68, 0.1)', padding: 8, borderRadius: 4 }}>
+                    ⚠️ {job.error_message}
+                  </div>
+                  <button 
+                    onClick={async () => {
+                      try {
+                        await fetch('/api/jobs/retry', {
+                          method: 'POST',
+                          headers: { 'Content-Type': 'application/json' },
+                          body: JSON.stringify({ jobId: job.id })
+                        })
+                        fetchJobs() // refresh immediately
+                      } catch (e) {
+                        console.error(e)
+                      }
+                    }}
+                    style={{ 
+                      background: '#3b82f6', 
+                      color: 'white', 
+                      border: 'none', 
+                      padding: '4px 12px', 
+                      borderRadius: 4, 
+                      fontSize: 11, 
+                      fontWeight: 600, 
+                      cursor: 'pointer' 
+                    }}
+                  >
+                    ↺ Retry Job
+                  </button>
                 </div>
               )}
             </div>

@@ -28,9 +28,9 @@ export async function GET() {
       return true
     })
 
-    // Sort: running first, then pending, then done
+    // Sort: running first, then pending, then error, then done
     const sortedJobs = recentJobs.sort((a, b) => {
-      const statusOrder = { 'running': 0, 'pending': 1, 'done': 2, 'error': 3 }
+      const statusOrder = { 'running': 0, 'pending': 1, 'error': 2, 'done': 3 }
       const orderA = statusOrder[a.status as keyof typeof statusOrder] ?? 4
       const orderB = statusOrder[b.status as keyof typeof statusOrder] ?? 4
       
@@ -38,7 +38,7 @@ export async function GET() {
       return new Date(b.updated_at).getTime() - new Date(a.updated_at).getTime()
     })
 
-    return NextResponse.json({ jobs: sortedJobs.slice(0, 50) })
+    return NextResponse.json({ jobs: sortedJobs.slice(0, 100) })
   } catch (err) {
     return NextResponse.json({ error: String(err) }, { status: 500 })
   }
