@@ -26,7 +26,7 @@ export async function POST(req: Request) {
     }
 
     const assemblyNameMap: Record<number, string> = {
-      151: 'Tadipatri',
+      151: 'Rajampet',
       152: 'Rayachoty',
       153: 'Lakkireddypalli',
       154: 'Kadapa',
