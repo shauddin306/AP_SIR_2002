@@ -129,7 +129,7 @@ async function runProvisioningJob(nodeId: string, ip: string, pemKey: string) {
     
   } catch (err: any) {
     console.error("Provisioning failed:", err)
-    await updateStatus(\`Failed: \${err.message}\`, 'offline')
+    await updateStatus(`Failed: ${err.message}`, 'offline')
     conn.end()
   }
 }
