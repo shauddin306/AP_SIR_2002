@@ -555,6 +555,25 @@ export default function UploadPdfClient() {
                   />
                 </div>
               </div>
+              
+              <div style={{ marginBottom: 24 }}>
+                <label style={{ display: 'block', fontSize: 12, fontWeight: 600, marginBottom: 6, color: 'var(--color-text-secondary)' }}>Processing Engine</label>
+                <select
+                  value={engine}
+                  onChange={(e) => setEngine(e.target.value as ExtractionEngine)}
+                  style={{
+                    width: '100%', padding: '12px 16px', borderRadius: 10, fontSize: 14,
+                    background: 'var(--color-bg-elevated)', border: '1px solid var(--color-border)',
+                    color: 'var(--color-text-primary)', outline: 'none', cursor: 'pointer',
+                    appearance: 'none'
+                  }}
+                >
+                  <option value="aws_daemon">🚀 AWS GPU Daemon (Recommended for Batch)</option>
+                  <option value="gemini">🤖 Google Gemini Pro</option>
+                  <option value="python">🐍 Local Python Engine</option>
+                </select>
+              </div>
+
               <button
                 className="btn-primary"
                 onClick={handleEciAutoSubmit}
