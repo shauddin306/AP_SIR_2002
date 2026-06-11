@@ -19,7 +19,9 @@ interface ConflictInfo {
 
 // Dictionary for fast auto-fill
 const ASSEMBLY_DICT: Record<string, string> = {
+  '151': 'Tadipatri',
   '152': 'Rayachoty',
+  '153': 'Lakkireddypalli',
   '154': 'Kadapa',
 }
 
