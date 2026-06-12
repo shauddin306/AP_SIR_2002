@@ -131,12 +131,27 @@ def process_job(supabase: Client, job: dict):
         if os.path.exists(local_pdf):
             os.remove(local_pdf)
 
+def setup_llama_server():
+    llama_dir = os.path.join(os.path.dirname(__file__), 'llama_bin')
+    llama_bin = os.path.join(llama_dir, 'build', 'bin', 'llama-server')
+    
+    if sys.platform == "linux" and not os.path.exists(llama_bin):
+        import subprocess
+        print("[*] Downloading required llama-server binary for Surya OCR layout fallback...")
+        subprocess.run(["curl", "-LO", "https://github.com/ggml-org/llama.cpp/releases/download/b4131/llama-b4131-bin-ubuntu-x64.zip"], check=True)
+        subprocess.run(["unzip", "-o", "-q", "llama-b4131-bin-ubuntu-x64.zip", "-d", "llama_bin"], check=True)
+        
+    if os.path.exists(llama_bin):
+        os.environ["LLAMA_CPP_BINARY"] = llama_bin
+        os.chmod(llama_bin, 0o755)
+
 def main():
     print("==================================================")
     print("🤖 Kaggle Distributed GPU Worker Daemon Started!")
     print("==================================================")
     
     supabase = init_supabase()
+    setup_llama_server()
     
     # Preload PyTorch Models to GPU to save time on the first job
     print("[*] Pre-loading Surya OCR PyTorch models into GPU memory...")
