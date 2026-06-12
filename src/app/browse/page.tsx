@@ -75,8 +75,18 @@ function BrowsePageInner() {
         if (jobData.source_pdf.startsWith('http')) {
           setPdfUrl(`/api/pdf?file=${encodeURIComponent(jobData.source_pdf)}`)
         } else {
-          const { data: publicUrlData } = supabase.storage.from('voter-pdfs').getPublicUrl(jobData.source_pdf)
-          setPdfUrl(publicUrlData.publicUrl)
+          // Fetch the signed URL from our API since the bucket is private
+          const sigRes = await fetch(`/api/pdf?file=${encodeURIComponent(jobData.source_pdf)}`)
+          if (sigRes.ok) {
+            const sigData = await sigRes.json()
+            if (sigData.signedUrl) {
+              setPdfUrl(sigData.signedUrl)
+            } else {
+              setPdfUrl(null)
+            }
+          } else {
+            setPdfUrl(null)
+          }
         }
       } else {
         setPdfUrl(null)
