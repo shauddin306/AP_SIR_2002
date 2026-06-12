@@ -61,11 +61,11 @@ function VoterCard({ voter, onViewAudit, onViewFamily }: { voter: Voter, onViewA
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
           <div style={{ fontSize: 16, fontWeight: 700, color: '#f8fafc' }}>
-            {voter.voter_name_en}
+            {((voter as any).voter_name_english || (voter as any).voter_name_en) as string}
           </div>
-          {voter.voter_name_te && (
+          {((voter as any).voter_name_telugu || (voter as any).voter_name_te) && (
             <div style={{ fontSize: 15, color: '#cbd5e1' }}>
-              {voter.voter_name_te}
+              {((voter as any).voter_name_telugu || (voter as any).voter_name_te) as string}
             </div>
           )}
         </div>
@@ -91,15 +91,15 @@ function VoterCard({ voter, onViewAudit, onViewFamily }: { voter: Voter, onViewA
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, fontSize: 13, color: '#94a3b8' }}>
         <div>
           <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#64748b' }}>House No</span>
-          <div style={{ color: '#e2e8f0', fontWeight: 600 }}>{voter.house_no_raw || '-'}</div>
+          <div style={{ color: '#e2e8f0', fontWeight: 600 }}>{((voter as any).house_no || (voter as any).house_no_raw) || '-'}</div>
         </div>
         <div>
           <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#64748b' }}>Relative</span>
-          <div style={{ color: '#e2e8f0' }}>{voter.relative_name_en || voter.relative_name_te || '-'}</div>
+          <div style={{ color: '#e2e8f0' }}>{((voter as any).relative_name_english || (voter as any).relative_name_telugu || (voter as any).relative_name_en) || '-'}</div>
         </div>
         <div>
           <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#64748b' }}>Age / Gender</span>
-          <div style={{ color: '#e2e8f0' }}>{voter.age || '-'} / {voter.gender_en || voter.gender_te || '-'}</div>
+          <div style={{ color: '#e2e8f0' }}>{voter.age || '-'} / {((voter as any).gender || (voter as any).gender_en || (voter as any).gender_te) || '-'}</div>
         </div>
         <div>
           <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#64748b' }}>EPIC ID</span>

@@ -163,7 +163,7 @@ function SearchPageInner() {
   const filteredResults = matchFilter === 'ALL' ? results : results.filter(r => r.match_type === matchFilter)
 
   return (
-    <div className="search-page-container" style={{ maxWidth: 1600, margin: '0 auto', padding: '32px 24px' }}>
+    <div className="search-page-container" style={{ maxWidth: 1600, margin: '0 auto', padding: '32px 24px 120px 24px' }}>
 
       {/* Header */}
       <div style={{ marginBottom: 28 }}>

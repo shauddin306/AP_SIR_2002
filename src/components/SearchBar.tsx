@@ -83,7 +83,7 @@ export function SearchBar({
           display: 'flex', alignItems: 'center', gap: 12,
         }}>
           {resultCount !== undefined && value && !isLoading && (
-            <span style={{
+            <span className="hidden sm:inline-block" style={{
               fontSize: 13, color: 'var(--color-text-muted)',
               whiteSpace: 'nowrap', fontWeight: 500
             }}>
