@@ -109,6 +109,28 @@ function VoterCard({ voter, onViewAudit, onViewFamily }: { voter: Voter, onViewA
         </div>
       </div>
 
+      <div style={{ height: 1, background: 'rgba(255, 255, 255, 0.05)', margin: '8px 0' }} />
+
+      {/* Location Details */}
+      <div style={{ fontSize: 12, color: '#94a3b8', display: 'flex', flexDirection: 'column', gap: 6, padding: '4px 0' }}>
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          <span style={{ fontSize: 14 }}>📍</span>
+          <span style={{ color: '#cbd5e1' }}>{voter.assembly_no} - {voter.assembly_name || 'Unknown'}</span>
+          <span style={{ color: '#475569' }}>•</span>
+          <span style={{ color: '#cbd5e1' }}>Part {voter.part_no}</span>
+        </div>
+        <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+          <span style={{ fontSize: 14 }}>📄</span>
+          <span>Serial No: <strong style={{ color: '#e2e8f0' }}>{voter.serial_no || '-'}</strong></span>
+          {voter.polling_station_no && (
+            <>
+              <span style={{ color: '#475569' }}>•</span>
+              <span>Booth: <strong style={{ color: '#e2e8f0' }}>{voter.polling_station_no}</strong></span>
+            </>
+          )}
+        </div>
+      </div>
+
       <div style={{ height: 1, background: 'rgba(255, 255, 255, 0.05)', margin: '4px 0' }} />
 
       {/* Actions */}
