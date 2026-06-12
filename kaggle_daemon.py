@@ -23,11 +23,20 @@ def init_supabase() -> Client:
     return create_client(url, key)
 
 def download_pdf(supabase: Client, file_name: str, local_path: str):
-    print(f"[*] Downloading {file_name} from Supabase Storage...")
-    res = supabase.storage.from_("voter-pdfs").download(file_name)
-    with open(local_path, "wb") as f:
-        f.write(res)
-    print(f"[+] Download complete: {len(res)} bytes.")
+    if file_name.startswith("http://") or file_name.startswith("https://"):
+        print(f"[*] Downloading direct URL: {file_name} ...")
+        response = requests.get(file_name, stream=True)
+        response.raise_for_status()
+        with open(local_path, "wb") as f:
+            for chunk in response.iter_content(chunk_size=8192):
+                f.write(chunk)
+        print(f"[+] Download complete from URL.")
+    else:
+        print(f"[*] Downloading {file_name} from Supabase Storage...")
+        res = supabase.storage.from_("voter-pdfs").download(file_name)
+        with open(local_path, "wb") as f:
+            f.write(res)
+        print(f"[+] Download complete: {len(res)} bytes.")
 
 def process_job(supabase: Client, job: dict):
     job_id = job["id"]
