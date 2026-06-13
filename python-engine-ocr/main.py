@@ -266,6 +266,26 @@ def parse_surya_text(text: str):
     return voter_data
 
 
+def _normalize_serial(raw: str) -> int:
+    """
+    Robustly convert an OCR serial cell to an integer.
+    Handles common OCR noise: '|', '.', ',', 'l'→'1', 'O'→'0', stray spaces.
+    Returns -1 if it cannot be parsed as a positive integer.
+    """
+    if not raw:
+        return -1
+    cleaned = (raw.strip()
+               .replace('|', '').replace('.', '').replace(',', '')
+               .replace('l', '1').replace('O', '0').replace('o', '0')
+               .replace(' ', '').replace('\t', ''))
+    # Keep only leading digits
+    m = re.match(r'^(\d+)', cleaned)
+    if m:
+        val = int(m.group(1))
+        return val if val > 0 else -1
+    return -1
+
+
 def extract_voters_row_table(img, page_no: int) -> list:
     """
     Handles row-table format PDFs (like Part 189 — spreadsheet with 8 columns, one voter per row).
@@ -315,10 +335,10 @@ def extract_voters_row_table(img, page_no: int) -> list:
             cols_text = [c.get_text(strip=True) for c in cols]
             
             # Skip header rows — first column must be a number
-            if not cols_text or not cols_text[0].isdigit():
+            serial_no = _normalize_serial(cols_text[0] if cols_text else "")
+            if serial_no < 1:
                 continue
-            
-            serial_no = int(cols_text[0])
+
             house_no = cols_text[1] if len(cols_text) > 1 else ""
             voter_name = clean_telugu_ocr_errors(cols_text[2]) if len(cols_text) > 2 else ""
             relation_type = cols_text[3] if len(cols_text) > 3 else ""

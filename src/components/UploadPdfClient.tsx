@@ -175,8 +175,14 @@ export default function UploadPdfClient() {
         if (data.error) throw new Error(data.error)
         
         if (data.conflict) {
-          // In batch mode, if it already exists, we skip it to be safe
-          setBatchLogs(prev => [{ part: current, status: 'skipped', message: 'Already exists in database', url, time: new Date().toLocaleTimeString() }, ...prev])
+          if (engine === 'aws_daemon') {
+            // aws_daemon: QUEUE it anyway — the Kaggle worker will UPSERT/overwrite
+            // This is intentional re-processing with improved OCR quality
+            setBatchLogs(prev => [{ part: current, status: 'success', message: 'Requeued (exists → will overwrite with new OCR)', url, time: new Date().toLocaleTimeString() }, ...prev])
+          } else {
+            // Non-daemon engines: skip to avoid running a synchronous job twice
+            setBatchLogs(prev => [{ part: current, status: 'skipped', message: 'Already exists in database (use AWS Daemon to re-process)', url, time: new Date().toLocaleTimeString() }, ...prev])
+          }
         } else {
           if (engine === 'aws_daemon') {
             setBatchLogs(prev => [{ part: current, status: 'success', message: 'Queued for AWS Daemon', url, time: new Date().toLocaleTimeString() }, ...prev])
@@ -655,10 +661,13 @@ export default function UploadPdfClient() {
             ) : (
               batchLogs.map((log, i) => (
                 <div key={i} style={{ 
-                  color: log.status === 'success' ? '#4ade80' : log.status === 'error' ? '#f87171' : '#facc15',
+                  color: log.status === 'error' ? '#f87171' 
+                       : log.status === 'skipped' ? '#facc15'
+                       : log.message?.includes('Requeued') ? '#67e8f9'  // cyan = re-processing
+                       : '#4ade80',  // green = fresh queue
                   marginBottom: 8, borderBottom: '1px solid #222', paddingBottom: 8
                 }}>
-                  <div style={{ marginBottom: 2 }}>[{log.time}] Part {log.part}: {log.status.toUpperCase()} {log.message ? ` - ${log.message}` : ''}</div>
+                  <div style={{ marginBottom: 2 }}>[{log.time}] Part {log.part}: {log.message?.includes('Requeued') ? '🔄 REQUEUED' : log.status.toUpperCase()} {log.message ? ` - ${log.message}` : ''}</div>
                   <div style={{ fontSize: 11, color: '#666' }}>🔗 {log.url}</div>
                 </div>
               ))
