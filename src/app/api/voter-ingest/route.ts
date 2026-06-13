@@ -26,11 +26,15 @@ export async function POST(req: Request) {
     }
 
     const assemblyNameMap: Record<number, string> = {
+      143: 'Punganur',
+      144: 'Madanapalle',
       151: 'Rajampet',
       152: 'Rayachoty',
       153: 'Lakkireddypalli',
       154: 'Kadapa',
+      155: 'Railway Kodur',
     };
+
 
     const enrichedData = volunteers_data.map(v => {
       let safeAge = parseInt(v.age, 10);

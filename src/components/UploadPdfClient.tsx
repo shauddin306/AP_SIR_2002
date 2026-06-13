@@ -19,10 +19,13 @@ interface ConflictInfo {
 
 // Dictionary for fast auto-fill
 const ASSEMBLY_DICT: Record<string, string> = {
-  '151': 'Tadipatri',
+  '143': 'Punganur',
+  '144': 'Madanapalle',
+  '151': 'Rajampet',
   '152': 'Rayachoty',
   '153': 'Lakkireddypalli',
   '154': 'Kadapa',
+  '155': 'Railway Kodur',
 }
 
 export default function UploadPdfClient() {
