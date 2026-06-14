@@ -17,21 +17,35 @@ export function AuditViewModal({ sourcePdf, pageNo, onClose }: AuditViewModalPro
   useEffect(() => {
     async function loadPdf() {
       try {
-        // Fetch signed URL from secure server route
+        // Fetch signed URL or proxied PDF from secure server route
         const response = await fetch(`/api/pdf?file=${encodeURIComponent(sourcePdf)}`)
         
         if (!response.ok) {
-          const err = await response.json()
-          throw new Error(err.error || 'Failed to get PDF link')
+          const text = await response.text()
+          try {
+            const err = JSON.parse(text)
+            throw new Error(err.error || 'Failed to get PDF link')
+          } catch (e) {
+            throw new Error(`Server returned ${response.status}: ${text.substring(0, 50)}`)
+          }
         }
 
-        const data = await response.json()
-
-        if (data?.signedUrl) {
-          // Append #page=X to tell the browser's native PDF viewer to jump to that page
-          setPdfUrl(`${data.signedUrl}#page=${pageNo}`)
+        const contentType = response.headers.get('Content-Type') || ''
+        
+        if (contentType.includes('application/pdf')) {
+          // We received the raw PDF binary (proxied from ECI URL)
+          const blob = await response.blob()
+          const objectUrl = URL.createObjectURL(blob)
+          setPdfUrl(`${objectUrl}#page=${pageNo}`)
         } else {
-          setError("Could not generate URL")
+          // We received JSON with a signedUrl (from Supabase storage)
+          const data = await response.json()
+          if (data?.signedUrl) {
+            // Append #page=X to tell the browser's native PDF viewer to jump to that page
+            setPdfUrl(`${data.signedUrl}#page=${pageNo}`)
+          } else {
+            setError("Could not generate URL")
+          }
         }
       } catch (err: any) {
         console.error('Failed to load PDF:', err)
@@ -43,6 +57,15 @@ export function AuditViewModal({ sourcePdf, pageNo, onClose }: AuditViewModalPro
 
     loadPdf()
   }, [sourcePdf, pageNo])
+
+  // Clean up ObjectURL on unmount or when url changes to avoid memory leaks
+  useEffect(() => {
+    return () => {
+      if (pdfUrl && pdfUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(pdfUrl.split('#')[0])
+      }
+    }
+  }, [pdfUrl])
 
   return (
     <div style={{
