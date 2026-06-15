@@ -67,6 +67,9 @@ export async function GET(req: NextRequest) {
     ? parseFloat(searchParams.get('family_house_no_normalized')!) : null
   const family_part_no = searchParams.get('family_part_no')
     ? parseInt(searchParams.get('family_part_no')!, 10) : null
+  const family_assembly_no = searchParams.get('family_assembly_no')
+    ? parseInt(searchParams.get('family_assembly_no')!, 10) : null
+  const family_house_no_raw = searchParams.get('family_house_no_raw') || null
 
   // We fetch a larger limit to allow post-filtering for relative_name
   const limit = Math.min(parseInt(searchParams.get('limit') || '20', 10), 100)
@@ -75,13 +78,20 @@ export async function GET(req: NextRequest) {
     // ----------------------------------------------------------------------
     // MODE 1: FAMILY TREE BYPASS
     // ----------------------------------------------------------------------
-    if (family_house_no_normalized != null && family_part_no) {
-      const { data: family, error } = await supabase
+    if ((family_house_no_normalized != null || family_house_no_raw) && family_part_no && family_assembly_no) {
+      let queryBuilder = supabase
         .from('voters')
         .select('*')
         .eq('part_no', family_part_no)
-        .eq('house_no_normalized', family_house_no_normalized)
-        .order('age', { ascending: false })
+        .eq('assembly_no', family_assembly_no)
+
+      if (family_house_no_normalized != null) {
+        queryBuilder = queryBuilder.eq('house_no_normalized', family_house_no_normalized)
+      } else {
+        queryBuilder = queryBuilder.eq('house_no', family_house_no_raw)
+      }
+
+      const { data: family, error } = await queryBuilder.order('age', { ascending: false })
       
       if (error) throw error
 

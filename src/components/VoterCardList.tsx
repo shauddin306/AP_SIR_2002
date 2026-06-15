@@ -104,7 +104,7 @@ function VoterCard({ voter, onViewAudit, onViewFamily }: { voter: Voter, onViewA
         <div>
           <span style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.5px', color: '#64748b' }}>EPIC ID</span>
           <div style={{ color: '#e2e8f0', fontFamily: 'monospace' }}>
-            {voter.epic_id ? `${voter.epic_id.substring(0, 3)}***${voter.epic_id.slice(-3)}` : '-'}
+            {voter.epic_id || '-'}
           </div>
         </div>
       </div>

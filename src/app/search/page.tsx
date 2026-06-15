@@ -19,7 +19,7 @@ function SearchPageInner() {
   const [filterAssemblyNo, setFilterAssemblyNo] = useState(searchParams.get('assembly_no') || '')
   const [filterPartNo, setFilterPartNo] = useState(searchParams.get('part_no') || '')
   const [filterRelativeName, setFilterRelativeName] = useState(searchParams.get('relative_name') || '')
-  const [familyView, setFamilyView] = useState<{house_no_normalized: number, part_no: number, house_no_raw: string} | null>(null)
+  const [familyView, setFamilyView] = useState<{house_no_normalized: number, part_no: number, house_no_raw: string, assembly_no: number} | null>(null)
   const [matchFilter, setMatchFilter] = useState<'ALL' | 'EXACT' | 'CLOSE' | 'POSSIBLE'>('ALL')
   
   const [metadata, setMetadata] = useState<VoterPart[]>([])
@@ -67,6 +67,8 @@ function SearchPageInner() {
     relName?: string,
     famHouseNormalized?: number,
     famPart?: number,
+    famAssembly?: number,
+    famHouseRaw?: string,
     limit = 20,
     append = false
   ) => {
@@ -89,6 +91,8 @@ function SearchPageInner() {
       if (famHouseNormalized != null && famPart) {
         params.set('family_house_no_normalized', famHouseNormalized.toString())
         params.set('family_part_no', famPart.toString())
+        if (famAssembly) params.set('family_assembly_no', famAssembly.toString())
+        if (famHouseRaw) params.set('family_house_no_raw', famHouseRaw)
       }
       const res = await fetch(`/api/search?${params}`)
       const data = await res.json()
@@ -135,7 +139,7 @@ function SearchPageInner() {
     if (debounceRef.current) clearTimeout(debounceRef.current)
     debounceRef.current = setTimeout(() => {
       if (familyView) {
-        doSearch('', '', '', '', familyView.house_no_normalized, familyView.part_no)
+        doSearch('', '', '', '', familyView.house_no_normalized, familyView.part_no, familyView.assembly_no, familyView.house_no_raw)
       } else {
         doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName)
       }
@@ -146,13 +150,13 @@ function SearchPageInner() {
   const handleSearchSubmit = useCallback(() => {
     if (familyView) return
     setCurrentLimit(20)
-    doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName, undefined, undefined, 20, false)
+    doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName, undefined, undefined, undefined, undefined, 20, false)
   }, [query, filterAssemblyNo, filterPartNo, filterRelativeName, familyView, doSearch])
 
   const handleLoadMore = useCallback(() => {
     const newLimit = currentLimit + 20
     setCurrentLimit(newLimit)
-    doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName, undefined, undefined, newLimit, false)
+    doSearch(query, filterAssemblyNo, filterPartNo, filterRelativeName, undefined, undefined, undefined, undefined, newLimit, false)
   }, [query, filterAssemblyNo, filterPartNo, filterRelativeName, currentLimit, doSearch])
 
   // Count by match type

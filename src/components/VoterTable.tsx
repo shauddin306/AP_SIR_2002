@@ -14,7 +14,7 @@ interface VoterTableProps {
   onSort?: (column: string, dir: 'asc' | 'desc') => void
   sortBy?: string
   sortDir?: 'asc' | 'desc'
-  onViewFamily?: (house_no_normalized: number, part_no: number, house_no_raw: string) => void
+  onViewFamily?: (house_no_normalized: number, part_no: number, house_no_raw: string, assembly_no: number) => void
   userRole?: string | null
 }
 
@@ -413,7 +413,7 @@ export function VoterTable({
                         style={{ fontSize: 11, padding: '4px 8px', color: 'var(--color-accent)' }}
                         onClick={(e) => {
                           e.stopPropagation()
-                          onViewFamily(v.house_no_normalized as number, v.part_no as number, v.house_no as string)
+                          onViewFamily(v.house_no_normalized as number, v.part_no as number, v.house_no as string, v.assembly_no as number)
                         }}
                       >
                         👥 Family
