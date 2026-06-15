@@ -30,12 +30,12 @@ export default function HomeSearchClient() {
 
   return (
     <form onSubmit={handleSearch} style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
-      <div style={{ display: 'flex', gap: 12, marginBottom: 20 }}>
+      <div className="flex flex-col md:flex-row gap-3 mb-5">
         <select
           value={assemblyNo}
           onChange={e => setAssemblyNo(e.target.value)}
           className="search-input-mockup"
-          style={{ width: 280, appearance: 'auto', paddingRight: 32, cursor: 'pointer', fontWeight: 600 }}
+          style={{ appearance: 'auto', paddingRight: 32, cursor: 'pointer', fontWeight: 600, width: '100%' }}
         >
           <option value="">🌎 All Assemblies</option>
           {assemblies.map(a => (
@@ -46,21 +46,21 @@ export default function HomeSearchClient() {
         <select
           value="" // For now just a placeholder on home screen, or we can add partNo state
           onChange={() => {}} 
-          className="search-input-mockup"
+          className="search-input-mockup hidden md:block"
           style={{ width: 140, appearance: 'auto', paddingRight: 32, cursor: 'pointer', opacity: assemblyNo ? 1 : 0.5 }}
           disabled={!assemblyNo}
         >
           <option value="">All Parts</option>
         </select>
         
-        <div style={{ position: 'relative', flex: 1 }}>
+        <div style={{ position: 'relative', flex: 1, width: '100%' }}>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Type any combination: Door No, Name, or EPIC ID..."
             className="search-input-mockup"
-            style={{ fontWeight: 600 }}
+            style={{ fontWeight: 600, width: '100%' }}
           />
           <div style={{ position: 'absolute', right: 20, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}>
             🔍
