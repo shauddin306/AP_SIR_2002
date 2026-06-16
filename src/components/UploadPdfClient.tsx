@@ -33,6 +33,7 @@ const ASSEMBLY_DICT: Record<string, string> = {
   '153': 'Lakkireddypalli',
   '154': 'Kadapa',
   '155': 'Railway Kodur',
+  '157': 'Proddatur',
 }
 
 export default function UploadPdfClient() {
