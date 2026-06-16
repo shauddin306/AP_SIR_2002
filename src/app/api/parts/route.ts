@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { createServiceClient } from '@/lib/supabase/client'
 
 export const runtime = 'nodejs'
+export const dynamic = 'force-dynamic'
 
 // GET /api/parts — all assemblies and their parts
 // GET /api/parts?assembly_no=152&part_no=69&page=1 — paginated voters for a part
