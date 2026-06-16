@@ -26,8 +26,15 @@ export async function POST(req: Request) {
     }
 
     const assemblyNameMap: Record<number, string> = {
+      141: 'Palamaner',
+      142: 'Kuppam',
       143: 'Punganur',
       144: 'Madanapalle',
+      145: 'Tamballapalle',
+      146: 'Vayalpadu',
+      147: 'Pileru',
+      148: 'Chandragiri',
+      149: 'Tirupati',
       151: 'Rajampet',
       152: 'Rayachoty',
       153: 'Lakkireddypalli',
