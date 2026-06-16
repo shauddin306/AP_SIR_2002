@@ -20,8 +20,10 @@ function BrowsePageInner() {
   const [userRole, setUserRole] = useState<string | null>(null)
 
   useEffect(() => {
-    supabase.from('voter_parts').select('*').then(({ data }) => {
-      if (data) setMetadata(data as VoterPart[])
+    fetch('/api/parts').then(res => res.json()).then(data => {
+      if (data.assemblies) {
+        setMetadata(data.assemblies.flatMap((a: any) => a.parts))
+      }
     })
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {

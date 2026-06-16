@@ -21,22 +21,34 @@ export async function GET(req: NextRequest) {
 
   // Return all parts grouped by assembly
   if (!assembly_no || !part_no) {
-    const { data, error } = await supabase
-      .from('voter_parts')
-      .select('*')
-      .order('assembly_no', { ascending: true })
-      .order('part_no', { ascending: true })
+    let allParts: any[] = []
+    let currentFrom = 0
+    const fetchSize = 1000
+    
+    while (true) {
+      const { data, error } = await supabase
+        .from('voter_parts')
+        .select('*')
+        .order('assembly_no', { ascending: true })
+        .order('part_no', { ascending: true })
+        .range(currentFrom, currentFrom + fetchSize - 1)
 
-    if (error) return NextResponse.json({ error: String(error) }, { status: 500 })
+      if (error) return NextResponse.json({ error: String(error) }, { status: 500 })
+      if (!data || data.length === 0) break
+      
+      allParts.push(...data)
+      if (data.length < fetchSize) break
+      currentFrom += fetchSize
+    }
 
     // Group by assembly
     const grouped: Record<number, {
       assembly_name: string
       assembly_no: number
-      parts: typeof data
+      parts: typeof allParts
     }> = {}
 
-    for (const part of (data || [])) {
+    for (const part of (allParts || [])) {
       if (!grouped[part.assembly_no]) {
         grouped[part.assembly_no] = {
           assembly_name: part.assembly_name,

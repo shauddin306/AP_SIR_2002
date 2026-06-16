@@ -24,12 +24,14 @@ function SearchPageInner() {
   
   const [metadata, setMetadata] = useState<VoterPart[]>([])
   const [userRole, setUserRole] = useState<string | null>(null)
-  const [showLoginRequired, setShowLoginRequired] = useState(false)
+  const [showRateLimit, setShowRateLimit] = useState(false)
   const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState(false)
 
   useEffect(() => {
-    supabase.from('voter_parts').select('*').then(({ data }) => {
-      if (data) setMetadata(data as VoterPart[])
+    fetch('/api/parts').then(res => res.json()).then(data => {
+      if (data.assemblies) {
+        setMetadata(data.assemblies.flatMap((a: any) => a.parts))
+      }
     })
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (user) {
@@ -97,8 +99,8 @@ function SearchPageInner() {
       const res = await fetch(`/api/search?${params}`)
       const data = await res.json()
       
-      if (res.status === 403 && data.error === 'LOGIN_REQUIRED') {
-        setShowLoginRequired(true)
+      if (res.status === 429 && data.error === 'RATE_LIMIT_EXCEEDED') {
+        setShowRateLimit(true)
         return
       }
 
@@ -181,30 +183,24 @@ function SearchPageInner() {
         </p>
       </div>
 
-      {showLoginRequired && (
+      {showRateLimit && (
         <div style={{
           position: 'fixed', inset: 0, background: 'rgba(15, 23, 42, 0.8)', backdropFilter: 'blur(12px)',
           display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 1000, padding: 24
         }}>
           <div className="card-glass" style={{ background: 'rgba(30, 41, 59, 0.9)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 24, padding: 48, textAlign: 'center', maxWidth: 450, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
-            <div style={{ fontSize: 64, marginBottom: 24 }}>🔒</div>
-            <h2 style={{ fontSize: 24, fontWeight: 700, color: '#f8fafc', marginBottom: 16 }}>Login Required</h2>
+            <div style={{ fontSize: 64, marginBottom: 24 }}>⏳</div>
+            <h2 style={{ fontSize: 24, fontWeight: 700, color: '#f8fafc', marginBottom: 16 }}>Rate Limit Exceeded</h2>
             <p style={{ color: '#94a3b8', lineHeight: 1.6, marginBottom: 32 }}>
-              You have reached the free search limit for your IP address. Please sign in to continue searching the directory.
+              You've reached the safety limit for automated searches. Please wait about an hour before searching again.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center' }}>
               <button
-                onClick={() => setShowLoginRequired(false)}
+                onClick={() => setShowRateLimit(false)}
                 style={{ padding: '12px 24px', background: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white', borderRadius: 8, cursor: 'pointer', fontWeight: 600 }}
               >
                 Close
               </button>
-              <a
-                href="/admin/login"
-                style={{ padding: '12px 24px', background: '#3b82f6', color: 'white', borderRadius: 8, textDecoration: 'none', fontWeight: 600, display: 'inline-block' }}
-              >
-                Sign In
-              </a>
             </div>
           </div>
         </div>
