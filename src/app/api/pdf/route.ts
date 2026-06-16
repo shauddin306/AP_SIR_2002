@@ -1,17 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { createClient } from '@/lib/supabase/server'
+// import { createClient } from '@/lib/supabase/server'
 import { createServiceClient } from '@/lib/supabase/client'
 
 export const runtime = 'nodejs'
 
 export async function GET(req: NextRequest) {
-  const userClient = await createClient()
-  const { data: { session } } = await userClient.auth.getSession()
-
-  // Protect the route so only logged-in users can view PDFs
-  if (!session) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 })
-  }
+  // Allow all users to view PDFs since the search is public
 
   const { searchParams } = new URL(req.url)
   const file = searchParams.get('file')
