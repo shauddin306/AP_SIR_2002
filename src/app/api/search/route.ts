@@ -15,31 +15,7 @@ export async function GET(req: NextRequest) {
   
   const supabase = createServiceClient()
 
-  // 1. IP Rate Limiting Layer (only for anonymous users)
-  if (!session) {
-    const ip = req.headers.get('x-forwarded-for') || req.headers.get('x-real-ip') || 'unknown'
-    
-    // Check IP count
-    const { data: ipData } = await supabase
-      .from('ip_search_limits')
-      .select('search_count')
-      .eq('ip_address', ip)
-      .single()
-      
-    // Allow exactly 3 searches. Block the 4th.
-    if (ipData && ipData.search_count >= 3) {
-      return NextResponse.json({ error: 'LOGIN_REQUIRED' }, { status: 403 })
-    }
-    
-    // Increment count
-    await supabase
-      .from('ip_search_limits')
-      .upsert({ 
-        ip_address: ip, 
-        search_count: (ipData?.search_count || 0) + 1,
-        updated_at: new Date().toISOString()
-      }, { onConflict: 'ip_address' })
-  }
+  // No rate limiting (unlimited searches)
 
   const { searchParams } = new URL(req.url)
   const q = searchParams.get('q')?.trim() || ''
