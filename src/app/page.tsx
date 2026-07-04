@@ -66,7 +66,7 @@ export default function HomePage() {
               fontWeight: 700,
               textTransform: 'uppercase',
               letterSpacing: '1.5px',
-              color: '#e2e8f0',
+              color: '#334155',
               margin: 0,
               display: 'flex',
               alignItems: 'center',
@@ -74,9 +74,9 @@ export default function HomePage() {
               position: 'relative',
               zIndex: 1
             }}>
-              <span style={{ color: '#94a3b8', fontWeight: 600 }}>POWERED BY</span> 
+              <span style={{ color: '#64748b', fontWeight: 600 }}>POWERED BY</span> 
               <span style={{
-                background: 'linear-gradient(90deg, #60a5fa, #c084fc)',
+                background: 'linear-gradient(90deg, #2563eb, #7c3aed)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 fontWeight: 900,
@@ -92,13 +92,13 @@ export default function HomePage() {
             lineHeight: 1.1,
             letterSpacing: '-1px',
             marginBottom: 24,
-            color: '#ffffff'
+            color: '#0f172a'
           }}>
             FIND ANY VOTER<br />IN SECONDS
           </h1>
           
           <p style={{
-            fontSize: 18, color: '#94a3b8',
+            fontSize: 18, color: '#475569',
             maxWidth: 680, margin: '0 auto', lineHeight: 1.7,
             fontWeight: 400
           }}>
@@ -169,9 +169,9 @@ function FeatureCard({ icon, titleEn, titleTe, desc }: { icon: string; titleEn: 
       <div style={{ marginBottom: 16, fontSize: 28 }}>
         {icon}
       </div>
-      <h3 style={{ fontSize: 17, fontWeight: 700, color: '#f8fafc', marginBottom: 4 }}>{titleEn}</h3>
-      <h4 style={{ fontSize: 14, fontWeight: 500, color: '#f97316', marginBottom: 12 }}>{titleTe}</h4>
-      <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.6 }}>{desc}</p>
+      <h3 style={{ fontSize: 17, fontWeight: 700, color: '#0f172a', marginBottom: 4 }}>{titleEn}</h3>
+      <h4 style={{ fontSize: 14, fontWeight: 500, color: '#ea580c', marginBottom: 12 }}>{titleTe}</h4>
+      <p style={{ color: '#475569', fontSize: 14, lineHeight: 1.6 }}>{desc}</p>
     </div>
   )
 }

@@ -50,7 +50,7 @@ function GlobalFooter() {
   return (
     <footer className="hidden md:block" style={{
       marginTop: 'auto',
-      background: 'rgba(8,12,20,0.95)',
+      background: 'rgba(253,251,247,0.95)',
       borderTop: '1px solid var(--color-border)',
       padding: '40px 24px',
       color: 'var(--color-text-secondary)',
@@ -138,11 +138,11 @@ async function TopNav() {
               <rect x="3" y="10" width="18" height="12" rx="2" stroke="var(--color-accent)" strokeWidth="2" />
               <path d="M3 14H21" stroke="var(--color-accent)" strokeWidth="2" />
               {/* Ballot Paper dropping in */}
-              <path d="M15 10V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V10" fill="#f8fafc" stroke="#f8fafc" strokeWidth="2" strokeLinecap="round" />
+              <path d="M15 10V4C15 3.44772 14.5523 3 14 3H10C9.44772 3 9 3.44772 9 4V10" fill="#0f172a" stroke="#0f172a" strokeWidth="2" strokeLinecap="round" />
               {/* Checkmark on paper */}
               <path d="M10.5 6.5L12 8L13.5 5" stroke="var(--color-accent)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <div style={{ fontWeight: 700, fontSize: 16, color: '#f8fafc', letterSpacing: '-0.3px' }}>
+            <div style={{ fontWeight: 700, fontSize: 16, color: '#0f172a', letterSpacing: '-0.3px' }}>
               Voter Search India
             </div>
           </a>
@@ -180,11 +180,11 @@ async function TopNav() {
               </>
             ) : (
               <a href="/admin/login" style={{
-                border: '1px solid rgba(255,255,255,0.15)', padding: '8px 24px', borderRadius: 100,
-                color: '#f8fafc', textDecoration: 'none', fontSize: 13, fontWeight: 600,
-                background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(12px)',
-                transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
-              }} className="hover:bg-blue-600 hover:border-blue-500 hover:shadow-blue-500/25">
+                border: '1px solid rgba(0,0,0,0.1)', padding: '8px 24px', borderRadius: 100,
+                color: '#0f172a', textDecoration: 'none', fontSize: 13, fontWeight: 600,
+                background: 'rgba(255, 255, 255, 0.6)', backdropFilter: 'blur(12px)',
+                transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
+              }} className="hover:bg-blue-50 hover:border-blue-500 hover:shadow-blue-500/25">
                 Admin Login
               </a>
             )}

@@ -6,38 +6,38 @@
    CSS CUSTOM PROPERTIES — Dark Theme Design System
    ============================================================ */
 :root {
-  /* Colors */
-  --color-bg-base:        #030712; /* Deep Navy/Black */
-  --color-bg-elevated:    #0b1325;
-  --color-bg-card:        rgba(17, 24, 39, 0.6); /* Glassmorphism base */
-  --color-bg-card-hover:  rgba(25, 36, 56, 0.8);
-  --color-bg-input:       rgba(15, 24, 38, 0.7);
-  --color-border:         rgba(30, 45, 71, 0.5);
-  --color-border-bright:  rgba(59, 130, 246, 0.3);
+  /* Colors - Premium Warm Light Theme */
+  --color-bg-base:        #fdfbf7; /* Warm creamy off-white */
+  --color-bg-elevated:    #ffffff;
+  --color-bg-card:        #ffffff; 
+  --color-bg-card-hover:  #f8fafc;
+  --color-bg-input:       #ffffff;
+  --color-border:         #e2e8f0;
+  --color-border-bright:  #cbd5e1;
 
   /* Accent — electric blue / violet / saffron */
   --color-accent:         #3b82f6;
   --color-accent-dim:     #1d4ed8;
-  --color-accent-glow:    rgba(59, 130, 246, 0.35);
-  --color-accent-text:    #93c5fd;
+  --color-accent-glow:    rgba(59, 130, 246, 0.15);
+  --color-accent-text:    #1e40af;
 
   /* Status colors */
   --color-exact:          #10b981;
-  --color-exact-bg:       rgba(16, 185, 129, 0.15);
+  --color-exact-bg:       rgba(16, 185, 129, 0.1);
   --color-close:          #f59e0b;
-  --color-close-bg:       rgba(245, 158, 11, 0.15);
+  --color-close-bg:       rgba(245, 158, 11, 0.1);
   --color-possible:       #f97316;
-  --color-possible-bg:    rgba(249, 115, 22, 0.15);
+  --color-possible-bg:    rgba(249, 115, 22, 0.1);
   --color-error:          #ef4444;
-  --color-error-bg:       rgba(239, 68, 68, 0.15);
+  --color-error-bg:       rgba(239, 68, 68, 0.1);
   --color-success:        #22c55e;
-  --color-success-bg:     rgba(34, 197, 94, 0.15);
+  --color-success-bg:     rgba(34, 197, 94, 0.1);
 
   /* Text */
-  --color-text-primary:   #f8fafc;
-  --color-text-secondary: #cbd5e1;
+  --color-text-primary:   #0f172a;
+  --color-text-secondary: #334155;
   --color-text-muted:     #64748b;
-  --color-text-accent:    #bfdbfe;
+  --color-text-accent:    #1e40af;
 
   /* Gradients */
   --gradient-brand:  linear-gradient(135deg, #2563eb 0%, #7c3aed 50%, #f97316 100%);
@@ -326,7 +326,7 @@ body {
 
 .mesh-background {
   position: relative;
-  background-color: #0b1120; /* Clean, solid dark background */
+  background-color: var(--color-bg-base); /* Clean, solid light background */
   overflow: hidden;
   z-index: 0;
 }
@@ -357,42 +357,46 @@ body {
 }
 
 .mockup-feature-card {
-  background: #111827; /* Simple dark gray */
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: #ffffff; /* White card on light bg */
+  border: 1px solid #e2e8f0;
   border-radius: 16px;
   padding: 32px 28px;
   transition: all 0.2s ease;
   position: relative;
   overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
 .mockup-feature-card:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-  background: #1f2937;
+  border-color: #cbd5e1;
+  background: #f8fafc;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
 }
 
 /* Unified Search Bar Container */
 .unified-search-bar {
   display: flex;
   align-items: center;
-  background: #111827;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 100px;
   padding: 6px;
   transition: all 0.2s ease;
   max-width: 900px;
   margin: 0 auto;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
 }
 
 .unified-search-bar:focus-within {
   border-color: #3b82f6;
-  background: #1f2937;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .unified-input {
   background: transparent;
   border: none;
-  color: #f8fafc;
+  color: #0f172a;
   font-size: 16px;
   font-weight: 500;
   outline: none;
@@ -405,7 +409,7 @@ body {
 .unified-select {
   background: transparent;
   border: none;
-  color: #e2e8f0;
+  color: #1e293b;
   font-size: 15px;
   font-weight: 600;
   outline: none;
@@ -414,7 +418,7 @@ body {
   appearance: auto;
 }
 .unified-select:focus { outline: none; }
-.unified-select option { background: #111827; color: #f8fafc; }
+.unified-select option { background: #ffffff; color: #0f172a; }
 
 .search-input-mockup {
   width: 100%;
