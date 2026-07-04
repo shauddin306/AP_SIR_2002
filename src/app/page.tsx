@@ -21,24 +21,25 @@ export default function HomePage() {
             display: 'inline-flex',
             alignItems: 'center',
             gap: 12,
-            padding: '8px 24px 8px 12px',
+            padding: '6px 20px 6px 6px',
             borderRadius: '100px',
             background: 'rgba(15, 23, 42, 0.4)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
+            backdropFilter: 'blur(16px)',
+            WebkitBackdropFilter: 'blur(16px)',
             border: '1px solid rgba(255,255,255,0.08)',
-            boxShadow: '0 4px 24px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1)',
-            marginBottom: 32,
+            boxShadow: '0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05)',
+            marginBottom: 40,
             position: 'relative',
-            overflow: 'hidden'
+            overflow: 'hidden',
+            transition: 'all 0.3s ease'
           }}>
             {/* Animated shimmer border effect */}
             <div style={{
               position: 'absolute',
               inset: 0,
-              background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.2), transparent)',
+              background: 'linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.15), transparent)',
               backgroundSize: '200% 100%',
-              animation: 'shimmer 3s infinite linear',
+              animation: 'shimmer 4s infinite linear',
               zIndex: 0,
               pointerEvents: 'none'
             }} />
@@ -47,24 +48,24 @@ export default function HomePage() {
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              width: 32,
-              height: 32,
+              width: 28,
+              height: 28,
               borderRadius: '50%',
-              background: 'linear-gradient(135deg, #3b82f6, #8b5cf6)',
-              boxShadow: '0 2px 10px rgba(139, 92, 246, 0.4)',
+              background: 'linear-gradient(135deg, #2563eb, #7c3aed)',
+              boxShadow: '0 2px 12px rgba(124, 58, 237, 0.5)',
               position: 'relative',
               zIndex: 1
             }}>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" />
               </svg>
             </div>
             
             <p style={{
-              fontSize: 13,
+              fontSize: 12,
               fontWeight: 700,
               textTransform: 'uppercase',
-              letterSpacing: '2px',
+              letterSpacing: '1.5px',
               color: '#e2e8f0',
               margin: 0,
               display: 'flex',
@@ -73,33 +74,35 @@ export default function HomePage() {
               position: 'relative',
               zIndex: 1
             }}>
-              <span style={{ color: '#94a3b8', fontWeight: 500, letterSpacing: '1px' }}>POWERED BY</span> 
+              <span style={{ color: '#94a3b8', fontWeight: 600 }}>POWERED BY</span> 
               <span style={{
                 background: 'linear-gradient(90deg, #60a5fa, #c084fc)',
                 WebkitBackgroundClip: 'text',
                 WebkitTextFillColor: 'transparent',
                 fontWeight: 900,
-                letterSpacing: '1.5px'
+                letterSpacing: '1px'
               }}>
                 MINDT PVT LTD
               </span>
             </p>
           </div>
           <h1 style={{
-            fontSize: 'clamp(40px, 6vw, 68px)',
+            fontSize: 'clamp(48px, 7vw, 76px)',
             fontWeight: 800,
-            lineHeight: 1.1,
-            letterSpacing: '-1px',
-            marginBottom: 20,
-            color: '#f8fafc',
-            textShadow: '0 4px 24px rgba(0,0,0,0.5)'
+            lineHeight: 1.05,
+            letterSpacing: '-2px',
+            marginBottom: 24,
+            background: 'linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            textShadow: '0 8px 32px rgba(0,0,0,0.5)'
           }}>
             FIND ANY VOTER<br />IN SECONDS
           </h1>
           
           <p style={{
-            fontSize: 18, color: '#cbd5e1',
-            maxWidth: 680, margin: '0 auto', lineHeight: 1.6,
+            fontSize: 18, color: '#94a3b8',
+            maxWidth: 680, margin: '0 auto', lineHeight: 1.7,
             fontWeight: 400
           }}>
             Search through the historic 2002 registered voter lists in India quickly and accurately with our AI-powered platform. Fast, reliable, and user-friendly.
@@ -107,7 +110,9 @@ export default function HomePage() {
         </div>
 
         {/* Coverage Flash Note */}
-        <LiveCoverage />
+        <div style={{ marginBottom: 40 }}>
+          <LiveCoverage />
+        </div>
 
         {/* Search Area */}
         <div style={{ marginBottom: 80 }}>
@@ -189,66 +194,66 @@ export default function HomePage() {
               />
 
               {/* Floating Node 1: Top Left */}
-              <div className="card-glass" style={{ position: 'absolute', top: 60, left: -20, padding: '12px 16px', borderRadius: 12, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 6, border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="card-glass" style={{ position: 'absolute', top: 50, left: -40, padding: '14px 18px', borderRadius: 16, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 8, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(15,23,42,0.6)', backdropFilter: 'blur(12px)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ width: 16, height: 16, borderRadius: '50%', background: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 12px rgba(59, 130, 246, 0.5)' }}>
                     <div style={{ width: 6, height: 6, background: '#fff', borderRadius: '50%' }}></div>
                   </div>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>4</span>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', letterSpacing: '0.5px' }}>Node Alpha</span>
                 </div>
-                <div style={{ width: 80, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginTop: 4 }}>
-                  <div style={{ width: '60%', height: '100%', background: '#3b82f6', borderRadius: 2 }}></div>
-                </div>
-                <div style={{ width: 60, height: 2, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}></div>
-              </div>
-
-              {/* Floating Node 2: Top Right */}
-              <div className="card-glass" style={{ position: 'absolute', top: 40, right: -10, padding: '12px 16px', borderRadius: 12, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 6, border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: 6, height: 6, background: '#fff', borderRadius: '50%' }}></div>
-                  </div>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>4</span>
-                </div>
-                <div style={{ width: 80, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginTop: 4 }}>
-                  <div style={{ width: '75%', height: '100%', background: '#10b981', borderRadius: 2 }}></div>
-                </div>
-                <div style={{ width: 40, height: 2, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}></div>
-              </div>
-
-              {/* Floating Node 3: Bottom Left */}
-              <div className="card-glass" style={{ position: 'absolute', bottom: 60, left: 20, padding: '12px 16px', borderRadius: 12, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 6, border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#f97316', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: 6, height: 6, background: '#fff', borderRadius: '50%' }}></div>
-                  </div>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>5010</span>
-                </div>
-                <div style={{ width: 80, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginTop: 4 }}>
-                  <div style={{ width: '40%', height: '100%', background: '#f97316', borderRadius: 2 }}></div>
-                </div>
-                <div style={{ width: 50, height: 2, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}></div>
-              </div>
-
-              {/* Floating Node 4: Bottom Right */}
-              <div className="card-glass" style={{ position: 'absolute', bottom: 10, right: 20, padding: '12px 16px', borderRadius: 12, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 6, border: '1px solid rgba(255,255,255,0.1)' }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <div style={{ width: 14, height: 14, borderRadius: '50%', background: '#3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                    <div style={{ width: 6, height: 6, background: '#fff', borderRadius: '50%' }}></div>
-                  </div>
-                  <span style={{ fontSize: 13, fontWeight: 600, color: '#e2e8f0' }}>Nodes</span>
-                </div>
-                <div style={{ width: 80, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginTop: 4 }}>
-                  <div style={{ width: '85%', height: '100%', background: '#3b82f6', borderRadius: 2 }}></div>
+                <div style={{ width: 100, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginTop: 4 }}>
+                  <div style={{ width: '60%', height: '100%', background: 'linear-gradient(90deg, #3b82f6, #60a5fa)', borderRadius: 2 }}></div>
                 </div>
                 <div style={{ width: 70, height: 2, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}></div>
               </div>
 
+              {/* Floating Node 2: Top Right */}
+              <div className="card-glass" style={{ position: 'absolute', top: 30, right: -20, padding: '14px 18px', borderRadius: 16, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 8, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(15,23,42,0.6)', backdropFilter: 'blur(12px)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ width: 16, height: 16, borderRadius: '50%', background: '#10b981', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 12px rgba(16, 185, 129, 0.5)' }}>
+                    <div style={{ width: 6, height: 6, background: '#fff', borderRadius: '50%' }}></div>
+                  </div>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', letterSpacing: '0.5px' }}>Node Beta</span>
+                </div>
+                <div style={{ width: 100, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginTop: 4 }}>
+                  <div style={{ width: '75%', height: '100%', background: 'linear-gradient(90deg, #10b981, #34d399)', borderRadius: 2 }}></div>
+                </div>
+                <div style={{ width: 50, height: 2, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}></div>
+              </div>
+
+              {/* Floating Node 3: Bottom Left */}
+              <div className="card-glass" style={{ position: 'absolute', bottom: 50, left: 10, padding: '14px 18px', borderRadius: 16, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 8, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(15,23,42,0.6)', backdropFilter: 'blur(12px)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ width: 16, height: 16, borderRadius: '50%', background: '#f97316', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 12px rgba(249, 115, 22, 0.5)' }}>
+                    <div style={{ width: 6, height: 6, background: '#fff', borderRadius: '50%' }}></div>
+                  </div>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', letterSpacing: '0.5px' }}>Sync 5010</span>
+                </div>
+                <div style={{ width: 100, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginTop: 4 }}>
+                  <div style={{ width: '40%', height: '100%', background: 'linear-gradient(90deg, #f97316, #fb923c)', borderRadius: 2 }}></div>
+                </div>
+                <div style={{ width: 60, height: 2, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}></div>
+              </div>
+
+              {/* Floating Node 4: Bottom Right */}
+              <div className="card-glass" style={{ position: 'absolute', bottom: 20, right: 30, padding: '14px 18px', borderRadius: 16, zIndex: 3, display: 'flex', flexDirection: 'column', gap: 8, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(15,23,42,0.6)', backdropFilter: 'blur(12px)' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                  <div style={{ width: 16, height: 16, borderRadius: '50%', background: '#8b5cf6', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 0 12px rgba(139, 92, 246, 0.5)' }}>
+                    <div style={{ width: 6, height: 6, background: '#fff', borderRadius: '50%' }}></div>
+                  </div>
+                  <span style={{ fontSize: 14, fontWeight: 700, color: '#e2e8f0', letterSpacing: '0.5px' }}>Data Store</span>
+                </div>
+                <div style={{ width: 100, height: 4, background: 'rgba(255,255,255,0.1)', borderRadius: 2, marginTop: 4 }}>
+                  <div style={{ width: '85%', height: '100%', background: 'linear-gradient(90deg, #8b5cf6, #a78bfa)', borderRadius: 2 }}></div>
+                </div>
+                <div style={{ width: 80, height: 2, background: 'rgba(255,255,255,0.1)', borderRadius: 2 }}></div>
+              </div>
+
               {/* Glowing Dots on Map */}
-              <div style={{ position: 'absolute', top: 120, left: 160, width: 8, height: 8, background: '#3b82f6', borderRadius: '50%', boxShadow: '0 0 12px 2px #3b82f6', zIndex: 4 }}></div>
-              <div style={{ position: 'absolute', top: 150, right: 120, width: 8, height: 8, background: '#10b981', borderRadius: '50%', boxShadow: '0 0 12px 2px #10b981', zIndex: 4 }}></div>
-              <div style={{ position: 'absolute', bottom: 180, left: 140, width: 8, height: 8, background: '#f97316', borderRadius: '50%', boxShadow: '0 0 12px 2px #f97316', zIndex: 4 }}></div>
-              <div style={{ position: 'absolute', bottom: 110, right: 160, width: 8, height: 8, background: '#3b82f6', borderRadius: '50%', boxShadow: '0 0 12px 2px #3b82f6', zIndex: 4 }}></div>
+              <div className="animate-pulse-glow" style={{ position: 'absolute', top: 120, left: 160, width: 8, height: 8, background: '#3b82f6', borderRadius: '50%', boxShadow: '0 0 12px 2px #3b82f6', zIndex: 4 }}></div>
+              <div className="animate-pulse-glow" style={{ position: 'absolute', top: 150, right: 120, width: 8, height: 8, background: '#10b981', borderRadius: '50%', boxShadow: '0 0 12px 2px #10b981', zIndex: 4 }}></div>
+              <div className="animate-pulse-glow" style={{ position: 'absolute', bottom: 180, left: 140, width: 8, height: 8, background: '#f97316', borderRadius: '50%', boxShadow: '0 0 12px 2px #f97316', zIndex: 4 }}></div>
+              <div className="animate-pulse-glow" style={{ position: 'absolute', bottom: 110, right: 160, width: 8, height: 8, background: '#8b5cf6', borderRadius: '50%', boxShadow: '0 0 12px 2px #8b5cf6', zIndex: 4 }}></div>
 
               {/* Connecting Lines (Simulated using CSS borders) */}
               <svg style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 1, opacity: 0.3 }} pointerEvents="none">
@@ -284,8 +289,8 @@ function FeatureCard({ iconLeft, iconRight, title, desc }: { iconLeft: React.Rea
           {iconRight}
         </div>
       </div>
-      <h3 style={{ fontSize: 18, fontWeight: 700, color: '#f8fafc', marginBottom: 8 }}>{title}</h3>
-      <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.5 }}>{desc}</p>
+      <h3 style={{ fontSize: 17, fontWeight: 700, color: '#f8fafc', marginBottom: 10, letterSpacing: '0.3px' }}>{title}</h3>
+      <p style={{ color: '#94a3b8', fontSize: 14, lineHeight: 1.6 }}>{desc}</p>
     </div>
   )
 }

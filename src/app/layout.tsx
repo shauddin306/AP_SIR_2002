@@ -160,31 +160,31 @@ async function TopNav() {
               <>
                 <a href="/admin/dashboard" style={{
                   color: 'var(--color-accent-text)', textDecoration: 'none', fontSize: 13, fontWeight: 600,
-                  opacity: 0.9, transition: 'opacity 0.2s'
-                }} className="hover:opacity-100">
+                  opacity: 0.9, transition: 'all 0.2s', padding: '6px 12px', borderRadius: 8, background: 'rgba(59, 130, 246, 0.1)'
+                }} className="hover:opacity-100 hover:bg-blue-500/20">
                   Dashboard
                 </a>
                 <a href="/admin/review" style={{
-                  color: 'var(--color-accent-text)', textDecoration: 'none', fontSize: 13, fontWeight: 600,
-                  opacity: 0.9, transition: 'opacity 0.2s', marginLeft: 8
-                }} className="hover:opacity-100">
+                  color: 'var(--color-text-secondary)', textDecoration: 'none', fontSize: 13, fontWeight: 600,
+                  opacity: 0.8, transition: 'opacity 0.2s', marginLeft: 4
+                }} className="hover:opacity-100 hover:text-white">
                   Review Queue
                 </a>
                 <a href="/admin/history" style={{
-                  color: 'var(--color-accent-text)', textDecoration: 'none', fontSize: 13, fontWeight: 600,
-                  opacity: 0.9, transition: 'opacity 0.2s', marginLeft: 16
-                }} className="hover:opacity-100">
+                  color: 'var(--color-text-secondary)', textDecoration: 'none', fontSize: 13, fontWeight: 600,
+                  opacity: 0.8, transition: 'opacity 0.2s', marginLeft: 12
+                }} className="hover:opacity-100 hover:text-white">
                   History
                 </a>
                 <LogoutButton />
               </>
             ) : (
               <a href="/admin/login" style={{
-                border: '1px solid rgba(255,255,255,0.2)', padding: '6px 24px', borderRadius: 20,
-                color: 'white', textDecoration: 'none', fontSize: 13, fontWeight: 500,
-                background: 'rgba(255,255,255,0.05)', backdropFilter: 'blur(8px)',
-                transition: 'all 0.2s'
-              }}>
+                border: '1px solid rgba(255,255,255,0.15)', padding: '8px 24px', borderRadius: 100,
+                color: '#f8fafc', textDecoration: 'none', fontSize: 13, fontWeight: 600,
+                background: 'rgba(15, 23, 42, 0.6)', backdropFilter: 'blur(12px)',
+                transition: 'all 0.3s ease', boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+              }} className="hover:bg-blue-600 hover:border-blue-500 hover:shadow-blue-500/25">
                 Admin Login
               </a>
             )}

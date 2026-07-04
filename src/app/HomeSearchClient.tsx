@@ -30,12 +30,16 @@ export default function HomeSearchClient() {
 
   return (
     <form onSubmit={handleSearch} style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' }}>
-      <div className="flex flex-col md:flex-row gap-3 mb-5">
+      
+      {/* Unified Search Bar */}
+      <div className="unified-search-bar mb-6">
+        
+        {/* Assembly Select */}
         <select
           value={assemblyNo}
           onChange={e => setAssemblyNo(e.target.value)}
-          className="search-input-mockup"
-          style={{ appearance: 'auto', paddingRight: 32, cursor: 'pointer', fontWeight: 600, width: '100%' }}
+          className="unified-select"
+          style={{ width: '220px', borderRight: '1px solid rgba(255,255,255,0.1)' }}
         >
           <option value="">🌎 All Assemblies</option>
           {assemblies.map(a => (
@@ -43,40 +47,47 @@ export default function HomeSearchClient() {
           ))}
         </select>
         
+        {/* Part Select (Placeholder for now) */}
         <select
-          value="" // For now just a placeholder on home screen, or we can add partNo state
+          value=""
           onChange={() => {}} 
-          className="search-input-mockup hidden md:block"
-          style={{ width: 140, appearance: 'auto', paddingRight: 32, cursor: 'pointer', opacity: assemblyNo ? 1 : 0.5 }}
+          className="unified-select hidden md:block"
+          style={{ width: '140px', borderRight: '1px solid rgba(255,255,255,0.1)', opacity: assemblyNo ? 1 : 0.5 }}
           disabled={!assemblyNo}
         >
           <option value="">All Parts</option>
         </select>
         
-        <div style={{ position: 'relative', flex: 1, width: '100%' }}>
+        {/* Search Input */}
+        <div style={{ position: 'relative', flex: 1, display: 'flex', alignItems: 'center' }}>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Type any combination: Door No, Name, or EPIC ID..."
-            className="search-input-mockup"
-            style={{ fontWeight: 600, width: '100%' }}
+            placeholder="Search by Name, EPIC ID, or Door No..."
+            className="unified-input"
           />
-          <div style={{ position: 'absolute', right: 20, top: '50%', transform: 'translateY(-50%)', color: '#94a3b8' }}>
-            🔍
+          <div style={{ paddingRight: 16, color: '#3b82f6', opacity: 0.8, pointerEvents: 'none' }}>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
           </div>
+        </div>
+
+        {/* Integrated Button */}
+        <div style={{ paddingRight: 6 }}>
+          <button type="submit" className="btn-mockup-blue" style={{ padding: '10px 24px', borderRadius: '100px', whiteSpace: 'nowrap' }}>
+            SEARCH
+          </button>
         </div>
       </div>
 
-      <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 40 }}>
-        <div className="glass-pill">Fast Partition Searching</div>
-        <div className="glass-pill">AI Phonetic Hash Matching</div>
-        <div className="glass-pill">Zero Latency</div>
+      <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 20 }}>
+        <div className="glass-pill">⚡ Fast Partition Searching</div>
+        <div className="glass-pill">🧠 AI Phonetic Matching</div>
+        <div className="glass-pill">🚀 Zero Latency</div>
       </div>
-
-      <button type="submit" className="btn-mockup-blue">
-        SEARCH NOW
-      </button>
     </form>
   )
 }
