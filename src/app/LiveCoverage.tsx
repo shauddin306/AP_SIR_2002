@@ -35,19 +35,19 @@ export default function LiveCoverage() {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 40, marginTop: 40 }}>
       <div style={{
-        background: 'rgba(59, 130, 246, 0.1)',
-        border: '1px solid rgba(59, 130, 246, 0.3)',
+        background: 'rgba(255, 255, 255, 0.8)',
+        border: '1px solid #cbd5e1',
         padding: '8px 24px',
         borderRadius: 30,
         display: 'flex',
         alignItems: 'center',
         gap: 12,
-        backdropFilter: 'blur(8px)',
-        boxShadow: '0 4px 12px rgba(0,0,0,0.2)'
+        backdropFilter: 'blur(12px)',
+        boxShadow: '0 4px 12px rgba(0,0,0,0.05)'
       }}>
         <span className="live-dot" style={{ display: 'inline-block', width: 8, height: 8, background: '#10b981', borderRadius: '50%', boxShadow: '0 0 8px #10b981' }}></span>
-        <span style={{ color: '#93c5fd', fontSize: 14, fontWeight: 500 }}>
-          <strong style={{ color: '#fff' }}>Live Coverage:</strong>{' '}
+        <span style={{ color: '#475569', fontSize: 14, fontWeight: 500 }}>
+          <strong style={{ color: '#0f172a' }}>Live Coverage:</strong>{' '}
           {isLoaded ? (
             <>
               {stats.assemblies} Assemblies Indexed • {formatNumber(stats.parts)} Parts • <strong>{formatNumber(stats.voters)}+ Voter Records</strong>
@@ -55,7 +55,7 @@ export default function LiveCoverage() {
           ) : (
             "Syncing state-wide database..."
           )}
-          <a href="/browse" style={{ color: '#fff', marginLeft: 12, textDecoration: 'underline', fontWeight: 600 }}>Explore Directory &rarr;</a>
+          <a href="/browse" style={{ color: '#2563eb', marginLeft: 12, textDecoration: 'underline', fontWeight: 600 }}>Explore Directory &rarr;</a>
         </span>
       </div>
     </div>

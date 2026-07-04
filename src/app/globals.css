@@ -326,7 +326,7 @@ body {
 
 .mesh-background {
   position: relative;
-  background-color: var(--color-bg-base); /* Clean, solid light background */
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 50%, #f0fdf4 100%); /* Beautiful warm yellow-to-green pastel gradient */
   overflow: hidden;
   z-index: 0;
 }
@@ -455,11 +455,11 @@ body {
 }
 
 .nav-link {
-  color: #cbd5e1;
+  color: #475569;
 }
 
 .nav-link:hover {
-  color: #f8fafc;
+  color: #0f172a;
 }
 
 /* ============================================================
