@@ -84,9 +84,6 @@ export default function HomeSearchClient() {
       </div>
 
       <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 20 }}>
-        <div className="glass-pill">⚡ Fast Partition Searching</div>
-        <div className="glass-pill">🧠 AI Phonetic Matching</div>
-        <div className="glass-pill">🚀 Zero Latency</div>
       </div>
     </form>
   )
