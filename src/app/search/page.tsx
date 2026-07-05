@@ -74,7 +74,7 @@ function SearchPageInner() {
     limit = 20,
     append = false
   ) => {
-    if (!famHouseNormalized && !q.trim()) {
+    if (famHouseNormalized == null && !famHouseRaw && !q.trim()) {
       setResults([])
       setHasSearched(false)
       setTotalAvailable(0)
@@ -90,8 +90,8 @@ function SearchPageInner() {
       if (assemblyNo) params.set('assembly_no', assemblyNo)
       if (partNo) params.set('part_no', partNo)
       if (relName) params.set('relative_name', relName)
-      if (famHouseNormalized != null && famPart) {
-        params.set('family_house_no_normalized', famHouseNormalized.toString())
+      if ((famHouseNormalized != null || famHouseRaw) && famPart) {
+        if (famHouseNormalized != null) params.set('family_house_no_normalized', famHouseNormalized.toString())
         params.set('family_part_no', famPart.toString())
         if (famAssembly) params.set('family_assembly_no', famAssembly.toString())
         if (famHouseRaw) params.set('family_house_no_raw', famHouseRaw)
@@ -211,6 +211,22 @@ function SearchPageInner() {
           display: 'flex', gap: 16, marginBottom: 24,
           flexDirection: 'column',
         }}>
+          {/* Assembly selection above search */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8, alignSelf: 'flex-start' }}>
+            <label style={{ fontSize: 14, color: 'var(--color-text-primary)', fontWeight: 600 }}>Select Assembly:</label>
+            <select
+              className="input"
+              value={filterAssemblyNo}
+              onChange={e => setFilterAssemblyNo(e.target.value)}
+              style={{ width: 200, padding: '8px 12px', appearance: 'auto', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}
+            >
+              <option value="">All Assemblies (Statewide)</option>
+              {uniqueAssemblies.map(a => (
+                <option key={a.no} value={a.no}>{a.no} - {a.name}</option>
+              ))}
+            </select>
+          </div>
+
           {/* Search Input */}
           <SearchBar
             value={query}
@@ -241,19 +257,7 @@ function SearchPageInner() {
               />
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-              <label style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Assembly No:</label>
-              <select
-                id="filter-assembly-no"
-                className="input"
-                value={filterAssemblyNo}
-                onChange={e => setFilterAssemblyNo(e.target.value)}
-                style={{ width: 140, padding: '6px 10px', appearance: 'auto' }}
-              >
-                <option value="">All Assemblies</option>
-                {uniqueAssemblies.map(a => (
-                  <option key={a.no} value={a.no}>{a.no} - {a.name}</option>
-                ))}
-              </select>
+              {/* Assembly dropdown was moved to top */}
             </div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
               <label style={{ fontSize: 13, color: 'var(--color-text-muted)' }}>Part No:</label>
@@ -492,14 +496,14 @@ function SearchPageInner() {
             voters={filteredResults}
             isLoading={isLoading}
             showMatchType={hasSearched && !familyView}
-            onViewFamily={(house_no_normalized, part_no, house_no_raw) => setFamilyView({ house_no_normalized, part_no, house_no_raw })}
+            onViewFamily={(house_no_normalized, part_no, house_no_raw, assembly_no) => setFamilyView({ house_no_normalized, part_no, house_no_raw, assembly_no })}
             userRole={userRole}
           />
         </div>
         <div className="md:hidden">
           <VoterCardList
             voters={filteredResults}
-            onViewFamily={(voter) => setFamilyView({ house_no_normalized: voter.house_no_normalized as number, part_no: voter.part_no as number, house_no_raw: voter.house_no_raw as string })}
+            onViewFamily={(voter) => setFamilyView({ house_no_normalized: voter.house_no_normalized as number, part_no: voter.part_no as number, house_no_raw: voter.house_no_raw as string, assembly_no: voter.assembly_no as number })}
           />
         </div>
 
